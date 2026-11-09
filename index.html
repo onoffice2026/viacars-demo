@@ -12,7 +12,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
         
-        /* FUNDALUL PE TOATĂ PAGINA - FIXAT */
         body {
             background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
                         url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
@@ -25,7 +24,6 @@
             min-height: 100vh;
         }
         
-        /* Secțiuni transparente pentru a se vedea fundalul */
         .section-transparent {
             background: rgba(10, 15, 30, 0.4);
             backdrop-filter: blur(8px);
@@ -36,7 +34,6 @@
             backdrop-filter: blur(12px);
         }
         
-        /* Background animat pentru secțiunea siglelor */
         .brands-animated-bg {
             background: linear-gradient(135deg, rgba(10, 15, 30, 0.75) 0%, rgba(30, 58, 138, 0.5) 50%, rgba(10, 15, 30, 0.75) 100%);
             background-size: 400% 400%;
@@ -53,29 +50,22 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* Glow effects subtile albastre */
-        .blue-glow {
-            box-shadow: 0 0 40px rgba(30, 58, 138, 0.4), 0 0 80px rgba(30, 58, 138, 0.2);
-        }
         .blue-glow-subtle {
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
         }
         
-        /* Header integrat cu logo */
         .header-integrated {
             background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(59, 130, 246, 0.2);
         }
         
-        /* Logo stilizat integrat */
         .logo-container {
             background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
             border: 1px solid rgba(96, 165, 250, 0.3);
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
         }
         
-        /* Brand logos */
         .brand-logo {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(10, 15, 30, 0.6);
@@ -89,7 +79,6 @@
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
         }
         
-        /* Car cards */
         .car-card {
             background: linear-gradient(145deg, rgba(10, 15, 30, 0.85), rgba(30, 58, 138, 0.15));
             backdrop-filter: blur(10px);
@@ -102,7 +91,6 @@
             transform: translateY(-3px);
         }
         
-        /* Search inputs */
         .search-input {
             background: rgba(10, 15, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -121,7 +109,6 @@
             color: rgba(255, 255, 255, 0.4);
         }
         
-        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
             color: #ffffff;
@@ -149,7 +136,6 @@
             border-color: rgba(96, 165, 250, 0.5);
         }
         
-        /* Category cards */
         .category-card {
             background: linear-gradient(135deg, rgba(10, 15, 30, 0.7), rgba(30, 58, 138, 0.15));
             border: 1px solid rgba(30, 58, 138, 0.2);
@@ -176,7 +162,6 @@
             transform: translateY(-3px);
         }
         
-        /* Decorative elements */
         .accent-line {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent);
@@ -196,7 +181,6 @@
             background: linear-gradient(90deg, #1e3a8a, transparent);
         }
         
-        /* Floating orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -207,6 +191,76 @@
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
+        }
+        
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+        }
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 8px;
+            padding: 6px;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .lang-dropdown:hover .lang-menu,
+        .lang-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .lang-option:hover {
+            background: rgba(30, 58, 138, 0.3);
+            color: white;
+        }
+        .lang-option.active {
+            background: rgba(30, 58, 138, 0.4);
+            color: white;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        .lang-flag {
+            width: 22px;
+            height: 16px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .current-lang {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            background: rgba(30, 58, 138, 0.2);
+            transition: all 0.2s ease;
+        }
+        .current-lang:hover {
+            background: rgba(30, 58, 138, 0.4);
         }
     </style>
 </head>
@@ -227,15 +281,68 @@
                 </div>
             </div>
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#" class="text-white/90 hover:text-white transition">Cumpără</a>
-                <a href="#" class="text-white/90 hover:text-white transition">Vinde</a>
-                <a href="#" class="text-white/90 hover:text-white transition">Dealeri</a>
-                <a href="#" class="text-white/90 hover:text-white transition">Noutăți</a>
+                <a href="#" class="text-white/90 hover:text-white transition" data-i18n="nav_buy">Cumpără</a>
+                <a href="#" class="text-white/90 hover:text-white transition" data-i18n="nav_sell">Vinde</a>
+                <a href="#" class="text-white/90 hover:text-white transition" data-i18n="nav_dealers">Dealeri</a>
+                <a href="#" class="text-white/90 hover:text-white transition" data-i18n="nav_news">Noutăți</a>
             </nav>
-            <div class="flex space-x-3">
-                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
+            <div class="flex items-center space-x-3">
+                <!-- Language Dropdown -->
+                <div class="lang-dropdown">
+                    <div class="current-lang" id="currentLangBtn">
+                        <svg id="currentFlag" class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="40" fill="#002B7F"/>
+                            <rect x="20" width="20" height="40" fill="#FCD116"/>
+                            <rect x="40" width="20" height="40" fill="#CE1126"/>
+                        </svg>
+                        <span id="currentLangCode" class="text-xs font-medium text-white/90">RO</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-white/60"></i>
+                    </div>
+                    <div class="lang-menu" id="langMenu">
+                        <div class="lang-option active" data-lang="ro" onclick="switchLanguage('ro')">
+                            <svg class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="20" height="40" fill="#002B7F"/>
+                                <rect x="20" width="20" height="40" fill="#FCD116"/>
+                                <rect x="40" width="20" height="40" fill="#CE1126"/>
+                            </svg>
+                            <span>Română</span>
+                        </div>
+                        <div class="lang-option" data-lang="bg" onclick="switchLanguage('bg')">
+                            <svg class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="13.33" fill="#FFFFFF"/>
+                                <rect y="13.33" width="60" height="13.33" fill="#00966E"/>
+                                <rect y="26.66" width="60" height="13.34" fill="#D62612"/>
+                            </svg>
+                            <span>Български</span>
+                        </div>
+                        <div class="lang-option" data-lang="el" onclick="switchLanguage('el')">
+                            <svg class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="40" fill="#0D5EAF"/>
+                                <rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/>
+                                <rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/>
+                                <rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/>
+                                <rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/>
+                                <rect width="22.22" height="22.22" fill="#0D5EAF"/>
+                                <rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/>
+                                <rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/>
+                            </svg>
+                            <span>Ελληνικά</span>
+                        </div>
+                        <div class="lang-option" data-lang="en" onclick="switchLanguage('en')">
+                            <svg class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="60" height="40" fill="#012169"/>
+                                <path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/>
+                                <path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/>
+                                <path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/>
+                                <path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/>
+                            </svg>
+                            <span>English</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5" data-i18n="nav_login">Logare</a>
                 <a href="#" class="text-sm bg-blue-600/30 border border-blue-400/40 text-white px-4 py-1.5 rounded hover:bg-blue-600/50 transition">
-                    <i class="fa-solid fa-plus mr-1 text-xs"></i>Adaugă Anunț
+                    <i class="fa-solid fa-plus mr-1 text-xs"></i><span data-i18n="nav_add">Adaugă Anunț</span>
                 </a>
             </div>
         </div>
@@ -245,40 +352,40 @@
     <section class="relative py-24">
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-10">
-                <h1 class="text-4xl font-bold text-white mb-3">Găsește mașina perfectă</h1>
-                <p class="text-blue-200/60 text-sm">Peste 12.450 de anunțuri verificate</p>
+                <h1 class="text-4xl font-bold text-white mb-3" data-i18n="hero_title">Găsește mașina perfectă</h1>
+                <p class="text-blue-200/60 text-sm" data-i18n="hero_subtitle">Peste 12.450 de anunțuri verificate</p>
             </div>
             
             <div class="bg-black/30 backdrop-blur-xl p-5 rounded-lg border border-blue-400/20 max-w-5xl mx-auto blue-glow-subtle">
                 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <select class="search-input rounded">
-                        <option>Marca</option>
+                        <option data-i18n="filter_brand">Marca</option>
                         <option>BMW</option>
                         <option>Mercedes-Benz</option>
                         <option>Audi</option>
                     </select>
                     <select class="search-input rounded">
-                        <option>Modelul</option>
+                        <option data-i18n="filter_model">Modelul</option>
                     </select>
                     <select class="search-input rounded">
-                        <option>Caroserie</option>
-                        <option>Sedan</option>
-                        <option>SUV</option>
+                        <option data-i18n="filter_body">Caroserie</option>
+                        <option data-i18n="body_sedan">Sedan</option>
+                        <option data-i18n="body_suv">SUV</option>
                     </select>
                     <select class="search-input rounded">
-                        <option>Combustibil</option>
-                        <option>Diesel</option>
-                        <option>Benzină</option>
+                        <option data-i18n="filter_fuel">Combustibil</option>
+                        <option data-i18n="fuel_diesel">Diesel</option>
+                        <option data-i18n="fuel_gas">Benzină</option>
                     </select>
                 </form>
                 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                    <input type="number" placeholder="Preț Min (€)" class="search-input rounded">
-                    <input type="number" placeholder="Preț Max (€)" class="search-input rounded">
-                    <input type="number" placeholder="An Min" class="search-input rounded">
-                    <input type="number" placeholder="An Max" class="search-input rounded">
+                    <input type="number" data-i18n-placeholder="filter_price_min" placeholder="Preț Min (€)" class="search-input rounded">
+                    <input type="number" data-i18n-placeholder="filter_price_max" placeholder="Preț Max (€)" class="search-input rounded">
+                    <input type="number" data-i18n-placeholder="filter_year_min" placeholder="An Min" class="search-input rounded">
+                    <input type="number" data-i18n-placeholder="filter_year_max" placeholder="An Max" class="search-input rounded">
                 </form>
                 <button type="button" class="btn-primary w-full rounded">
-                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Caută în 12.450 de anunțuri
+                    <i class="fa-solid fa-magnifying-glass mr-2"></i> <span data-i18n="search_button">Caută în 12.450 de anunțuri</span>
                 </button>
             </div>
         </div>
@@ -290,63 +397,63 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-bolt text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Ieftine și puternice</h3>
-                    <p class="text-[10px] text-white/50">Cea mai bună putere/bani</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_cheap">Ieftine și puternice</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_cheap_desc">Cea mai bună putere/bani</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-crown text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Exclusiviste</h3>
-                    <p class="text-[10px] text-white/50">Peste 100.000 €</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_exclusive">Exclusiviste</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_exclusive_desc">Peste 100.000 €</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-charging-station text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Electrice</h3>
-                    <p class="text-[10px] text-white/50">100% electric</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_electric">Electrice</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_electric_desc">100% electric</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-truck-monster text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">SUV-uri</h3>
-                    <p class="text-[10px] text-white/50">4x4 și off-road</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_suv">SUV-uri</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_suv_desc">4x4 și off-road</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-wind text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Cabrio</h3>
-                    <p class="text-[10px] text-white/50">Acoperiș decapotabil</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_cabrio">Cabrio</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_cabrio_desc">Acoperiș decapotabil</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-flag-checkered text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Sport</h3>
-                    <p class="text-[10px] text-white/50">Performanță maximă</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_sport">Sport</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_sport_desc">Performanță maximă</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-people-group text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Familiale</h3>
-                    <p class="text-[10px] text-white/50">7+ locuri</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_family">Familiale</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_family_desc">7+ locuri</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-clock-rotate-left text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Vintage</h3>
-                    <p class="text-[10px] text-white/50">Clasice și de colecție</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_vintage">Vintage</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_vintage_desc">Clasice și de colecție</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-leaf text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Hybrid</h3>
-                    <p class="text-[10px] text-white/50">Eco-friendly</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_hybrid">Hybrid</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_hybrid_desc">Eco-friendly</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-briefcase text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Business</h3>
-                    <p class="text-[10px] text-white/50">Clase premium</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_business">Business</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_business_desc">Clase premium</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-truck text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Pick-up</h3>
-                    <p class="text-[10px] text-white/50">Utilitare și 4x4</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_pickup">Pick-up</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_pickup_desc">Utilitare și 4x4</p>
                 </div>
                 <div class="category-card p-4 rounded-lg cursor-pointer">
                     <i class="fa-solid fa-star text-blue-400/70 text-lg mb-2"></i>
-                    <h3 class="text-sm font-bold text-white mb-1">Noutăți 2026</h3>
-                    <p class="text-[10px] text-white/50">Cele mai noi modele</p>
+                    <h3 class="text-sm font-bold text-white mb-1" data-i18n="cat_new">Noutăți 2026</h3>
+                    <p class="text-[10px] text-white/50" data-i18n="cat_new_desc">Cele mai noi modele</p>
                 </div>
             </div>
         </div>
@@ -360,11 +467,10 @@
         
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-10">
-                <h2 class="section-title text-2xl font-bold text-white">Explorează după Marcă</h2>
+                <h2 class="section-title text-2xl font-bold text-white" data-i18n="brands_title">Explorează după Marcă</h2>
             </div>
             
             <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
-                <!-- BMW -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
@@ -375,7 +481,6 @@
                     <p class="text-[10px] text-white/70 font-medium">BMW</p>
                 </div>
 
-                <!-- Mercedes -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
@@ -387,7 +492,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Mercedes</p>
                 </div>
 
-                <!-- Audi -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <circle cx="22" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/>
@@ -398,7 +502,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Audi</p>
                 </div>
 
-                <!-- VW -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
@@ -408,7 +511,6 @@
                     <p class="text-[10px] text-white/70 font-medium">VW</p>
                 </div>
 
-                <!-- Ford -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2"/>
@@ -417,7 +519,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Ford</p>
                 </div>
 
-                <!-- Opel -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="42" stroke="#c0c0c0" stroke-width="2"/>
@@ -426,7 +527,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Opel</p>
                 </div>
 
-                <!-- Renault -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <path d="M50 18 L78 50 L50 82 L22 50 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
@@ -435,7 +535,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Renault</p>
                 </div>
 
-                <!-- Toyota -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/>
@@ -445,7 +544,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Toyota</p>
                 </div>
 
-                <!-- Porsche -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <path d="M18 28 L82 28 L72 72 L28 72 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
@@ -454,7 +552,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Porsche</p>
                 </div>
 
-                <!-- Ferrari -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <path d="M28 18 L72 18 L62 82 L38 82 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
@@ -464,7 +561,6 @@
                     <p class="text-[10px] text-white/70 font-medium">Ferrari</p>
                 </div>
 
-                <!-- Lamborghini -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
                     <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
                         <path d="M22 50 L50 22 L78 50 L50 78 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
@@ -473,287 +569,4 @@
                     <p class="text-[10px] text-white/70 font-medium">Lambo</p>
                 </div>
 
-                <!-- Tesla -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 18 L50 82" stroke="#c0c0c0" stroke-width="3.5"/>
-                        <path d="M28 35 L72 35" stroke="#c0c0c0" stroke-width="2.5"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Tesla</p>
-                </div>
-
-                <!-- Nissan -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <rect x="22" y="44" width="56" height="12" fill="#c0c0c0"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Nissan</p>
-                </div>
-
-                <!-- Honda -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <rect x="22" y="28" width="56" height="44" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="3"/>
-                        <path d="M50 35 L50 65" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M32 50 L68 50" stroke="#c0c0c0" stroke-width="2.5"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Honda</p>
-                </div>
-
-                <!-- Mazda -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M32 45 Q50 32 68 45 Q50 58 32 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Mazda</p>
-                </div>
-
-                <!-- Volvo -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/>
-                        <path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="2.5"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Volvo</p>
-                </div>
-
-                <!-- Jaguar -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M28 50 Q38 30 50 50 Q62 70 72 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                        <circle cx="50" cy="50" r="5" fill="#c0c0c0"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Jaguar</p>
-                </div>
-
-                <!-- KIA -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <text x="50" y="58" font-size="24" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">KIA</text>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">KIA</p>
-                </div>
-
-                <!-- Hyundai -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="45" ry="32" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M32 45 Q50 32 68 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                        <path d="M38 58 L62 58" stroke="#c0c0c0" stroke-width="2.5"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Hyundai</p>
-                </div>
-
-                <!-- Citroen -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M25 38 Q50 25 75 38" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
-                        <path d="M25 50 Q50 37 75 50" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
-                        <path d="M25 62 Q50 49 75 62" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Citroën</p>
-                </div>
-
-                <!-- Fiat -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <rect x="18" y="32" width="64" height="36" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="2"/>
-                        <text x="50" y="56" font-size="18" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">FIAT</text>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Fiat</p>
-                </div>
-
-                <!-- Peugeot -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 22 L50 78" stroke="#c0c0c0" stroke-width="3.5"/>
-                        <path d="M32 38 L50 50 L68 38" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                        <path d="M32 62 L50 50 L68 62" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Peugeot</p>
-                </div>
-
-                <!-- Skoda -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M32 42 L50 32 L68 42 L50 52 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                        <path d="M32 58 L50 68 L68 58" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">Skoda</p>
-                </div>
-
-                <!-- SEAT -->
-                <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
-                        <path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/>
-                        <path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="2.5"/>
-                    </svg>
-                    <p class="text-[10px] text-white/70 font-medium">SEAT</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECȚIUNEA: DE CE SĂ CUMPERI -->
-    <section class="py-12 section-transparent">
-        <div class="container mx-auto px-6">
-            <div class="max-w-3xl mx-auto">
-                <h2 class="section-title text-2xl font-bold text-white mb-8">ViaCars.eu - Marketplace-ul auto premium</h2>
-                <div class="space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-check text-blue-400/70 text-sm"></i>
-                        <p class="text-sm text-white/70">Caută în cea mai mare ofertă online</p>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-check text-blue-400/70 text-sm"></i>
-                        <p class="text-sm text-white/70">Opțiuni avansate de filtrare</p>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-check text-blue-400/70 text-sm"></i>
-                        <p class="text-sm text-white/70">Salvează căutările tale</p>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-check text-blue-400/70 text-sm"></i>
-                        <p class="text-sm text-white/70">Vinde o mașină gratuit</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECȚIUNEA: ANUNȚURI RECENTE -->
-    <section class="py-14 section-darker">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="section-title text-2xl font-bold text-white">Anunțuri Recente</h2>
-                <a href="#" class="text-xs text-white/60 hover:text-white transition">Vezi toate <i class="fa-solid fa-arrow-right ml-1"></i></a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Card Mașină 1 -->
-                <div class="car-card rounded overflow-hidden">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW" class="w-full h-40 object-cover">
-                        <span class="absolute top-2 left-2 bg-green-600/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">VERIFICAT</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-sm font-bold text-white mb-1">BMW Seria 3, 320d</h3>
-                        <p class="text-lg font-bold text-white mb-3">24.500 €</p>
-                        <div class="grid grid-cols-2 gap-y-1 text-[11px] text-white/50 mb-3">
-                            <div><i class="fa-solid fa-calendar-days mr-1"></i>2021</div>
-                            <div><i class="fa-solid fa-gauge mr-1"></i>85.000 km</div>
-                            <div><i class="fa-solid fa-gas-pump mr-1"></i>Diesel</div>
-                            <div><i class="fa-solid fa-gears mr-1"></i>Automată</div>
-                        </div>
-                        <button class="btn-secondary w-full rounded">Vezi Detalii</button>
-                    </div>
-                </div>
-
-                <!-- Card Mașină 2 -->
-                <div class="car-card rounded overflow-hidden">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" alt="Mercedes" class="w-full h-40 object-cover">
-                        <span class="absolute top-2 left-2 bg-blue-600/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">DEALER</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-sm font-bold text-white mb-1">Mercedes-Benz Clasa C</h3>
-                        <p class="text-lg font-bold text-white mb-3">31.200 €</p>
-                        <div class="grid grid-cols-2 gap-y-1 text-[11px] text-white/50 mb-3">
-                            <div><i class="fa-solid fa-calendar-days mr-1"></i>2022</div>
-                            <div><i class="fa-solid fa-gauge mr-1"></i>42.000 km</div>
-                            <div><i class="fa-solid fa-gas-pump mr-1"></i>Hybrid</div>
-                            <div><i class="fa-solid fa-gears mr-1"></i>Automată</div>
-                        </div>
-                        <button class="btn-secondary w-full rounded">Vezi Detalii</button>
-                    </div>
-                </div>
-
-                <!-- Card Mașină 3 -->
-                <div class="car-card rounded overflow-hidden">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80" alt="Audi" class="w-full h-40 object-cover">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-sm font-bold text-white mb-1">Audi A4 Avant</h3>
-                        <p class="text-lg font-bold text-white mb-3">19.800 €</p>
-                        <div class="grid grid-cols-2 gap-y-1 text-[11px] text-white/50 mb-3">
-                            <div><i class="fa-solid fa-calendar-days mr-1"></i>2019</div>
-                            <div><i class="fa-solid fa-gauge mr-1"></i>110.000 km</div>
-                            <div><i class="fa-solid fa-gas-pump mr-1"></i>Diesel</div>
-                            <div><i class="fa-solid fa-gears mr-1"></i>Manuală</div>
-                        </div>
-                        <button class="btn-secondary w-full rounded">Vezi Detalii</button>
-                    </div>
-                </div>
-
-                <!-- Card Mașină 4 -->
-                <div class="car-card rounded overflow-hidden">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1471444928139-48c5bf5163d8?auto=format&fit=crop&w=600&q=80" alt="VW" class="w-full h-40 object-cover">
-                        <span class="absolute top-2 left-2 bg-yellow-600/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">TOP OFERTĂ</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-sm font-bold text-white mb-1">Volkswagen Golf 8</h3>
-                        <p class="text-lg font-bold text-white mb-3">22.900 €</p>
-                        <div class="grid grid-cols-2 gap-y-1 text-[11px] text-white/50 mb-3">
-                            <div><i class="fa-solid fa-calendar-days mr-1"></i>2023</div>
-                            <div><i class="fa-solid fa-gauge mr-1"></i>28.000 km</div>
-                            <div><i class="fa-solid fa-gas-pump mr-1"></i>Benzină</div>
-                            <div><i class="fa-solid fa-gears mr-1"></i>Automată</div>
-                        </div>
-                        <button class="btn-secondary w-full rounded">Vezi Detalii</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="section-darker border-t border-blue-900/30 py-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Despre ViaCars</h4>
-                    <ul class="space-y-1 text-xs text-white/50">
-                        <li><a href="#" class="hover:text-white transition">Cine suntem</a></li>
-                        <li><a href="#" class="hover:text-white transition">Cum funcționează</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Cumpărători</h4>
-                    <ul class="space-y-1 text-xs text-white/50">
-                        <li><a href="#" class="hover:text-white transition">Caută mașini</a></li>
-                        <li><a href="#" class="hover:text-white transition">Ghid cumpărare</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Vânzători</h4>
-                    <ul class="space-y-1 text-xs text-white/50">
-                        <li><a href="#" class="hover:text-white transition">Adaugă anunț</a></li>
-                        <li><a href="#" class="hover:text-white transition">Pachete premium</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-3 text-sm">Contact</h4>
-                    <ul class="space-y-1 text-xs text-white/50">
-                        <li><i class="fa-solid fa-envelope mr-1"></i>contact@viacars.eu</li>
-                        <li><i class="fa-solid fa-phone mr-1"></i>+40 123 456 789</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="accent-line mb-4"></div>
-            <div class="text-center text-xs text-white/40">
-                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
-            </div>
-        </div>
-    </footer>
-
-</body>
-</html>
