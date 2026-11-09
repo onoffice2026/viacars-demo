@@ -3,153 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaCars - Marketplace Auto</title>
-    <!-- Folosim Tailwind CSS pentru un design modern și rapid, fără fișiere CSS complicate -->
+    <title>ViaCars - Marketplace Auto (Demo)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Culori inspirate de autowereld.nl */
+        .bg-primary { background-color: #0056b3; }
+        .text-primary { color: #0056b3; }
+        .hover-bg-primary:hover { background-color: #004494; }
+        .border-primary { border-color: #0056b3; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans">
 
     <!-- HEADER / MENIU -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-car-side text-blue-600 text-3xl"></i>
-                <span class="text-2xl font-bold text-gray-900">ViaCars<span class="text-blue-600">.eu</span></span>
+                <i class="fa-solid fa-car-side text-primary text-3xl"></i>
+                <span class="text-2xl font-bold text-gray-900">ViaCars<span class="text-primary">.eu</span></span>
             </div>
-            <nav class="hidden md:flex space-x-8 font-medium">
-                <a href="#" class="text-blue-600">Acasă</a>
-                <a href="#" class="hover:text-blue-600 transition">Cumpără</a>
-                <a href="#" class="hover:text-blue-600 transition">Vinde</a>
-                <a href="#" class="hover:text-blue-600 transition">Dealeri</a>
+            <nav class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <a href="#" class="hover:text-primary transition">Cumpără</a>
+                <a href="#" class="hover:text-primary transition">Vinde</a>
+                <a href="#" class="hover:text-primary transition">Dealeri</a>
+                <a href="#" class="hover:text-primary transition">Noutăți</a>
             </nav>
-            <div class="flex space-x-3">
-                <a href="#" class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition">Logare</a>
-                <a href="#" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition shadow-md">
-                    <i class="fa-solid fa-plus mr-2"></i>Adaugă Anunț
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-600 hover:text-primary"><i class="fa-solid fa-globe mr-1"></i> RO</button>
+                <a href="#" class="text-gray-600 hover:text-primary font-medium">Logare</a>
+                <a href="#" class="bg-primary text-white px-4 py-2 rounded-md font-medium hover-bg-primary transition shadow-sm">
+                    <i class="fa-solid fa-plus mr-1"></i> Adaugă Anunț
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION + BARA DE CĂUTARE -->
-    <section class="relative bg-gray-900 py-20">
-        <!-- Imagine de fundal simulată -->
+    <!-- HERO SECTION + BARA DE CĂUTARE COMPLEXĂ (Ca pe autowereld.nl) -->
+    <section class="relative bg-gray-800 py-16">
         <div class="absolute inset-0 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80" alt="Car background" class="w-full h-full object-cover opacity-40">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80" alt="Car background" class="w-full h-full object-cover opacity-30">
         </div>
         
-        <div class="relative container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Găsește mașina perfectă pentru tine</h1>
-            <p class="text-gray-300 text-lg mb-8">Mii de mașini verificate, de la dealeri și persoane fizice.</p>
+        <div class="relative container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Găsește mașina perfectă pentru tine</h1>
             
+            <!-- Tab-uri de căutare -->
+            <div class="flex justify-center mb-4 space-x-2">
+                <button class="bg-white text-primary px-6 py-2 rounded-t-lg font-bold border-b-2 border-primary">Auto</button>
+                <button class="bg-gray-200 text-gray-600 px-6 py-2 rounded-t-lg font-medium hover:bg-gray-300">Moto</button>
+                <button class="bg-gray-200 text-gray-600 px-6 py-2 rounded-t-lg font-medium hover:bg-gray-300">Rulote</button>
+                <button class="bg-gray-200 text-gray-600 px-6 py-2 rounded-t-lg font-medium hover:bg-gray-300">Comerciale</button>
+            </div>
+
             <!-- Bara de Căutare Avansată -->
-            <div class="bg-white p-6 rounded-xl shadow-2xl max-w-5xl mx-auto">
-                <form class="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+            <div class="bg-white p-6 rounded-b-lg rounded-tr-lg shadow-2xl max-w-6xl mx-auto">
+                <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Rând 1 -->
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
                         <option>Marca</option>
                         <option>BMW</option>
                         <option>Mercedes-Benz</option>
                         <option>Audi</option>
                         <option>Volkswagen</option>
                     </select>
-                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
                         <option>Modelul</option>
                     </select>
-                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                        <option>Preț Max.</option>
-                        <option>5.000 €</option>
-                        <option>10.000 €</option>
-                        <option>20.000 €</option>
-                        <option>30.000+ €</option>
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
+                        <option>Caroserie</option>
+                        <option>Berlină</option>
+                        <option>SUV / 4x4</option>
+                        <option>Break</option>
+                        <option>Coupé</option>
                     </select>
-                    <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
-                        <option>An fabricație</option>
-                        <option>2023 - 2024</option>
-                        <option>2020 - 2022</option>
-                        <option>2015 - 2019</option>
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
+                        <option>Combustibil</option>
+                        <option>Benzină</option>
+                        <option>Motorină</option>
+                        <option>Electric</option>
+                        <option>Hibrid</option>
                     </select>
-                    <button type="button" class="w-full bg-blue-600 text-white font-bold p-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center">
-                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Caută
-                    </button>
+
+                    <!-- Rând 2 -->
+                    <div class="flex space-x-2">
+                        <input type="number" placeholder="Preț Min (€)" class="w-1/2 p-3 border border-gray-300 rounded-md outline-none bg-gray-50">
+                        <input type="number" placeholder="Preț Max (€)" class="w-1/2 p-3 border border-gray-300 rounded-md outline-none bg-gray-50">
+                    </div>
+                    <div class="flex space-x-2">
+                        <input type="number" placeholder="An Min" class="w-1/2 p-3 border border-gray-300 rounded-md outline-none bg-gray-50">
+                        <input type="number" placeholder="An Max" class="w-1/2 p-3 border border-gray-300 rounded-md outline-none bg-gray-50">
+                    </div>
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
+                        <option>Transmisie</option>
+                        <option>Manuală</option>
+                        <option>Automată</option>
+                    </select>
+                    <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 outline-none bg-gray-50">
+                        <option>Județ / Regiune</option>
+                        <option>București</option>
+                        <option>Cluj</option>
+                        <option>Timiș</option>
+                    </select>
+
+                    <!-- Buton Căutare -->
+                    <div class="md:col-span-4 mt-2">
+                        <button type="button" class="w-full bg-primary text-white font-bold p-4 rounded-md hover-bg-primary transition text-lg shadow-md flex items-center justify-center">
+                            <i class="fa-solid fa-magnifying-glass mr-2"></i> Caută în 12.450 de anunțuri
+                        </button>
+                    </div>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECȚIUNEA: MĂRCI POPULARE -->
+    <section class="py-12 bg-white border-b border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Explorează după Marcă</h2>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
+                <!-- Brand 1 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">BMW</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">1.240 anunțuri</span>
+                </a>
+                <!-- Brand 2 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">Mercedes</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">980 anunțuri</span>
+                </a>
+                <!-- Brand 3 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">Audi</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">750 anunțuri</span>
+                </a>
+                <!-- Brand 4 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">VW</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">1.100 anunțuri</span>
+                </a>
+                <!-- Brand 5 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">Ford</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">620 anunțuri</span>
+                </a>
+                <!-- Brand 6 -->
+                <a href="#" class="flex flex-col items-center group">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-blue-50 transition border border-gray-200">
+                        <span class="font-bold text-gray-600">Opel</span>
+                    </div>
+                    <span class="mt-2 text-sm font-medium text-gray-600 group-hover:text-primary">540 anunțuri</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- SECȚIUNEA: MAȘINI RECENTE -->
     <section class="py-16 container mx-auto px-4">
-        <div class="flex justify-between items-end mb-8">
+        <div class="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
             <div>
-                <h2 class="text-3xl font-bold text-gray-900">Mașini Recent Adăugate</h2>
-                <p class="text-gray-500 mt-2">Cele mai noi oferte verificate de pe platformă.</p>
+                <h2 class="text-2xl font-bold text-gray-900">Anunțuri Recente</h2>
+                <p class="text-gray-500 text-sm mt-1">Cele mai noi oferte adăugate pe platformă.</p>
             </div>
-            <a href="#" class="text-blue-600 font-medium hover:underline">Vezi toate <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            <a href="#" class="text-primary font-medium hover:underline text-sm">Vezi toate anunțurile <i class="fa-solid fa-arrow-right ml-1"></i></a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Card Mașină 1 -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden border border-gray-100">
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition overflow-hidden border border-gray-200 group">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW" class="w-full h-48 object-cover">
-                    <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">VERIFICAT</span>
-                    <button class="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:text-red-500 transition"><i class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80" alt="BMW" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-2 left-2 bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">VERIFICAT</span>
+                    <button class="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:text-red-500 transition"><i class="fa-regular fa-heart"></i></button>
                 </div>
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">BMW Seria 3, 320d</h3>
-                    <p class="text-2xl font-bold text-blue-600 mb-4">24.500 €</p>
-                    <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600 mb-4">
-                        <div><i class="fa-solid fa-calendar-days mr-2 text-gray-400"></i>2021</div>
-                        <div><i class="fa-solid fa-gauge mr-2 text-gray-400"></i>85.000 km</div>
-                        <div><i class="fa-solid fa-gas-pump mr-2 text-gray-400"></i>Diesel</div>
-                        <div><i class="fa-solid fa-gears mr-2 text-gray-400"></i>Automată</div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 truncate">BMW Seria 3, 320d</h3>
+                    <p class="text-xl font-bold text-primary mb-3">24.500 €</p>
+                    <div class="grid grid-cols-2 gap-y-1 text-xs text-gray-600 mb-4 border-t border-gray-100 pt-3">
+                        <div><i class="fa-solid fa-calendar-days mr-1 text-gray-400"></i> 2021</div>
+                        <div><i class="fa-solid fa-gauge mr-1 text-gray-400"></i> 85.000 km</div>
+                        <div><i class="fa-solid fa-gas-pump mr-1 text-gray-400"></i> Diesel</div>
+                        <div><i class="fa-solid fa-gears mr-1 text-gray-400"></i> Automată</div>
                     </div>
-                    <button class="w-full border-2 border-blue-600 text-blue-600 font-bold py-2 rounded-lg hover:bg-blue-600 hover:text-white transition">Vezi Detalii</button>
+                    <div class="flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-location-dot mr-1"></i> București</span>
+                        <span>Adăugat azi</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Card Mașină 2 -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden border border-gray-100">
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition overflow-hidden border border-gray-200 group">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" alt="Mercedes" class="w-full h-48 object-cover">
-                    <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">DEALER</span>
+                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" alt="Mercedes" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded">DEALER</span>
                 </div>
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Mercedes-Benz Clasa C</h3>
-                    <p class="text-2xl font-bold text-blue-600 mb-4">31.200 €</p>
-                    <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600 mb-4">
-                        <div><i class="fa-solid fa-calendar-days mr-2 text-gray-400"></i>2022</div>
-                        <div><i class="fa-solid fa-gauge mr-2 text-gray-400"></i>42.000 km</div>
-                        <div><i class="fa-solid fa-gas-pump mr-2 text-gray-400"></i>Hybrid</div>
-                        <div><i class="fa-solid fa-gears mr-2 text-gray-400"></i>Automată</div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 truncate">Mercedes-Benz Clasa C</h3>
+                    <p class="text-xl font-bold text-primary mb-3">31.200 €</p>
+                    <div class="grid grid-cols-2 gap-y-1 text-xs text-gray-600 mb-4 border-t border-gray-100 pt-3">
+                        <div><i class="fa-solid fa-calendar-days mr-1 text-gray-400"></i> 2022</div>
+                        <div><i class="fa-solid fa-gauge mr-1 text-gray-400"></i> 42.000 km</div>
+                        <div><i class="fa-solid fa-gas-pump mr-1 text-gray-400"></i> Hibrid</div>
+                        <div><i class="fa-solid fa-gears mr-1 text-gray-400"></i> Automată</div>
                     </div>
-                    <button class="w-full border-2 border-blue-600 text-blue-600 font-bold py-2 rounded-lg hover:bg-blue-600 hover:text-white transition">Vezi Detalii</button>
+                    <div class="flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-location-dot mr-1"></i> Cluj-Napoca</span>
+                        <span>Adăugat ieri</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Card Mașină 3 -->
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition overflow-hidden border border-gray-100">
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition overflow-hidden border border-gray-200 group">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80" alt="Audi" class="w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80" alt="Audi" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
                 </div>
-                <div class="p-5">
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">Audi A4 Avant</h3>
-                    <p class="text-2xl font-bold text-blue-600 mb-4">19.800 €</p>
-                    <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600 mb-4">
-                        <div><i class="fa-solid fa-calendar-days mr-2 text-gray-400"></i>2019</div>
-                        <div><i class="fa-solid fa-gauge mr-2 text-gray-400"></i>110.000 km</div>
-                        <div><i class="fa-solid fa-gas-pump mr-2 text-gray-400"></i>Diesel</div>
-                        <div><i class="fa-solid fa-gears mr-2 text-gray-400"></i>Manuală</div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 truncate">Audi A4 Avant</h3>
+                    <p class="text-xl font-bold text-primary mb-3">19.800 €</p>
+                    <div class="grid grid-cols-2 gap-y-1 text-xs text-gray-600 mb-4 border-t border-gray-100 pt-3">
+                        <div><i class="fa-solid fa-calendar-days mr-1 text-gray-400"></i> 2019</div>
+                        <div><i class="fa-solid fa-gauge mr-1 text-gray-400"></i> 110.000 km</div>
+                        <div><i class="fa-solid fa-gas-pump mr-1 text-gray-400"></i> Diesel</div>
+                        <div><i class="fa-solid fa-gears mr-1 text-gray-400"></i> Manuală</div>
                     </div>
-                    <button class="w-full border-2 border-blue-600 text-blue-600 font-bold py-2 rounded-lg hover:bg-blue-600 hover:text-white transition">Vezi Detalii</button>
+                    <div class="flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-location-dot mr-1"></i> Timișoara</span>
+                        <span>Acum 2 zile</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Mașină 4 -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition overflow-hidden border border-gray-200 group">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80" alt="VW" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                    <span class="absolute top-2 left-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">TOP OFERTĂ</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 truncate">Volkswagen Golf 8</h3>
+                    <p class="text-xl font-bold text-primary mb-3">22.100 €</p>
+                    <div class="grid grid-cols-2 gap-y-1 text-xs text-gray-600 mb-4 border-t border-gray-100 pt-3">
+                        <div><i class="fa-solid fa-calendar-days mr-1 text-gray-400"></i> 2021</div>
+                        <div><i class="fa-solid fa-gauge mr-1 text-gray-400"></i> 65.000 km</div>
+                        <div><i class="fa-solid fa-gas-pump mr-1 text-gray-400"></i> Benzină</div>
+                        <div><i class="fa-solid fa-gears mr-1 text-gray-400"></i> Automată</div>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-gray-500">
+                        <span><i class="fa-solid fa-location-dot mr-1"></i> Brașov</span>
+                        <span>Acum 3 zile</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER SIMPLU -->
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-        <p>&copy; 2024 ViaCars.eu. Toate drepturile rezervate. (Versiune Demo)</p>
+    <!-- FOOTER COMPLEX (Ca pe autowereld.nl) -->
+    <footer class="bg-gray-900 text-gray-400 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Despre ViaCars</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Cine suntem</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cariere</a></li>
+                        <li><a href="#" class="hover:text-white transition">Presă</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Pentru Cumpărători</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Caută mașini</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ghidul cumpărătorului</a></li>
+                        <li><a href="#" class="hover:text-white transition">Verificare VIN</a></li>
+                        <li><a href="#" class="hover:text-white transition">Calculator rate</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Pentru Vânzători</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Adaugă anunț</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pachete pentru dealeri</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sfaturi pentru vânzare</a></li>
+                        <li><a href="#" class="hover:text-white transition">Promovare anunțuri</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-4">Urmărește-ne</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition text-white"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition text-white"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition text-white"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <p class="text-sm">Descarcă aplicația noastră:</p>
+                    <div class="flex space-x-2 mt-2">
+                        <button class="bg-gray-800 px-3 py-1 rounded text-xs hover:bg-gray-700">App Store</button>
+                        <button class="bg-gray-800 px-3 py-1 rounded text-xs hover:bg-gray-700">Google Play</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2024 ViaCars.eu. Toate drepturile rezervate. (Versiune Demo)</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Termeni și condiții</a>
+                    <a href="#" class="hover:text-white">Politica de confidențialitate</a>
+                    <a href="#" class="hover:text-white">Cookies</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
 </body>
