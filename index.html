@@ -6,13 +6,14 @@
     <title>ViaCars.eu - Premium Auto Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Raleway', sans-serif;
         }
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.5px;
         }
         body {
             background-color: #0a0f1e;
@@ -20,14 +21,23 @@
             overflow-x: hidden;
         }
         
-        /* Background dinamic animat - culorile din logo */
+        /* Hero background - imagine cu mașini în penumbră */
         .hero-bg {
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.85) 0%, rgba(30, 58, 138, 0.25) 50%, rgba(10, 15, 30, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* Background animat pentru secțiunea siglelor */
+        .brands-animated-bg {
             background: linear-gradient(135deg, #0a0f1e 0%, #1e3a8a 50%, #0a0f1e 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             position: relative;
         }
-        .hero-bg:hover {
+        .brands-animated-bg:hover {
             animation-duration: 5s;
         }
         @keyframes gradientShift {
@@ -43,11 +53,8 @@
         .blue-glow-subtle {
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
         }
-        .blue-glow-hover:hover {
-            box-shadow: 0 0 30px rgba(30, 58, 138, 0.5), 0 0 60px rgba(30, 58, 138, 0.3);
-        }
         
-        /* Header integrat cu logo - fundalul se contopește */
+        /* Header integrat cu logo */
         .header-integrated {
             background: linear-gradient(180deg, #1e3a8a 0%, #0f2a6e 50%, #0a0f1e 100%);
             border-bottom: 1px solid rgba(59, 130, 246, 0.2);
@@ -60,7 +67,7 @@
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
         }
         
-        /* Brand logos - mai mici și mai fine */
+        /* Brand logos - mărite cu 15% și mai frumoase */
         .brand-logo {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(10, 15, 30, 0.6);
@@ -74,7 +81,7 @@
             box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
         }
         
-        /* Car cards - compact și elegant */
+        /* Car cards */
         .car-card {
             background: linear-gradient(145deg, rgba(10, 15, 30, 0.9), rgba(30, 58, 138, 0.1));
             backdrop-filter: blur(10px);
@@ -87,7 +94,7 @@
             transform: translateY(-3px);
         }
         
-        /* Search inputs - fine și elegante */
+        /* Search inputs */
         .search-input {
             background: rgba(10, 15, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -106,7 +113,7 @@
             color: rgba(255, 255, 255, 0.4);
         }
         
-        /* Buttons - compacte */
+        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
             color: #ffffff;
@@ -134,7 +141,7 @@
             border-color: rgba(96, 165, 250, 0.5);
         }
         
-        /* Category cards - animate la hover */
+        /* Category cards */
         .category-card {
             background: linear-gradient(135deg, rgba(10, 15, 30, 0.8), rgba(30, 58, 138, 0.15));
             border: 1px solid rgba(30, 58, 138, 0.2);
@@ -181,7 +188,7 @@
             background: linear-gradient(90deg, #1e3a8a, transparent);
         }
         
-        /* Floating orbs pentru glow effects */
+        /* Floating orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -197,10 +204,9 @@
 </head>
 <body>
 
-    <!-- HEADER INTEGRAT CU LOGO - fundalul se contopește cu logo-ul -->
+    <!-- HEADER -->
     <header class="header-integrated sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <!-- Logo integrat natural -->
             <div class="flex items-center space-x-3">
                 <div class="logo-container rounded-lg p-2 flex items-center space-x-2">
                     <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
@@ -209,7 +215,7 @@
                         <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
                         <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
                     </svg>
-                    <span class="text-xl font-bold text-white" style="font-family: 'Playfair Display', serif;">ViaCars<span class="text-blue-300">.eu</span></span>
+                    <span class="text-xl font-bold text-white" style="font-family: 'Cormorant Garamond', serif;">ViaCars<span class="text-blue-300">.eu</span></span>
                 </div>
             </div>
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
@@ -227,20 +233,14 @@
         </div>
     </header>
 
-    <!-- HERO SECTION - Background animat cu culorile din logo -->
+    <!-- HERO SECTION - Imagine cu mașini în penumbră -->
     <section class="hero-bg relative py-24">
-        <!-- Floating orbs pentru glow effects -->
-        <div class="orb bg-blue-600 w-64 h-64 top-10 left-1/4"></div>
-        <div class="orb bg-blue-800 w-48 h-48 top-20 right-1/4" style="animation-delay: 2s;"></div>
-        <div class="orb bg-blue-500 w-32 h-32 bottom-10 left-1/2" style="animation-delay: 4s;"></div>
-        
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-10">
-                <h1 class="text-4xl font-bold text-white mb-3" style="font-family: 'Playfair Display', serif;">Găsește mașina perfectă</h1>
+                <h1 class="text-4xl font-bold text-white mb-3" style="font-family: 'Cormorant Garamond', serif;">Găsește mașina perfectă</h1>
                 <p class="text-blue-200/60 text-sm">Peste 12.450 de anunțuri verificate</p>
             </div>
             
-            <!-- Bara de Căutare -->
             <div class="bg-black/30 backdrop-blur-xl p-5 rounded-lg border border-blue-400/20 max-w-5xl mx-auto blue-glow-subtle">
                 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <select class="search-input rounded">
@@ -276,7 +276,7 @@
         </div>
     </section>
 
-    <!-- CATEGORII - Mai multe opțiuni -->
+    <!-- CATEGORII -->
     <section class="py-10 bg-black/60">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -344,241 +344,249 @@
         </div>
     </section>
 
-    <!-- SECȚIUNEA: MĂRCI POPULARE - 24 brand-uri, sigle mici -->
-    <section class="py-14 bg-black">
-        <div class="container mx-auto px-6">
+    <!-- SECȚIUNEA: MĂRCI POPULARE - Background animat + sigle mărite cu 15% -->
+    <section class="brands-animated-bg py-14 relative">
+        <!-- Floating orbs pentru glow effects -->
+        <div class="orb bg-blue-600 w-64 h-64 top-10 left-1/4"></div>
+        <div class="orb bg-blue-800 w-48 h-48 top-20 right-1/4" style="animation-delay: 2s;"></div>
+        <div class="orb bg-blue-500 w-32 h-32 bottom-10 left-1/2" style="animation-delay: 4s;"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-10">
-                <h2 class="section-title text-2xl font-bold text-white" style="font-family: 'Playfair Display', serif;">Explorează după Marcă</h2>
+                <h2 class="section-title text-2xl font-bold text-white" style="font-family: 'Cormorant Garamond', serif;">Explorează după Marcă</h2>
             </div>
             
             <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
                 <!-- BMW -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
-                        <circle cx="50" cy="50" r="35" fill="#0066B1"/>
-                        <path d="M50 15 L50 50 L85 50 A35 35 0 0 0 50 15 Z" fill="white"/>
-                        <path d="M50 50 L50 85 A35 35 0 0 0 15 50 L50 50 Z" fill="white"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="38" fill="#0066B1"/>
+                        <path d="M50 12 L50 50 L88 50 A38 38 0 0 0 50 12 Z" fill="white"/>
+                        <path d="M50 50 L50 88 A38 38 0 0 0 12 50 L50 50 Z" fill="white"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">BMW</p>
                 </div>
 
                 <!-- Mercedes -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
-                        <path d="M50 20 L50 50 L75 65" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M50 50 L25 65" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M50 50 L50 80" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="38" stroke="#c0c0c0" stroke-width="1" fill="none"/>
+                        <path d="M50 15 L50 50 L78 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M50 50 L22 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M50 50 L50 85" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Mercedes</p>
                 </div>
 
                 <!-- Audi -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="25" cy="50" r="15" stroke="white" stroke-width="2"/>
-                        <circle cx="42" cy="50" r="15" stroke="white" stroke-width="2"/>
-                        <circle cx="58" cy="50" r="15" stroke="white" stroke-width="2"/>
-                        <circle cx="75" cy="50" r="15" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="22" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <circle cx="41" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <circle cx="59" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <circle cx="78" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Audi</p>
                 </div>
 
                 <!-- VW -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
-                        <path d="M30 35 L50 70 L70 35" stroke="white" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M35 50 L50 75 L65 50" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/>
+                        <path d="M28 32 L50 72 L72 32" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M33 48 L50 78 L67 48" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">VW</p>
                 </div>
 
                 <!-- Ford -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="45" ry="30" stroke="white" stroke-width="2"/>
-                        <text x="50" y="58" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Ford</text>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2"/>
+                        <text x="50" y="58" font-size="22" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">Ford</text>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Ford</p>
                 </div>
 
                 <!-- Opel -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
-                        <path d="M30 50 Q50 30 70 50 Q50 70 30 50" stroke="white" stroke-width="2" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="42" stroke="#c0c0c0" stroke-width="2"/>
+                        <path d="M28 50 Q50 28 72 50 Q50 72 28 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Opel</p>
                 </div>
 
                 <!-- Renault -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 20 L75 50 L50 80 L25 50 Z" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 35 L65 50 L50 65 L35 50 Z" fill="white"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 18 L78 50 L50 82 L22 50 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <path d="M50 32 L68 50 L50 68 L32 50 Z" fill="#c0c0c0"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Renault</p>
                 </div>
 
                 <!-- Toyota -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="40" ry="25" stroke="white" stroke-width="2"/>
-                        <ellipse cx="50" cy="50" rx="25" ry="15" stroke="white" stroke-width="2"/>
-                        <ellipse cx="50" cy="50" rx="10" ry="25" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <ellipse cx="50" cy="50" rx="28" ry="18" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <ellipse cx="50" cy="50" rx="12" ry="28" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Toyota</p>
                 </div>
 
                 <!-- Porsche -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M20 30 L80 30 L70 70 L30 70 Z" stroke="white" stroke-width="2" fill="none"/>
-                        <text x="50" y="55" font-size="14" font-weight="bold" fill="white" text-anchor="middle">P</text>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M18 28 L82 28 L72 72 L28 72 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <text x="50" y="56" font-size="16" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">P</text>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Porsche</p>
                 </div>
 
                 <!-- Ferrari -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M30 20 L70 20 L60 80 L40 80 Z" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 30 L50 70" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M28 18 L72 18 L62 82 L38 82 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <path d="M50 28 L50 72" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M42 38 L58 38" stroke="#c0c0c0" stroke-width="2"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Ferrari</p>
                 </div>
 
                 <!-- Lamborghini -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M25 50 L50 25 L75 50 L50 75 Z" stroke="white" stroke-width="2" fill="none"/>
-                        <circle cx="50" cy="50" r="10" fill="white"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M22 50 L50 22 L78 50 L50 78 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <circle cx="50" cy="50" r="12" fill="#c0c0c0"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Lambo</p>
                 </div>
 
                 <!-- Tesla -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 20 L50 80" stroke="white" stroke-width="3"/>
-                        <path d="M30 35 L70 35" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 18 L50 82" stroke="#c0c0c0" stroke-width="3.5"/>
+                        <path d="M28 35 L72 35" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Tesla</p>
                 </div>
 
                 <!-- Nissan -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
-                        <rect x="25" y="45" width="50" height="10" fill="white"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <rect x="22" y="44" width="56" height="12" fill="#c0c0c0"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Nissan</p>
                 </div>
 
                 <!-- Honda -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <rect x="25" y="30" width="50" height="40" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M50 35 L50 65" stroke="white" stroke-width="2"/>
-                        <path d="M35 50 L65 50" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <rect x="22" y="28" width="56" height="44" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="3"/>
+                        <path d="M50 35 L50 65" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M32 50 L68 50" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Honda</p>
                 </div>
 
                 <!-- Mazda -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="40" ry="25" stroke="white" stroke-width="2"/>
-                        <path d="M35 45 Q50 35 65 45 Q50 55 35 45" stroke="white" stroke-width="2" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M32 45 Q50 32 68 45 Q50 58 32 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Mazda</p>
                 </div>
 
                 <!-- Volvo -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="35" stroke="white" stroke-width="2"/>
-                        <path d="M30 50 L70 50" stroke="white" stroke-width="3"/>
-                        <path d="M50 30 L50 70" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="40" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/>
+                        <path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Volvo</p>
                 </div>
 
                 <!-- Jaguar -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
-                        <path d="M30 50 Q40 30 50 50 Q60 70 70 50" stroke="white" stroke-width="2" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M28 50 Q38 30 50 50 Q62 70 72 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <circle cx="50" cy="50" r="5" fill="#c0c0c0"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Jaguar</p>
                 </div>
 
                 <!-- KIA -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="45" ry="30" stroke="white" stroke-width="2"/>
-                        <text x="50" y="58" font-size="22" font-weight="bold" fill="white" text-anchor="middle">KIA</text>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <text x="50" y="58" font-size="24" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">KIA</text>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">KIA</p>
                 </div>
 
                 <!-- Hyundai -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <ellipse cx="50" cy="50" rx="40" ry="30" stroke="white" stroke-width="2"/>
-                        <path d="M35 45 Q50 35 65 45" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M40 55 L60 55" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <ellipse cx="50" cy="50" rx="45" ry="32" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M32 45 Q50 32 68 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <path d="M38 58 L62 58" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Hyundai</p>
                 </div>
 
                 <!-- Citroen -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M30 40 Q50 30 70 40" stroke="white" stroke-width="3" fill="none"/>
-                        <path d="M30 50 Q50 40 70 50" stroke="white" stroke-width="3" fill="none"/>
-                        <path d="M30 60 Q50 50 70 60" stroke="white" stroke-width="3" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M25 38 Q50 25 75 38" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
+                        <path d="M25 50 Q50 37 75 50" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
+                        <path d="M25 62 Q50 49 75 62" stroke="#c0c0c0" stroke-width="3.5" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Citroën</p>
                 </div>
 
                 <!-- Fiat -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <rect x="20" y="35" width="60" height="30" stroke="white" stroke-width="2" fill="none"/>
-                        <text x="50" y="55" font-size="16" font-weight="bold" fill="white" text-anchor="middle">FIAT</text>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <rect x="18" y="32" width="64" height="36" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="2"/>
+                        <text x="50" y="56" font-size="18" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">FIAT</text>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Fiat</p>
                 </div>
 
                 <!-- Peugeot -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <path d="M50 25 L50 75" stroke="white" stroke-width="3"/>
-                        <path d="M35 40 L50 50 L65 40" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M35 60 L50 50 L65 60" stroke="white" stroke-width="2" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 22 L50 78" stroke="#c0c0c0" stroke-width="3.5"/>
+                        <path d="M32 38 L50 50 L68 38" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <path d="M32 62 L50 50 L68 62" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Peugeot</p>
                 </div>
 
                 <!-- Skoda -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
-                        <path d="M35 45 L50 35 L65 45 L50 55 Z" stroke="white" stroke-width="2" fill="none"/>
-                        <path d="M35 55 L50 65 L65 55" stroke="white" stroke-width="2" fill="none"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M32 42 L50 32 L68 42 L50 52 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
+                        <path d="M32 58 L50 68 L68 58" stroke="#c0c0c0" stroke-width="2.5" fill="none"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">Skoda</p>
                 </div>
 
                 <!-- SEAT -->
                 <div class="brand-logo p-3 rounded cursor-pointer text-center">
-                    <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
-                        <path d="M30 50 L70 50" stroke="white" stroke-width="3"/>
-                        <path d="M40 40 L60 60" stroke="white" stroke-width="2"/>
+                    <svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/>
+                        <path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/>
+                        <path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="2.5"/>
                     </svg>
                     <p class="text-[10px] text-white/70 font-medium">SEAT</p>
                 </div>
@@ -590,7 +598,7 @@
     <section class="py-12 bg-gradient-to-b from-black to-gray-900/50">
         <div class="container mx-auto px-6">
             <div class="max-w-3xl mx-auto">
-                <h2 class="section-title text-2xl font-bold text-white mb-8" style="font-family: 'Playfair Display', serif;">ViaCars.eu - Marketplace-ul auto premium</h2>
+                <h2 class="section-title text-2xl font-bold text-white mb-8" style="font-family: 'Cormorant Garamond', serif;">ViaCars.eu - Marketplace-ul auto premium</h2>
                 <div class="space-y-3">
                     <div class="flex items-center space-x-3">
                         <i class="fa-solid fa-check text-blue-400/70 text-sm"></i>
@@ -617,7 +625,7 @@
     <section class="py-14 bg-black">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center mb-8">
-                <h2 class="section-title text-2xl font-bold text-white" style="font-family: 'Playfair Display', serif;">Anunțuri Recente</h2>
+                <h2 class="section-title text-2xl font-bold text-white" style="font-family: 'Cormorant Garamond', serif;">Anunțuri Recente</h2>
                 <a href="#" class="text-xs text-white/60 hover:text-white transition">Vezi toate <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
 
