@@ -32,7 +32,6 @@
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
         }
         
-        /* Filtre sidebar */
         .filters-panel {
             background: rgba(10, 15, 30, 0.6);
             backdrop-filter: blur(20px);
@@ -122,7 +121,6 @@
             color: white;
         }
         
-        /* Card mașină */
         .car-listing {
             background: rgba(10, 15, 30, 0.6);
             backdrop-filter: blur(15px);
@@ -257,7 +255,6 @@
             box-shadow: 0 5px 20px rgba(30, 58, 138, 0.5);
         }
         
-        /* Sortare și rezultate */
         .results-bar {
             background: rgba(10, 15, 30, 0.5);
             backdrop-filter: blur(15px);
@@ -285,7 +282,6 @@
         }
         .sort-select option { background: #0a0f1e; }
         
-        /* Paginare */
         .pagination {
             display: flex;
             justify-content: center;
@@ -310,7 +306,6 @@
             box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
         }
         
-        /* Buton filtre mobile */
         .mobile-filter-btn {
             display: none;
             background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
@@ -414,7 +409,7 @@
             <nav class="hidden md:flex space-x-6 text-sm font-medium">
                 <a href="buy.html" class="text-white transition font-bold">Cumpără</a>
                 <a href="sell.html" class="text-white/90 hover:text-white transition">Vinde</a>
-                <a href="#" class="text-white/90 hover:text-white transition">Dealeri</a>
+                <a href="dealers.html" class="text-white/90 hover:text-white transition">Dealeri</a>
                 <a href="#" class="text-white/90 hover:text-white transition">Noutăți</a>
             </nav>
             <div class="flex items-center space-x-4">
@@ -450,7 +445,6 @@
             </button>
 
             <div class="flex gap-6">
-                <!-- SIDEBAR FILTRE -->
                 <aside class="filters-panel w-72 flex-shrink-0 hidden lg:block" id="filtersPanel">
                     <div class="flex justify-between items-center mb-4 lg:hidden">
                         <h3 class="text-white font-bold">Filtre</h3>
@@ -578,7 +572,6 @@
                     </button>
                 </aside>
 
-                <!-- REZULTATE -->
                 <div class="flex-1">
                     <div class="results-bar">
                         <div class="results-count">
@@ -596,13 +589,9 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5" id="cars-grid">
-                        <!-- Mașinile vor fi generate dinamic -->
-                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5" id="cars-grid"></div>
 
-                    <div class="pagination" id="pagination">
-                        <!-- Paginare generată dinamic -->
-                    </div>
+                    <div class="pagination" id="pagination"></div>
                 </div>
             </div>
         </div>
@@ -636,7 +625,6 @@
     </footer>
 
     <script>
-        // === PAROLĂ ===
         const SITE_PASSWORD = "1234";
         async function initGate() {
             const gate = document.getElementById('password-gate');
@@ -666,7 +654,6 @@
             renderPagination();
         });
 
-        // === DATE DEMO MAȘINI ===
         const carsData = [
             { id: 1, brand: "BMW", model: "Seria 3 320d", year: 2021, km: 85000, price: 24500, fuel: "diesel", trans: "automata", body: "sedan", color: "negru", power: 190, location: "București", seller: "dealer", badge: "verified", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80", date: "2026-11-10" },
             { id: 2, brand: "Mercedes-Benz", model: "Clasa C 220d", year: 2022, km: 42000, price: 31200, fuel: "hybrid", trans: "automata", body: "sedan", color: "argintiu", power: 200, location: "Cluj", seller: "dealer", badge: "dealer", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80", date: "2026-11-09" },
@@ -697,7 +684,6 @@
         let currentPage = 1;
         const carsPerPage = 9;
 
-        // === RENDER MAȘINI ===
         function renderCars() {
             const filtered = getFilteredCars();
             const start = (currentPage - 1) * carsPerPage;
@@ -718,6 +704,7 @@
                     const fuelLabels = { diesel: 'Diesel', benzina: 'Benzină', electric: 'Electric', hybrid: 'Hybrid', lpg: 'GPL' };
                     const transLabels = { manuala: 'Manuală', automata: 'Automată', semiautomata: 'Semiautomată' };
                     
+                    // MODIFICARE: href指向car-details.html cu ID-ul mașinii
                     grid.innerHTML += `
                         <div class="car-listing">
                             <div class="car-image">
@@ -738,7 +725,7 @@
                                     <div><i class="fa-solid fa-car-side"></i>${car.body}</div>
                                 </div>
                                 <div class="car-location"><i class="fa-solid fa-location-dot"></i> ${car.location} • ${car.seller === 'dealer' ? 'Dealer' : 'Persoană'}</div>
-                                <a href="href="car-details.html?id=${car.id}" class="btn-view">Vezi detalii <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                                <a href="car-details.html?id=${car.id}" class="btn-view">Vezi detalii <i class="fa-solid fa-arrow-right ml-1"></i></a>
                             </div>
                         </div>
                     `;
@@ -749,7 +736,6 @@
             renderPagination(filtered.length);
         }
 
-        // === FILTRARE ===
         function getFilteredCars() {
             let filtered = [...carsData];
             
@@ -782,7 +768,6 @@
             if (colors.length) filtered = filtered.filter(c => colors.includes(c.color));
             if (sellers.length) filtered = filtered.filter(c => sellers.includes(c.seller));
             
-            // Sortare
             const sort = document.getElementById('sort-select').value;
             if (sort === 'price_asc') filtered.sort((a, b) => a.price - b.price);
             else if (sort === 'price_desc') filtered.sort((a, b) => b.price - a.price);
@@ -808,7 +793,6 @@
             renderCars();
         }
 
-        // === PAGINARE ===
         function renderPagination(total) {
             const totalPages = Math.ceil(total / carsPerPage);
             const pag = document.getElementById('pagination');
@@ -827,7 +811,6 @@
             window.scrollTo({ top: 300, behavior: 'smooth' });
         }
 
-        // === FAVORITE ===
         function toggleFavorite(btn) {
             btn.classList.toggle('active');
             const icon = btn.querySelector('i');
@@ -835,13 +818,11 @@
             icon.classList.toggle('fa-solid');
         }
 
-        // === FILTRE MOBILE ===
         function toggleFilters() {
             document.getElementById('filtersPanel').classList.toggle('open');
             document.getElementById('filtersOverlay').classList.toggle('open');
         }
 
-        // === TRADUCERI ===
         const translations = {
             ro: { page_title: "Cumpără mașina perfectă", page_subtitle: "Explorează peste 12.450 de anunțuri verificate de la dealeri și persoane fizice", btn_filters: "Filtrează rezultatele", f_brand: "Marcă & Model", f_price: "Preț (€)", f_year: "An fabricație", f_km: "Kilometraj", f_fuel: "Combustibil", f_trans: "Cutie de viteze", f_body: "Caroserie", f_power: "Putere (CP)", f_color: "Culoare", f_seller: "Vânzător", f_location: "Locație", f_euro: "Standard Euro", btn_apply: "Aplică filtrele", btn_reset: "Resetează", results_found: "Găsite", results_vehicles: "vehicule", sort_by: "Sortează după:", sort_newest: "Cele mai noi", sort_price_asc: "Preț crescător", sort_price_desc: "Preț descrescător", sort_year_desc: "An descrescător", sort_km_asc: "Kilometraj crescător" },
             en: { page_title: "Find the perfect car", page_subtitle: "Explore over 12,450 verified listings from dealers and private sellers", btn_filters: "Filter results", f_brand: "Brand & Model", f_price: "Price (€)", f_year: "Year", f_km: "Mileage", f_fuel: "Fuel", f_trans: "Transmission", f_body: "Body type", f_power: "Power (HP)", f_color: "Color", f_seller: "Seller", f_location: "Location", f_euro: "Euro standard", btn_apply: "Apply filters", btn_reset: "Reset", results_found: "Found", results_vehicles: "vehicles", sort_by: "Sort by:", sort_newest: "Newest first", sort_price_asc: "Price: low to high", sort_price_desc: "Price: high to low", sort_year_desc: "Year: newest", sort_km_asc: "Mileage: low to high" },
