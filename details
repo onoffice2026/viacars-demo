@@ -32,7 +32,6 @@
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
         }
         
-        /* Container principal transparent */
         .details-container {
             max-width: 800px;
             margin: 40px auto;
@@ -93,7 +92,6 @@
             cursor: not-allowed;
         }
         
-        /* Checkbox-uri pentru dotări */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -125,7 +123,6 @@
             margin: 0;
         }
         
-        /* Upload Foto */
         .upload-zone {
             border: 2px dashed rgba(96, 165, 250, 0.3);
             border-radius: 12px;
@@ -144,7 +141,6 @@
         .upload-zone p { color: rgba(255,255,255,0.6); font-size: 14px; margin: 0; }
         .upload-zone span { color: #60a5fa; font-weight: 600; }
         
-        /* Buton submit */
         .btn-submit {
             width: 100%;
             background: linear-gradient(135deg, #059669, #047857);
@@ -203,7 +199,6 @@
 </head>
 <body>
 
-    <!-- ECRAN DE PAROLĂ -->
     <div id="password-gate">
         <div class="pass-box">
             <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
@@ -215,7 +210,6 @@
         </div>
     </div>
 
-    <!-- HEADER -->
     <header class="header-integrated sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -246,323 +240,4 @@
                     <div class="flag-btn" data-lang="el" onclick="switchLanguage('el')" title="Ελληνικά">
                         <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
                     </div>
-                    <div class="flag-btn" data-lang="en" onclick="switchLanguage('en')" title="English">
-                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
-                    </div>
-                </div>
-                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- CONȚINUT DETALII -->
-    <section class="py-8">
-        <div class="container mx-auto px-6">
-            <div class="details-container">
-                <h1 class="text-2xl font-bold mb-2 text-center" id="page-title">Completează detaliile vehiculului</h1>
-                <p class="text-center text-white/50 mb-8 text-sm" id="page-subtitle">Cu cât oferi mai multe informații, cu atât evaluarea este mai precisă.</p>
-
-                <form id="details-form" onsubmit="handleFinalSubmit(event)">
-                    
-                    <!-- 1. Detalii de bază -->
-                    <div class="section-title"><i class="fa-solid fa-car"></i> <span data-i18n="sec_basic">Detalii de bază</span></div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_brand">Marca</label>
-                            <input type="text" id="d-brand" class="form-input" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_model">Modelul</label>
-                            <input type="text" id="d-model" class="form-input" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_year">Anul</label>
-                            <input type="text" id="d-year" class="form-input" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_mileage">Kilometraj (km)</label>
-                            <input type="number" class="form-input" placeholder="ex: 85000" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_fuel">Combustibil</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="diesel">Diesel</option>
-                                <option value="benzina">Benzină</option>
-                                <option value="hybrid">Hybrid</option>
-                                <option value="electric">Electric</option>
-                                <option value="lpg">GPL</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_trans">Cutie de viteze</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="manuala">Manuală</option>
-                                <option value="automata">Automată</option>
-                                <option value="semiautomata">Semiautomată</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_power">Putere (CP)</label>
-                            <input type="number" class="form-input" placeholder="ex: 150">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_color">Culoare</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="negru">Negru</option>
-                                <option value="alb">Alb</option>
-                                <option value="gri">Gri</option>
-                                <option value="argintiu">Argintiu</option>
-                                <option value="albastru">Albastru</option>
-                                <option value="rosu">Roșu</option>
-                                <option value="alta">Altă culoare</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- 2. Stare și Istoric -->
-                    <div class="section-title"><i class="fa-solid fa-file-contract"></i> <span data-i18n="sec_history">Stare și Istoric</span></div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_condition">Stare vehicul</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="nou">Nou (0 km)</option>
-                                <option value="folosit">Folosit (în stare bună)</option>
-                                <option value="accidentat">Accidentat / Daune</option>
-                                <option value="nepus_circulatie">Neînmatriculat</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_owners">Număr proprietari</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="1">1 proprietar</option>
-                                <option value="2">2 proprietari</option>
-                                <option value="3+">3 sau mai mulți</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_service">Istoric service</label>
-                            <select class="form-select" required>
-                                <option value="">Selectează</option>
-                                <option value="complet">Complet (carte service)</option>
-                                <option value="partial">Parțial</option>
-                                <option value="fara">Fără istoric</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_reg">Prima înmatriculare</label>
-                            <input type="month" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <!-- 3. Dotări -->
-                    <div class="section-title"><i class="fa-solid fa-list-check"></i> <span data-i18n="sec_features">Dotări și Echipamente</span></div>
-                    <div class="features-grid">
-                        <div class="feature-item"><input type="checkbox" id="f1"><label for="f1" data-i18n="feat_nav">Navigație GPS</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f2"><label for="f2" data-i18n="feat_clima">Climatronic</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f3"><label for="f3" data-i18n="feat_senzori">Senzori parcare</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f4"><label for="f4" data-i18n="feat_camera">Camera marșarier</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f5"><label for="f5" data-i18n="feat_led">Faruri LED/Xenon</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f6"><label for="f6" data-i18n="feat_jante">Jante aliaj</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f7"><label for="f7" data-i18n="feat_piele">Scaune piele</label></div>
-                        <div class="feature-item"><input type="checkbox" id="f8"><label for="f8" data-i18n="feat_carlig">Cârlig remorcă</label></div>
-                    </div>
-
-                    <!-- 4. Preț și Contact -->
-                    <div class="section-title"><i class="fa-solid fa-user-tag"></i> <span data-i18n="sec_contact">Preț și Contact</span></div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_price">Preț dorit (€)</label>
-                            <input type="number" class="form-input" placeholder="ex: 15000" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_seller">Tip vânzător</label>
-                            <select class="form-select" required>
-                                <option value="persoana">Persoană fizică</option>
-                                <option value="dealer">Dealer / Firmă</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_name">Nume complet</label>
-                            <input type="text" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_phone">Telefon</label>
-                            <input type="tel" class="form-input" placeholder="+40 7xx xxx xxx" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_email">Email</label>
-                            <input type="email" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="lbl_city">Județ / Oraș</label>
-                            <input type="text" class="form-input" required>
-                        </div>
-                    </div>
-
-                    <!-- 5. Încărcare Foto -->
-                    <div class="section-title"><i class="fa-solid fa-images"></i> <span data-i18n="sec_photos">Foto Vehicul</span></div>
-                    <div class="upload-zone" onclick="document.getElementById('file-upload').click()">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <p data-i18n="upload_text">Trage fișierele aici sau <span data-i18n="upload_click">click pentru a încărca</span></p>
-                        <p style="font-size: 12px; margin-top: 8px; color: rgba(255,255,255,0.4);" data-i18n="upload_limit">Maxim 10 poze, format JPG/PNG</p>
-                        <input type="file" id="file-upload" multiple accept="image/*" style="display: none;">
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <span data-i18n="btn_submit">Obține Evaluarea Gratuită</span> <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer style="background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.3); padding: 40px 0; margin-top: 40px;">
-        <div class="container mx-auto px-6">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
-                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>+40 123 456 789</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent); margin-bottom: 20px;"></div>
-            <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
-                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // --- SISTEM PAROLĂ ---
-        const SITE_PASSWORD = "1234";
-        async function initGate() {
-            const gate = document.getElementById('password-gate');
-            if (!gate) return;
-            const trustedIP = localStorage.getItem('viacars_trusted_ip');
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
-            } catch (error) { console.log("Verificare IP eșuată"); }
-        }
-        function checkPassword() {
-            const input = document.getElementById('pass-input').value;
-            if (input === SITE_PASSWORD) {
-                document.getElementById('password-gate').style.display = 'none';
-                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
-            } else {
-                document.getElementById('pass-error').style.display = 'block';
-                document.getElementById('pass-input').value = '';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const passInput = document.getElementById('pass-input');
-            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
-            initGate();
-            loadUrlParams();
-        });
-
-        // --- PRELUARE DATE DIN URL ---
-        function loadUrlParams() {
-            const params = new URLSearchParams(window.location.search);
-            const brand = params.get('brand');
-            const model = params.get('model');
-            const year = params.get('year');
-            
-            if (brand) document.getElementById('d-brand').value = brand;
-            if (model) document.getElementById('d-model').value = model;
-            if (year) document.getElementById('d-year').value = year;
-        }
-
-        // --- SUBMIT FORMULAR ---
-        function handleFinalSubmit(e) {
-            e.preventDefault();
-            // Aici s-ar trimite datele către server
-            alert('Felicitări! Datele au fost înregistrate cu succes. Un evaluator ViaCars te va contacta în curând cu o ofertă.');
-            window.location.href = 'index.html';
-        }
-
-        // --- TRADUCERI ---
-        const translations = {
-            ro: {
-                page_title: "Completează detaliile vehiculului", page_subtitle: "Cu cât oferi mai multe informații, cu atât evaluarea este mai precisă.",
-                sec_basic: "Detalii de bază", lbl_brand: "Marca", lbl_model: "Modelul", lbl_year: "Anul", lbl_mileage: "Kilometraj (km)",
-                lbl_fuel: "Combustibil", lbl_trans: "Cutie de viteze", lbl_power: "Putere (CP)", lbl_color: "Culoare",
-                sec_history: "Stare și Istoric", lbl_condition: "Stare vehicul", lbl_owners: "Număr proprietari", lbl_service: "Istoric service", lbl_reg: "Prima înmatriculare",
-                sec_features: "Dotări și Echipamente", feat_nav: "Navigație GPS", feat_clima: "Climatronic", feat_senzori: "Senzori parcare", feat_camera: "Camera marșarier", feat_led: "Faruri LED/Xenon", feat_jante: "Jante aliaj", feat_piele: "Scaune piele", feat_carlig: "Cârlig remorcă",
-                sec_contact: "Preț și Contact", lbl_price: "Preț dorit (€)", lbl_seller: "Tip vânzător", lbl_name: "Nume complet", lbl_phone: "Telefon", lbl_email: "Email", lbl_city: "Județ / Oraș",
-                sec_photos: "Foto Vehicul", upload_text: "Trage fișierele aici sau ", upload_click: "click pentru a încărca", upload_limit: "Maxim 10 poze, format JPG/PNG",
-                btn_submit: "Obține Evaluarea Gratuită"
-            },
-            en: {
-                page_title: "Complete vehicle details", page_subtitle: "The more information you provide, the more accurate the valuation.",
-                sec_basic: "Basic Details", lbl_brand: "Brand", lbl_model: "Model", lbl_year: "Year", lbl_mileage: "Mileage (km)",
-                lbl_fuel: "Fuel", lbl_trans: "Transmission", lbl_power: "Power (HP)", lbl_color: "Color",
-                sec_history: "Condition & History", lbl_condition: "Vehicle condition", lbl_owners: "Number of owners", lbl_service: "Service history", lbl_reg: "First registration",
-                sec_features: "Features & Equipment", feat_nav: "GPS Navigation", feat_clima: "Climate control", feat_senzori: "Parking sensors", feat_camera: "Reversing camera", feat_led: "LED/Xenon headlights", feat_jante: "Alloy wheels", feat_piele: "Leather seats", feat_carlig: "Tow bar",
-                sec_contact: "Price & Contact", lbl_price: "Asking price (€)", lbl_seller: "Seller type", lbl_name: "Full name", lbl_phone: "Phone", lbl_email: "Email", lbl_city: "County / City",
-                sec_photos: "Vehicle Photos", upload_text: "Drag files here or ", upload_click: "click to upload", upload_limit: "Max 10 photos, JPG/PNG format",
-                btn_submit: "Get Free Valuation"
-            },
-            bg: {
-                page_title: "Попълнете детайлите на превозното средство", page_subtitle: "Колкото повече информация предоставите, толкова по-точна е оценката.",
-                sec_basic: "Основни детайли", lbl_brand: "Марка", lbl_model: "Модел", lbl_year: "Година", lbl_mileage: "Пробег (км)",
-                lbl_fuel: "Гориво", lbl_trans: "Скоростна кутия", lbl_power: "Мощност (к.с.)", lbl_color: "Цвят",
-                sec_history: "Състояние и история", lbl_condition: "Състояние", lbl_owners: "Брой собственици", lbl_service: "Сервизна история", lbl_reg: "Първа регистрация",
-                sec_features: "Екстри и оборудване", feat_nav: "GPS навигация", feat_clima: "Климатик", feat_senzori: "Сензори за паркиране", feat_camera: "Камера за обратно виждане", feat_led: "LED/Ксенонови фарове", feat_jante: "Алуминиеви джанти", feat_piele: "Кожени седалки", feat_carlig: "Степка за ремарке",
-                sec_contact: "Цена и контакт", lbl_price: "Искана цена (€)", lbl_seller: "Тип продавач", lbl_name: "Пълно име", lbl_phone: "Телефон", lbl_email: "Имейл", lbl_city: "Област / Град",
-                sec_photos: "Снимки", upload_text: "Плъзнете файловете тук или ", upload_click: "кликнете за качване", upload_limit: "Макс. 10 снимки, JPG/PNG",
-                btn_submit: "Получи безплатна оценка"
-            },
-            el: {
-                page_title: "Συμπληρώστε τα στοιχεία του οχήματος", page_subtitle: "Όσες περισσότερες πληροφορίες δώσετε, τόσο πιο ακριβής θα είναι η αξιολόγηση.",
-                sec_basic: "Βασικά στοιχεία", lbl_brand: "Μάρκα", lbl_model: "Μοντέλο", lbl_year: "Έτος", lbl_mileage: "Χιλιόμετρα (χλμ)",
-                lbl_fuel: "Καύσιμο", lbl_trans: "Κιβώτιο ταχυτήτων", lbl_power: "Ισχύς (HP)", lbl_color: "Χρώμα",
-                sec_history: "Κατάσταση και Ιστορικό", lbl_condition: "Κατάσταση οχήματος", lbl_owners: "Αριθμός ιδιοκτητών", lbl_service: "Ιστορικό service", lbl_reg: "Πρώτη κυκλοφορία",
-                sec_features: "Εξοπλισμός", feat_nav: "GPS Πλοήγηση", feat_clima: "Κλιματισμός", feat_senzori: "Αισθητήρες παρκαρίσματος", feat_camera: "Κάμερα οπισθοπορείας", feat_led: "Προβολείς LED/Xenon", feat_jante: "Ζάντες αλουμινίου", feat_piele: "Δερμάτινα καθίσματα", feat_carlig: "Γάντζος ρυμούλκησης",
-                sec_contact: "Τιμή και Επικοινωνία", lbl_price: "Ζητούμενη τιμή (€)", lbl_seller: "Τύπος πωλητή", lbl_name: "Ονοματεπώνυμο", lbl_phone: "Τηλέφωνο", lbl_email: "Email", lbl_city: "Νομός / Πόλη",
-                sec_photos: "Φωτογραφίες", upload_text: "Σύρετε τα αρχεία εδώ ή ", upload_click: "κάντε κλικ για μεταφόρτωση", upload_limit: "Μέγ. 10 φωτογραφίες, JPG/PNG",
-                btn_submit: "Λάβετε δωρεάν αξιολόγηση"
-            }
-        };
-
-        function switchLanguage(lang) {
-            const dict = translations[lang];
-            if (!dict) return;
-            
-            document.getElementById('page-title').textContent = dict.page_title;
-            document.getElementById('page-subtitle').textContent = dict.page_subtitle;
-            
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        // Nu schimbăm placeholder aici direct, dar pentru label funcționează
-                    } else {
-                        el.textContent = dict[key];
-                    }
-                }
-            });
-            
-            document.querySelectorAll('.flag-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-        }
-    </script>
-</body>
-</html>
+                    <div class="flag-btn" data-lang="en" onclick="switchLanguage
