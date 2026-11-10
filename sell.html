@@ -32,16 +32,17 @@
             box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
         }
         
-        /* CARD TRANSPARENT */
+        /* CARD FOARTE TRANSPARENT */
         .sell-container {
             max-width: 600px;
             margin: 60px auto;
-            background: rgba(10, 15, 30, 0.4);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            border-radius: 12px;
+            background: rgba(10, 15, 30, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 0 40px rgba(30, 58, 138, 0.3);
+            box-shadow: 0 0 40px rgba(30, 58, 138, 0.15);
         }
         .sell-title {
             font-size: 28px;
@@ -55,9 +56,7 @@
             margin-bottom: 30px;
             font-size: 14px;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
         .form-label {
             display: block;
             margin-bottom: 8px;
@@ -67,8 +66,8 @@
         }
         .form-select, .form-input {
             width: 100%;
-            background: rgba(10, 15, 30, 0.6);
-            border: 1px solid rgba(96, 165, 250, 0.3);
+            background: rgba(10, 15, 30, 0.4);
+            border: 1px solid rgba(96, 165, 250, 0.25);
             color: white;
             padding: 12px 15px;
             border-radius: 8px;
@@ -79,39 +78,38 @@
         .form-select:focus, .form-input:focus {
             border-color: #60a5fa;
             box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+            background: rgba(10, 15, 30, 0.6);
         }
-        .form-select option {
-            background: #0a0f1e;
-            color: white;
-        }
+        .form-select option { background: #0a0f1e; color: white; }
+        
+        /* BUTON GALBEN */
         .btn-start {
             width: 100%;
-            background: linear-gradient(135deg, #ea580c, #c2410c);
-            color: white;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0a0f1e;
             font-weight: 700;
             font-size: 16px;
             padding: 14px;
-            border: none;
+            border: 1px solid rgba(251, 191, 36, 0.6);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
         }
         .btn-start:hover {
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            box-shadow: 0 5px 25px rgba(234, 88, 12, 0.5);
+            background: linear-gradient(135deg, #fcd34d, #fbbf24);
+            box-shadow: 0 6px 30px rgba(251, 191, 36, 0.6);
             transform: translateY(-2px);
         }
+        
         .powered-by {
             text-align: center;
             margin-top: 20px;
             font-size: 12px;
             color: rgba(255,255,255,0.5);
         }
-        .powered-by a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
+        .powered-by a { color: #60a5fa; text-decoration: none; }
         
         .flag-btn {
             width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
@@ -152,7 +150,6 @@
 </head>
 <body>
 
-    <!-- ECRAN DE PAROLĂ -->
     <div id="password-gate">
         <div class="pass-box">
             <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
@@ -164,7 +161,6 @@
         </div>
     </div>
 
-    <!-- HEADER -->
     <header class="header-integrated sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -204,18 +200,17 @@
         </div>
     </header>
 
-    <!-- CONȚINUT PAGINA DE VÂNZARE -->
     <section class="py-12">
         <div class="container mx-auto px-6">
             <div class="sell-container">
-                <h1 class="sell-title">Vinde mașina ta cu noi</h1>
-                <p class="sell-subtitle">Obține o evaluare gratuită în câteva minute</p>
+                <h1 class="sell-title" id="sell-title">Vinde mașina ta cu noi</h1>
+                <p class="sell-subtitle" id="sell-subtitle">Obține o evaluare gratuită în câteva minute</p>
 
                 <form id="sell-form" onsubmit="handleSubmit(event)">
                     <div class="form-group">
-                        <label class="form-label">Care este marca mașinii tale?</label>
+                        <label class="form-label" id="lbl-brand">Care este marca mașinii tale?</label>
                         <select class="form-select" id="sell-brand" required onchange="updateModels()">
-                            <option value="">Selectează marca</option>
+                            <option value="" id="opt-brand">Selectează marca</option>
                             <option value="BMW">BMW</option>
                             <option value="Mercedes">Mercedes-Benz</option>
                             <option value="Audi">Audi</option>
@@ -245,54 +240,39 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Care este modelul?</label>
+                        <label class="form-label" id="lbl-model">Care este modelul?</label>
                         <select class="form-select" id="sell-model" required disabled>
-                            <option value="">Selectează modelul</option>
+                            <option value="" id="opt-model">Selectează modelul</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">În ce an a fost înmatriculată?</label>
+                        <label class="form-label" id="lbl-year">În ce an a fost înmatriculată?</label>
                         <select class="form-select" id="sell-year" required>
-                            <option value="">Selectează anul</option>
+                            <option value="" id="opt-year">Selectează anul</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-start">
+                    <button type="submit" class="btn-start" id="btn-start">
                         Începe evaluarea <i class="fa-solid fa-arrow-right ml-2"></i>
                     </button>
                 </form>
 
                 <p class="powered-by">
-                    Oferit de <a href="#">viacars.eu</a>
+                    <span id="powered-text">Oferit de</span> <a href="#">viacars.eu</a>
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer style="background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.3); padding: 40px 0; margin-top: 60px;">
+    <footer style="background: rgba(10, 15, 30, 0.5); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.2); padding: 40px 0; margin-top: 60px;">
         <div class="container mx-auto px-6">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
                 <div>
                     <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Cine suntem</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Cum funcționează</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Cumpărători</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Caută mașini</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Ghid cumpărare</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Vânzători</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Adaugă anunț</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px; transition: color 0.3s;">Pachete premium</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
                     </ul>
                 </div>
                 <div>
@@ -311,9 +291,7 @@
     </footer>
 
     <script>
-        // --- SISTEM PAROLĂ ---
         const SITE_PASSWORD = "1234";
-
         async function initGate() {
             const gate = document.getElementById('password-gate');
             if (!gate) return;
@@ -321,39 +299,26 @@
             try {
                 const response = await fetch('https://api.ipify.org?format=json');
                 const data = await response.json();
-                const currentIP = data.ip;
-                if (trustedIP === currentIP) {
-                    gate.style.display = 'none';
-                    return;
-                }
+                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
             } catch (error) { console.log("Verificare IP eșuată"); }
         }
-
         function checkPassword() {
             const input = document.getElementById('pass-input').value;
             if (input === SITE_PASSWORD) {
                 document.getElementById('password-gate').style.display = 'none';
-                fetch('https://api.ipify.org?format=json')
-                    .then(res => res.json())
-                    .then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
+                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
             } else {
                 document.getElementById('pass-error').style.display = 'block';
                 document.getElementById('pass-input').value = '';
             }
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             const passInput = document.getElementById('pass-input');
-            if (passInput) {
-                passInput.addEventListener('keypress', function (e) {
-                    if (e.key === 'Enter') checkPassword();
-                });
-            }
+            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
             initGate();
             populateYears();
         });
 
-        // --- POPULARE ANI ---
         function populateYears() {
             const yearSelect = document.getElementById('sell-year');
             const currentYear = 2026;
@@ -365,7 +330,6 @@
             }
         }
 
-        // --- MODELE PE BRANDURI ---
         const modelsByBrand = {
             "BMW": ["Seria 1", "Seria 2", "Seria 3", "Seria 4", "Seria 5", "Seria 7", "X1", "X3", "X5", "X7", "Z4"],
             "Mercedes": ["Clasa A", "Clasa B", "Clasa C", "Clasa E", "Clasa S", "GLA", "GLC", "GLE", "GLS", "AMG GT"],
@@ -376,7 +340,7 @@
             "Renault": ["Clio", "Megane", "Kadjar", "Captur", "Koleos", "Talisman", "Scenic"],
             "Toyota": ["Yaris", "Corolla", "Camry", "RAV4", "C-HR", "Land Cruiser", "Supra"],
             "Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan", "718 Boxster", "718 Cayman"],
-            "Ferrari": ["488", "F8", "Roma", "Portofino", "SF90", "812 Superfast", "F8 Tributo"],
+            "Ferrari": ["488", "F8", "Roma", "Portofino", "SF90", "812 Superfast"],
             "Lamborghini": ["Huracán", "Urus", "Aventador", "Revuelto"],
             "Tesla": ["Model 3", "Model Y", "Model S", "Model X", "Cybertruck"],
             "Nissan": ["Qashqai", "X-Trail", "Leaf", "Juke", "Micra", "Ariya", "GT-R"],
@@ -398,7 +362,6 @@
             const brandSelect = document.getElementById('sell-brand');
             const modelSelect = document.getElementById('sell-model');
             const selectedBrand = brandSelect.value;
-
             if (selectedBrand && modelsByBrand[selectedBrand]) {
                 modelSelect.innerHTML = '<option value="">Selectează modelul</option>';
                 modelsByBrand[selectedBrand].forEach(model => {
@@ -414,21 +377,19 @@
             }
         }
 
+        // REDIRECT CĂTRE details.html
         function handleSubmit(e) {
             e.preventDefault();
             const brand = document.getElementById('sell-brand').value;
             const model = document.getElementById('sell-model').value;
             const year = document.getElementById('sell-year').value;
-
             if (brand && model && year) {
-                // Redirecționează către pagina de detalii
                 window.location.href = `details.html?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}&year=${year}`;
             } else {
                 alert('Te rugăm să completezi toate câmpurile!');
             }
         }
 
-        // --- TRADUCERI ---
         const translations = {
             ro: { sell_title: "Vinde mașina ta cu noi", sell_subtitle: "Obține o evaluare gratuită în câteva minute", brand_label: "Care este marca mașinii tale?", brand_select: "Selectează marca", model_label: "Care este modelul?", model_select: "Selectează modelul", year_label: "În ce an a fost înmatriculată?", year_select: "Selectează anul", start_btn: "Începe evaluarea", powered: "Oferit de" },
             bg: { sell_title: "Продай колата си с нас", sell_subtitle: "Получете безплатна оценка за минути", brand_label: "Каква е марката на вашата кола?", brand_select: "Изберете марка", model_label: "Какъв е моделът?", model_select: "Изберете модел", year_label: "В коя година е регистрирана?", year_select: "Изберете година", start_btn: "Започни оценката", powered: "Предоставено от" },
@@ -439,18 +400,16 @@
         function switchLanguage(lang) {
             const dict = translations[lang];
             if (!dict) return;
-            
-            document.querySelector('.sell-title').textContent = dict.sell_title;
-            document.querySelector('.sell-subtitle').textContent = dict.sell_subtitle;
-            document.querySelectorAll('.form-label')[0].textContent = dict.brand_label;
-            document.querySelector('#sell-brand option:first-child').textContent = dict.brand_select;
-            document.querySelectorAll('.form-label')[1].textContent = dict.model_label;
-            document.querySelector('#sell-model option:first-child').textContent = dict.model_select;
-            document.querySelectorAll('.form-label')[2].textContent = dict.year_label;
-            document.querySelector('#sell-year option:first-child').textContent = dict.year_select;
-            document.querySelector('.btn-start').innerHTML = dict.start_btn + ' <i class="fa-solid fa-arrow-right ml-2"></i>';
-            document.querySelector('.powered-by').innerHTML = dict.powered + ' <a href="#">viacars.eu</a>';
-            
+            document.getElementById('sell-title').textContent = dict.sell_title;
+            document.getElementById('sell-subtitle').textContent = dict.sell_subtitle;
+            document.getElementById('lbl-brand').textContent = dict.brand_label;
+            document.getElementById('opt-brand').textContent = dict.brand_select;
+            document.getElementById('lbl-model').textContent = dict.model_label;
+            document.getElementById('opt-model').textContent = dict.model_select;
+            document.getElementById('lbl-year').textContent = dict.year_label;
+            document.getElementById('opt-year').textContent = dict.year_select;
+            document.getElementById('btn-start').innerHTML = dict.start_btn + ' <i class="fa-solid fa-arrow-right ml-2"></i>';
+            document.getElementById('powered-text').textContent = dict.powered;
             document.querySelectorAll('.flag-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
             });
