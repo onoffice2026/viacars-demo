@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaCars.eu - Dealeri Parteneri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .header-integrated {
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .logo-container {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
+        }
+
+        /* Dealer Card Styles */
+        .dealer-card {
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .dealer-card:hover {
+            border-color: rgba(96, 165, 250, 0.6);
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.3);
+            transform: translateY(-5px);
+        }
+        .dealer-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            border: 2px solid rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 20px rgba(30, 58, 138, 0.4);
+        }
+        .dealer-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .dealer-location {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dealer-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            justify-content: center;
+            padding: 12px 0;
+            border-top: 1px solid rgba(96, 165, 250, 0.15);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.15);
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .stat-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-view-stock {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 10px;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-view-stock:hover {
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            box-shadow: 0 5px 20px rgba(30, 58, 138, 0.5);
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(10, 15, 30, 0.5);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-input:focus { border-color: #60a5fa; }
+        .search-select {
+            background: rgba(10, 15, 30, 0.5);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            min-width: 150px;
+        }
+        .search-select option { background: #0a0f1e; }
+
+        .flag-btn {
+            width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
+            transition: all 0.3s ease; border: 2px solid transparent;
+            opacity: 0.6; overflow: hidden; display: inline-block;
+        }
+        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
+        .flag-btn.active {
+            opacity: 1; border-color: #60a5fa;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.6); transform: scale(1.1);
+        }
+        .flag-btn svg { width: 100%; height: 100%; display: block; }
+        
+        #password-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0f1e; z-index: 99999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .pass-box {
+            text-align: center; background: rgba(30, 58, 138, 0.1); padding: 40px;
+            border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 40px rgba(30, 58, 138, 0.4); backdrop-filter: blur(10px);
+        }
+        .pass-input {
+            background: rgba(10, 15, 30, 0.7); border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
+            margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
+        }
+        .pass-input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.3); }
+        .pass-btn {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
+            border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
+            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .pass-btn:hover { background: linear-gradient(135deg, #2563eb, #1e3a8a); box-shadow: 0 5px 15px rgba(30, 58, 138, 0.5); }
+    </style>
+</head>
+<body>
+
+    <div id="password-gate">
+        <div class="pass-box">
+            <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
+            <input type="password" id="pass-input" class="pass-input" placeholder="Parola">
+            <br>
+            <button onclick="checkPassword()" class="pass-btn">Intră</button>
+            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
+        </div>
+    </div>
+
+    <header class="header-integrated sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="logo-container rounded-lg p-2 flex items-center space-x-2 no-underline">
+                    <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+                        <path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
+                        <path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
+                        <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
+                        <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+                    </svg>
+                    <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="buy.html" class="text-white/90 hover:text-white transition">Cumpără</a>
+                <a href="sell.html" class="text-white/90 hover:text-white transition">Vinde</a>
+                <a href="dealers.html" class="text-white transition font-bold">Dealeri</a>
+                <a href="#" class="text-white/90 hover:text-white transition">Noutăți</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="flag-btn active" data-lang="ro" onclick="switchLanguage('ro')">
+                        <svg viewBox="0 0 60 40"><rect width="20" height="40" fill="#002B7F"/><rect x="20" width="20" height="40" fill="#FCD116"/><rect x="40" width="20" height="40" fill="#CE1126"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="bg" onclick="switchLanguage('bg')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#FFFFFF"/><rect y="13.33" width="60" height="13.33" fill="#00966E"/><rect y="26.66" width="60" height="13.34" fill="#D62612"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="el" onclick="switchLanguage('el')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="en" onclick="switchLanguage('en')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
+                    </div>
+                </div>
+                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
+                <a href="sell.html" style="background: linear-gradient(90deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 58, 138, 0.45) 50%, rgba(148, 163, 184, 0.2) 100%); color: white; font-weight: 600; font-size: 13px; padding: 10px 20px; border: 1px solid rgba(148, 163, 184, 0.5); border-radius: 8px; text-decoration: none; box-shadow: -5px 0 20px rgba(148, 163, 184, 0.6), 0 0 30px rgba(30, 58, 138, 0.3);">Vinde mașina ta cu noi</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold text-white mb-3" data-i18n="page_title">Partenerii Noștri de Încredere</h1>
+                <p class="text-white/60 text-sm max-w-2xl mx-auto" data-i18n="page_subtitle">Explorează rețeaua noastră de dealeri autorizați și verificati. Fiecare partener este evaluat pentru a-ți oferi cea mai bună experiență de cumpărare.</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" id="search-name" placeholder="Caută un dealer după nume..." oninput="filterDealers()">
+                <select class="search-select" id="search-city" onchange="filterDealers()">
+                    <option value="">Toate orașele</option>
+                    <option value="București">București</option>
+                    <option value="Cluj-Napoca">Cluj-Napoca</option>
+                    <option value="Timișoara">Timișoara</option>
+                    <option value="Iași">Iași</option>
+                    <option value="Brașov">Brașov</option>
+                    <option value="Constanța">Constanța</option>
+                    <option value="Oradea">Oradea</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="dealers-grid">
+                <!-- Dealerii vor fi generați dinamic -->
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.3); padding: 40px 0; margin-top: 60px;">
+        <div class="container mx-auto px-6">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>+40 123 456 789</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent); margin-bottom: 20px;"></div>
+            <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
+                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // === PAROLĂ ===
+        const SITE_PASSWORD = "1234";
+        async function initGate() {
+            const gate = document.getElementById('password-gate');
+            if (!gate) return;
+            const trustedIP = localStorage.getItem('viacars_trusted_ip');
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
+            } catch (error) {}
+        }
+        function checkPassword() {
+            const input = document.getElementById('pass-input').value;
+            if (input === SITE_PASSWORD) {
+                document.getElementById('password-gate').style.display = 'none';
+                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
+            } else {
+                document.getElementById('pass-error').style.display = 'block';
+                document.getElementById('pass-input').value = '';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const passInput = document.getElementById('pass-input');
+            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
+            initGate();
+            renderDealers();
+        });
+
+        // === DATE DEALERI (INVENTAȚI) ===
+        const dealersData = [
+            { id: 1, name: "AutoPremium București", city: "București", cars: 145, rating: 4.8, initials: "AP" },
+            { id: 2, name: "Transilvania Motors", city: "Cluj-Napoca", cars: 89, rating: 4.9, initials: "TM" },
+            { id: 3, name: "Banat Auto Group", city: "Timișoara", cars: 112, rating: 4.7, initials: "BG" },
+            { id: 4, name: "Moldova Drive", city: "Iași", cars: 67, rating: 4.6, initials: "MD" },
+            { id: 5, name: "Elite Cars Brașov", city: "Brașov", cars: 93, rating: 4.8, initials: "EC" },
+            { id: 6, name: "Constanța Sea Cars", city: "Constanța", cars: 54, rating: 4.5, initials: "SC" },
+            { id: 7, name: "Oradea Auto Plaza", city: "Oradea", cars: 76, rating: 4.7, initials: "OA" },
+            { id: 8, name: "Sibiu Luxury Auto", city: "Sibiu", cars: 45, rating: 4.9, initials: "SL" },
+            { id: 9, name: "Dacia & More Pitești", city: "Pitești", cars: 120, rating: 4.4, initials: "DM" },
+            { id: 10, name: "Galați Auto Center", city: "Galați", cars: 58, rating: 4.5, initials: "GA" },
+            { id: 11, name: "EuroCars Craiova", city: "Craiova", cars: 82, rating: 4.6, initials: "EC" },
+            { id: 12, name: "Nord Auto Satu Mare", city: "Satu Mare", cars: 34, rating: 4.7, initials: "NA" }
+        ];
+
+        function renderDealers() {
+            const searchName = document.getElementById('search-name').value.toLowerCase();
+            const searchCity = document.getElementById('search-city').value;
+            
+            const filtered = dealersData.filter(d => {
+                const matchName = d.name.toLowerCase().includes(searchName);
+                const matchCity = searchCity === "" || d.city === searchCity;
+                return matchName && matchCity;
+            });
+
+            const grid = document.getElementById('dealers-grid');
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: rgba(255,255,255,0.6);">Nu am găsit dealeri care să corespundă criteriilor.</div>';
+                return;
+            }
+
+            filtered.forEach(dealer => {
+                // Generăm stelele pentru rating
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= Math.floor(dealer.rating)) stars += '<i class="fa-solid fa-star text-yellow-400 text-xs"></i>';
+                    else if (i === Math.ceil(dealer.rating) && !Number.isInteger(dealer.rating)) stars += '<i class="fa-solid fa-star-half-stroke text-yellow-400 text-xs"></i>';
+                    else stars += '<i class="fa-regular fa-star text-white/30 text-xs"></i>';
+                }
+
+                grid.innerHTML += `
+                    <div class="dealer-card">
+                        <div class="dealer-logo">${dealer.initials}</div>
+                        <div class="dealer-name">${dealer.name}</div>
+                        <div class="dealer-location"><i class="fa-solid fa-location-dot"></i> ${dealer.city}</div>
+                        
+                        <div class="dealer-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">${dealer.cars}</span>
+                                <span class="stat-label">Mașini</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" style="display: flex; align-items: center; gap: 4px;">${dealer.rating} ${stars}</span>
+                                <span class="stat-label">Evaluare</span>
+                            </div>
+                        </div>
+                        
+                        <a href="buy.html?dealer=${encodeURIComponent(dealer.name)}" class="btn-view-stock">
+                            <i class="fa-solid fa-car"></i> <span data-i18n="btn_view">Vezi stocul</span>
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        function filterDealers() {
+            renderDealers();
+        }
+
+        // === TRADUCERI ===
+        const translations = {
+            ro: { page_title: "Partenerii Noștri de Încredere", page_subtitle: "Explorează rețeaua noastră de dealeri autorizați și verificați.", btn_view: "Vezi stocul" },
+            en: { page_title: "Our Trusted Partners", page_subtitle: "Explore our network of authorized and verified dealers.", btn_view: "View stock" },
+            bg: { page_title: "Нашите доверени партньори", page_subtitle: "Разгледайте нашата мрежа от оторизирани дилъри.", btn_view: "Вижте наличността" },
+            el: { page_title: "Οι αξιόπιστοι συνεργάτες μας", page_subtitle: "Εξερευνήστε το δίκτυο εξουσιοδοτημένων αντιπροσώπων.", btn_view: "Προβολή αποθέματος" }
+        };
+
+        function switchLanguage(lang) {
+            const dict = translations[lang];
+            if (!dict) return;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.querySelectorAll('.flag-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+    </script>
+</body>
+</html>
