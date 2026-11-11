@@ -1,6 +1,6 @@
 const carBrands = [
     { name: "BMW", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg", listings: 1240 },
-    { name: "Mercedes", logo: "https://upload.wikimedia.org/wikipedia/commons/9/90/Mercedes-Logo.svg", listings: 980 },
+    { name: "Mercedes-Benz", logo: "https://logotyp.us/file/mercedes-benz.svg", listings: 980 },
     { name: "Audi", logo: "https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg", listings: 750 },
     { name: "VW", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg", listings: 1100 },
     { name: "Ford", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg", listings: 620 },
@@ -15,7 +15,8 @@ const carBrands = [
     { name: "Honda", logo: "https://upload.wikimedia.org/wikipedia/commons/3/38/Honda.svg", listings: 280 },
     { name: "Mazda", logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Mazda_Logo.svg", listings: 195 },
     { name: "Volvo", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Volvo-Iron-Mark-Black.svg", listings: 265 },
-    { name: "Jaguar", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Jaguar_Logo.svg", listings: 150 },
+    { name: "Jaguar", logo: "https://logotyp.us/file/jaguar.svg", listings: 95 },
+    { name: "Land Rover", logo: "https://logotyp.us/file/land-rover.svg", listings: 140 },
     { name: "KIA", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/KIA_logo2.svg", listings: 340 },
     { name: "Hyundai", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg", listings: 380 },
     { name: "Citroën", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Citro%C3%ABn_2016.svg", listings: 290 },
