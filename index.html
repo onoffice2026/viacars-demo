@@ -440,31 +440,31 @@ buildMarquee();
 
 // === TRENULEȚ SIGLE MĂRCI ===
 const brandsWithLogos = [
-    { name: "BMW", logo: "https://cdn.simpleicons.org/bmw" },
-    { name: "Mercedes-Benz", logo: "https://cdn.simpleicons.org/mercedes" },
-    { name: "Audi", logo: "https://cdn.simpleicons.org/audi" },
-    { name: "Volkswagen", logo: "https://cdn.simpleicons.org/volkswagen" },
-    { name: "Ford", logo: "https://cdn.simpleicons.org/ford" },
-    { name: "Opel", logo: "https://cdn.simpleicons.org/opel" },
-    { name: "Renault", logo: "https://cdn.simpleicons.org/renault" },
-    { name: "Toyota", logo: "https://cdn.simpleicons.org/toyota" },
-    { name: "Porsche", logo: "https://cdn.simpleicons.org/porsche" },
-    { name: "Ferrari", logo: "https://cdn.simpleicons.org/ferrari" },
-    { name: "Lamborghini", logo: "https://cdn.simpleicons.org/lamborghini" },
-    { name: "Tesla", logo: "https://cdn.simpleicons.org/tesla" },
-    { name: "Nissan", logo: "https://cdn.simpleicons.org/nissan" },
-    { name: "Honda", logo: "https://cdn.simpleicons.org/honda" },
-    { name: "Mazda", logo: "https://cdn.simpleicons.org/mazda" },
-    { name: "Volvo", logo: "https://cdn.simpleicons.org/volvo" },
-    { name: "Jaguar", logo: "https://cdn.simpleicons.org/jaguar" },
-    { name: "KIA", logo: "https://cdn.simpleicons.org/kia" },
-    { name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai" },
-    { name: "Citroën", logo: "https://cdn.simpleicons.org/citroen" },
-    { name: "Fiat", logo: "https://cdn.simpleicons.org/fiat" },
-    { name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot" },
-    { name: "Skoda", logo: "https://cdn.simpleicons.org/skoda" },
-    { name: "SEAT", logo: "https://cdn.simpleicons.org/seat" },
-    { name: "Land Rover", logo: "https://cdn.simpleicons.org/landrover" }
+    { name: "BMW", logo: "https://cdn.simpleicons.org/bmw/0066B1" },
+    { name: "Mercedes-Benz", logo: "https://cdn.simpleicons.org/mercedes/000000" },
+    { name: "Audi", logo: "https://cdn.simpleicons.org/audi/000000" },
+    { name: "Volkswagen", logo: "https://cdn.simpleicons.org/volkswagen/001E50" },
+    { name: "Ford", logo: "https://cdn.simpleicons.org/ford/003478" },
+    { name: "Opel", logo: "https://cdn.simpleicons.org/opel/000000" },
+    { name: "Renault", logo: "https://cdn.simpleicons.org/renault/FFCC00" },
+    { name: "Toyota", logo: "https://cdn.simpleicons.org/toyota/EB0A1E" },
+    { name: "Porsche", logo: "https://cdn.simpleicons.org/porsche/000000" },
+    { name: "Ferrari", logo: "https://cdn.simpleicons.org/ferrari/DC0000" },
+    { name: "Lamborghini", logo: "https://cdn.simpleicons.org/lamborghini/000000" },
+    { name: "Tesla", logo: "https://cdn.simpleicons.org/tesla/CC0000" },
+    { name: "Nissan", logo: "https://cdn.simpleicons.org/nissan/000000" },
+    { name: "Honda", logo: "https://cdn.simpleicons.org/honda/000000" },
+    { name: "Mazda", logo: "https://cdn.simpleicons.org/mazda/000000" },
+    { name: "Volvo", logo: "https://cdn.simpleicons.org/volvo/003057" },
+    { name: "Jaguar", logo: "https://cdn.simpleicons.org/jaguar/006600" },
+    { name: "KIA", logo: "https://cdn.simpleicons.org/kia/05141F" },
+    { name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai/002C5F" },
+    { name: "Citroën", logo: "https://cdn.simpleicons.org/citroen/000000" },
+    { name: "Fiat", logo: "https://cdn.simpleicons.org/fiat/96172E" },
+    { name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot/00235B" },
+    { name: "Skoda", logo: "https://cdn.simpleicons.org/skoda/00843D" },
+    { name: "SEAT", logo: "https://cdn.simpleicons.org/seat/333333" },
+    { name: "Land Rover", logo: "https://cdn.simpleicons.org/landrover/005A2B" }
 ];
 
 function buildMarquee() {
@@ -474,7 +474,7 @@ function buildMarquee() {
     const brandsHTML = brandsWithLogos.map(brand => `
         <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
             <div style="width:75px;height:75px;background:white;border-radius:50%;padding:10px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
-                <img src="${brand.logo}" alt="${brand.name}" style="width:55px;height:55px;object-fit:contain;" onerror="this.style.display='none'">
+                <img src="${brand.logo}" alt="${brand.name}" style="width:55px;height:55px;object-fit:contain;" onerror="this.parentElement.innerHTML='<div style=\\'font-size:24px;font-weight:bold;color:#333;text-align:center;\\'>${brand.name.substring(0,2)}</div>'">
             </div>
             <span class="brand-marquee-name">${brand.name}</span>
         </a>
