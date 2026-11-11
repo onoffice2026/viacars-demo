@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaCars.eu - Noutăți și Oferte Speciale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .header-integrated {
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .logo-container {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
+        }
+
+        /* Hero Section */
+        .news-hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(10, 15, 30, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Offer Cards */
+        .offer-card {
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .offer-card:hover {
+            border-color: rgba(96, 165, 250, 0.6);
+            box-shadow: 0 15px 50px rgba(30, 58, 138, 0.4);
+            transform: translateY(-8px);
+        }
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            font-weight: 800;
+            font-size: 11px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5);
+            animation: pulse-badge 2s ease-in-out infinite;
+        }
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .offer-badge.new {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.5);
+        }
+        .offer-badge.limited {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+        }
+        .offer-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        .offer-content { padding: 24px; }
+        .offer-partner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #60a5fa;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .partner-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+        }
+        .offer-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .offer-description {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .offer-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .offer-features li {
+            padding: 6px 0;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .offer-features li i { color: #10b981; }
+        .offer-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: rgba(30, 58, 138, 0.2);
+            border-radius: 8px;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        .price-old {
+            font-size: 16px;
+            color: rgba(255,255,255,0.4);
+            text-decoration: line-through;
+        }
+        .price-new {
+            font-size: 28px;
+            font-weight: 800;
+            color: #60a5fa;
+        }
+        .price-save {
+            font-size: 12px;
+            color: #10b981;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .btn-offer {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 14px;
+            border: 1px solid rgba(96, 165, 250, 0.4);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-offer:hover {
+            background: linear-gradient(135deg, #2563eb, #1e3a8a);
+            box-shadow: 0 5px 25px rgba(30, 58, 138, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+            justify-content: center;
+        }
+        .countdown-item {
+            background: rgba(10, 15, 30, 0.8);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: center;
+            min-width: 60px;
+        }
+        .countdown-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #60a5fa;
+            display: block;
+        }
+        .countdown-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Partners Grid */
+        .partner-card {
+            background: rgba(10, 15, 30, 0.5);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .partner-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            transform: translateY(-4px);
+        }
+        .partner-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+            color: #60a5fa;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+
+        /* Services Coming Soon */
+        .service-card {
+            background: rgba(10, 15, 30, 0.4);
+            backdrop-filter: blur(15px);
+            border: 1px dashed rgba(96, 165, 250, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            opacity: 1;
+            border-color: rgba(96, 165, 250, 0.6);
+            background: rgba(10, 15, 30, 0.6);
+        }
+        .coming-soon-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        /* Newsletter */
+        .newsletter-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(10, 15, 30, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+        }
+        .newsletter-input {
+            background: rgba(10, 15, 30, 0.6);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            width: 100%;
+            max-width: 400px;
+        }
+        .newsletter-input:focus { border-color: #60a5fa; }
+
+        .flag-btn {
+            width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
+            transition: all 0.3s ease; border: 2px solid transparent;
+            opacity: 0.6; overflow: hidden; display: inline-block;
+        }
+        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
+        .flag-btn.active { opacity: 1; border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.6); }
+        .flag-btn svg { width: 100%; height: 100%; display: block; }
+
+        #password-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0f1e; z-index: 99999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .pass-box {
+            text-align: center; background: rgba(30, 58, 138, 0.1); padding: 40px;
+            border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 40px rgba(30, 58, 138, 0.4); backdrop-filter: blur(10px);
+        }
+        .pass-input {
+            background: rgba(10, 15, 30, 0.7); border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
+            margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
+        }
+        .pass-input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.3); }
+        .pass-btn {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
+            border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
+            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
+        }
+        .pass-btn:hover { background: linear-gradient(135deg, #2563eb, #1e3a8a); box-shadow: 0 5px 15px rgba(30, 58, 138, 0.5); }
+    </style>
+</head>
+<body>
+
+    <div id="password-gate">
+        <div class="pass-box">
+            <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
+            <input type="password" id="pass-input" class="pass-input" placeholder="Parola">
+            <br>
+            <button onclick="checkPassword()" class="pass-btn">Intră</button>
+            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
+        </div>
+    </div>
+
+    <header class="header-integrated sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="logo-container rounded-lg p-2 flex items-center space-x-2 no-underline">
+                    <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+                        <path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
+                        <path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
+                        <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
+                        <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+                    </svg>
+                    <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="buy.html" class="text-white/90 hover:text-white transition">Cumpără</a>
+                <a href="sell.html" class="text-white/90 hover:text-white transition">Vinde</a>
+                <a href="dealers.html" class="text-white/90 hover:text-white transition">Dealeri</a>
+                <a href="news.html" class="text-white transition font-bold">Noutăți</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="flag-btn active" data-lang="ro" onclick="switchLanguage('ro')">
+                        <svg viewBox="0 0 60 40"><rect width="20" height="40" fill="#002B7F"/><rect x="20" width="20" height="40" fill="#FCD116"/><rect x="40" width="20" height="40" fill="#CE1126"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="bg" onclick="switchLanguage('bg')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#FFFFFF"/><rect y="13.33" width="60" height="13.33" fill="#00966E"/><rect y="26.66" width="60" height="13.34" fill="#D62612"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="el" onclick="switchLanguage('el')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="en" onclick="switchLanguage('en')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
+                    </div>
+                </div>
+                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
+                <a href="sell.html" style="background: linear-gradient(90deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 58, 138, 0.45) 50%, rgba(148, 163, 184, 0.2) 100%); color: white; font-weight: 600; font-size: 13px; padding: 10px 20px; border: 1px solid rgba(148, 163, 184, 0.5); border-radius: 8px; text-decoration: none; box-shadow: -5px 0 20px rgba(148, 163, 184, 0.6), 0 0 30px rgba(30, 58, 138, 0.3);">Vinde mașina ta cu noi</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <!-- Hero -->
+            <div class="news-hero">
+                <div class="relative z-10">
+                    <div class="inline-block bg-blue-600/30 border border-blue-400/40 rounded-full px-4 py-1 text-xs font-semibold mb-4">
+                        <i class="fa-solid fa-bolt mr-1"></i> <span data-i18n="hero_badge">OFERTE EXCLUSIVE NOIEMBRIE 2026</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="hero_title">Noutăți și Servicii în Parteneriat</h1>
+                    <p class="text-white/70 max-w-2xl mx-auto" data-i18n="hero_subtitle">Descoperă ofertele speciale ale partenerilor noștri: asigurări auto, verificări service, anvelope de iarnă și multe altele. Economisește timp și bani cu ViaCars.eu.</p>
+                </div>
+            </div>
+
+            <!-- Oferte Principale -->
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-fire text-orange-400"></i>
+                <span data-i18n="offers_title">Oferte Active în Noiembrie</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <!-- OFERTĂ 1: ASIGURĂRI -->
+                <div class="offer-card">
+                    <div class="offer-badge">-25%</div>
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Asigurări" class="offer-image">
+                    <div class="offer-content">
+                        <div class="offer-partner">
+                            <div class="partner-logo">EI</div>
+                            <span>EuroIns România</span>
+                        </div>
+                        <h3 class="offer-title" data-i18n="offer1_title">Asigurări Auto cu -25%</h3>
+                        <p class="offer-description" data-i18n="offer1_desc">Ofertă specială valabilă în noiembrie pentru toate polițele RCA și CASCO încheiate prin platforma ViaCars.eu.</p>
+                        
+                        <ul class="offer-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer1_f1">RCA de la 180€/an</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer1_f2">CASCO full coverage -25%</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer1_f3">Asistență rutieră inclusă</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer1_f4">Emitere online în 5 minute</span></li>
+                        </ul>
+
+                        <div class="offer-price">
+                            <span class="price-old">240€</span>
+                            <span class="price-new">180€</span>
+                            <span class="price-save" data-i18n="save">Economisești 60€</span>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <p class="text-xs text-white/50 mb-2" data-i18n="offer_ends">Oferta expiră în:</p>
+                            <div class="countdown" id="countdown1">
+                                <div class="countdown-item"><span class="countdown-value" id="days1">12</span><span class="countdown-label" data-i18n="days">Zile</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="hours1">08</span><span class="countdown-label" data-i18n="hours">Ore</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="mins1">45</span><span class="countdown-label" data-i18n="mins">Min</span></div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-offer" onclick="alert('Vei fi redirecționat către EuroIns România')">
+                            <i class="fa-solid fa-shield-halved"></i> <span data-i18n="btn_claim">Obține Oferta</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- OFERTĂ 2: VERIFICARE SERVICE -->
+                <div class="offer-card">
+                    <div class="offer-badge new" data-i18n="badge_free">GRATUIT</div>
+                    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=800&q=80" alt="Service" class="offer-image">
+                    <div class="offer-content">
+                        <div class="offer-partner">
+                            <div class="partner-logo">AC</div>
+                            <span>AutoCheck Pro</span>
+                        </div>
+                        <h3 class="offer-title" data-i18n="offer2_title">Verificare Service Gratuită</h3>
+                        <p class="offer-description" data-i18n="offer2_desc">Înainte de a cumpăra o mașină second-hand, primești o verificare completă gratuită în rețeaua noastră de 150+ service-uri partenere.</p>
+                        
+                        <ul class="offer-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer2_f1">Verificare 120+ puncte</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer2_f2">Raport detaliat în 24h</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer2_f3">Diagnosticare computerizată</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer2_f4">Verificare istoric daune</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer2_f5">Test drive asistat de mecanic</span></li>
+                        </ul>
+
+                        <div class="offer-price">
+                            <span class="price-old">150€</span>
+                            <span class="price-new" data-i18n="free">GRATUIT</span>
+                            <span class="price-save" data-i18n="save2">Economisești 150€</span>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <p class="text-xs text-white/50 mb-2" data-i18n="offer_ends">Oferta expiră în:</p>
+                            <div class="countdown" id="countdown2">
+                                <div class="countdown-item"><span class="countdown-value" id="days2">20</span><span class="countdown-label" data-i18n="days">Zile</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="hours2">14</span><span class="countdown-label" data-i18n="hours">Ore</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="mins2">22</span><span class="countdown-label" data-i18n="mins">Min</span></div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-offer" onclick="alert('Programează verificarea la AutoCheck Pro')">
+                            <i class="fa-solid fa-wrench"></i> <span data-i18n="btn_book">Programează Verificarea</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- OFERTĂ 3: ANVELOPE IARNĂ -->
+                <div class="offer-card">
+                    <div class="offer-badge limited" data-i18n="badge_limited">STOC LIMITAT</div>
+                    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=800&q=80" alt="Anvelope" class="offer-image">
+                    <div class="offer-content">
+                        <div class="offer-partner">
+                            <div class="partner-logo">AX</div>
+                            <span>AnvelopeX România</span>
+                        </div>
+                        <h3 class="offer-title" data-i18n="offer3_title">Anvelope de Iarnă Premium</h3>
+                        <p class="offer-description" data-i18n="offer3_desc">Set complet de 4 anvelope de iarnă de la producători premium, cu montaj și echilibrare gratuită în rețeaua noastră.</p>
+                        
+                        <ul class="offer-features">
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer3_f1">Michelin, Continental, Bridgestone</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer3_f2">Montaj + echilibrare incluse</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer3_f3">Depozitare anvelope vară gratuită</span></li>
+                            <li><i class="fa-solid fa-check"></i> <span data-i18n="offer3_f4">Garanție 5 ani</span></li>
+                        </ul>
+
+                        <div class="offer-price">
+                            <span class="price-old">800€</span>
+                            <span class="price-new">599€</span>
+                            <span class="price-save" data-i18n="save3">Economisești 201€</span>
+                        </div>
+
+                        <div class="text-center mb-3">
+                            <p class="text-xs text-white/50 mb-2" data-i18n="offer_ends">Oferta expiră în:</p>
+                            <div class="countdown" id="countdown3">
+                                <div class="countdown-item"><span class="countdown-value" id="days3">08</span><span class="countdown-label" data-i18n="days">Zile</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="hours3">19</span><span class="countdown-label" data-i18n="hours">Ore</span></div>
+                                <div class="countdown-item"><span class="countdown-value" id="mins3">11</span><span class="countdown-label" data-i18n="mins">Min</span></div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="btn-offer" onclick="alert('Comandă anvelopele de iarnă de la AnvelopeX')">
+                            <i class="fa-solid fa-snowflake"></i> <span data-i18n="btn_order">Comandă Anvelopele</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parteneri -->
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-handshake text-blue-400"></i>
+                <span data-i18n="partners_title">Partenerii Noștri de Încredere</span>
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12">
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="font-bold text-sm mb-1">EuroIns</div>
+                    <div class="text-xs text-white/50" data-i18n="p_insurance">Asigurări Auto</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-wrench"></i></div>
+                    <div class="font-bold text-sm mb-1">AutoCheck Pro</div>
+                    <div class="text-xs text-white/50" data-i18n="p_service">Verificări Service</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-snowflake"></i></div>
+                    <div class="font-bold text-sm mb-1">AnvelopeX</div>
+                    <div class="text-xs text-white/50" data-i18n="p_tires">Anvelope & Jante</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-coins"></i></div>
+                    <div class="font-bold text-sm mb-1">CreditAuto</div>
+                    <div class="text-xs text-white/50" data-i18n="p_credit">Creditare Auto</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="font-bold text-sm mb-1">TransportRO</div>
+                    <div class="text-xs text-white/50" data-i18n="p_transport">Transport Auto</div>
+                </div>
+                <div class="partner-card">
+                    <div class="partner-icon"><i class="fa-solid fa-file-contract"></i></div>
+                    <div class="font-bold text-sm mb-1">LegalCars</div>
+                    <div class="text-xs text-white/50" data-i18n="p_legal">Asistență Juridică</div>
+                </div>
+            </div>
+
+            <!-- Servicii Viitoare -->
+            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-rocket text-purple-400"></i>
+                <span data-i18n="coming_title">Servicii Disponibile Curând</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="service-card">
+                    <div class="coming-soon-badge" data-i18n="coming_soon">Curând</div>
+                    <div class="partner-icon" style="background: linear-gradient(135deg, #7c3aed, #5b21b6);"><i class="fa-solid fa-percent"></i></div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="service1_title">Leasing & Finanțare</h3>
+                    <p class="text-sm text-white/60" data-i18n="service1_desc">Parteneriate cu bănci și IFN-uri pentru rate avantajoase la achiziția mașinii visurilor tale.</p>
+                </div>
+                <div class="service-card">
+                    <div class="coming-soon-badge" data-i18n="coming_soon">Curând</div>
+                    <div class="partner-icon" style="background: linear-gradient(135deg, #ec4899, #be185d);"><i class="fa-solid fa-car-burst"></i></div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="service2_title">Istoric Vehicul Complet</h3>
+                    <p class="text-sm text-white/60" data-i18n="service2_desc">Acces la baze de date internaționale pentru verificarea istoricului complet al mașinii.</p>
+                </div>
+                <div class="service-card">
+                    <div class="coming-soon-badge" data-i18n="coming_soon">Curând</div>
+                    <div class="partner-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fa-solid fa-gauge-high"></i></div>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="service3_title">Test Drive la Domiciliu</h3>
+                    <p class="text-sm text-white/60" data-i18n="service3_desc">Îți aducem mașina dorită acasă pentru un test drive confortabil, fără presiune.</p>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="newsletter-box">
+                <i class="fa-solid fa-envelope-open-text text-5xl text-blue-400 mb-4"></i>
+                <h2 class="text-2xl font-bold text-white mb-2" data-i18n="newsletter_title">Fii la curent cu cele mai bune oferte</h2>
+                <p class="text-white/60 mb-6 max-w-xl mx-auto" data-i18n="newsletter_desc">Abonează-te la newsletter-ul nostru și primești exclusiv ofertele partenerilor noștri direct în inbox.</p>
+                <div class="flex flex-col md:flex-row gap-3 max-w-xl mx-auto">
+                    <input type="email" class="newsletter-input" placeholder="adresa.ta@email.com">
+                    <button class="btn-offer" style="max-width: 200px;" onclick="alert('Mulțumim pentru abonare!')" data-i18n="btn_subscribe">Abonează-te</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.3); padding: 40px 0; margin-top: 60px;">
+        <div class="container mx-auto px-6">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>+40 123 456 789</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent); margin-bottom: 20px;"></div>
+            <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
+                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const SITE_PASSWORD = "1234";
+        async function initGate() {
+            const gate = document.getElementById('password-gate');
+            if (!gate) return;
+            const trustedIP = localStorage.getItem('viacars_trusted_ip');
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
+            } catch (error) {}
+        }
+        function checkPassword() {
+            const input = document.getElementById('pass-input').value;
+            if (input === SITE_PASSWORD) {
+                document.getElementById('password-gate').style.display = 'none';
+                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
+            } else {
+                document.getElementById('pass-error').style.display = 'block';
+                document.getElementById('pass-input').value = '';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const passInput = document.getElementById('pass-input');
+            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
+            initGate();
+            startCountdowns();
+        });
+
+        // Countdown Timers
+        function startCountdowns() {
+            const now = new Date();
+            const end1 = new Date(now.getTime() + 12*24*60*60*1000 + 8*60*60*1000 + 45*60*1000);
+            const end2 = new Date(now.getTime() + 20*24*60*60*1000 + 14*60*60*1000 + 22*60*1000);
+            const end3 = new Date(now.getTime() + 8*24*60*60*1000 + 19*60*60*1000 + 11*60*1000);
+
+            function updateCountdown(end, id) {
+                const now = new Date();
+                const diff = end - now;
+                if (diff <= 0) return;
+                const days = Math.floor(diff / (1000*60*60*24));
+                const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+                document.getElementById(`days${id}`).textContent = String(days).padStart(2, '0');
+                document.getElementById(`hours${id}`).textContent = String(hours).padStart(2, '0');
+                document.getElementById(`mins${id}`).textContent = String(mins).padStart(2, '0');
+            }
+
+            setInterval(() => {
+                updateCountdown(end1, 1);
+                updateCountdown(end2, 2);
+                updateCountdown(end3, 3);
+            }, 1000);
+        }
+
+        const translations = {
+            ro: {
+                hero_badge: "OFERTE EXCLUSIVE NOIEMBRIE 2026", hero_title: "Noutăți și Servicii în Parteneriat", hero_subtitle: "Descoperă ofertele speciale ale partenerilor noștri: asigurări auto, verificări service, anvelope de iarnă și multe altele.",
+                offers_title: "Oferte Active în Noiembrie",
+                offer1_title: "Asigurări Auto cu -25%", offer1_desc: "Ofertă specială valabilă în noiembrie pentru toate polițele RCA și CASCO.",
+                offer1_f1: "RCA de la 180€/an", offer1_f2: "CASCO full coverage -25%", offer1_f3: "Asistență rutieră inclusă", offer1_f4: "Emitere online în 5 minute",
+                offer2_title: "Verificare Service Gratuită", offer2_desc: "Verificare completă gratuită înainte de cumpărare în 150+ service-uri partenere.",
+                offer2_f1: "Verificare 120+ puncte", offer2_f2: "Raport detaliat în 24h", offer2_f3: "Diagnosticare computerizată", offer2_f4: "Verificare istoric daune", offer2_f5: "Test drive asistat de mecanic",
+                offer3_title: "Anvelope de Iarnă Premium", offer3_desc: "Set complet de 4 anvelope premium cu montaj și echilibrare gratuită.",
+                offer3_f1: "Michelin, Continental, Bridgestone", offer3_f2: "Montaj + echilibrare incluse", offer3_f3: "Depozitare anvelope vară gratuită", offer3_f4: "Garanție 5 ani",
+                save: "Economisești 60€", save2: "Economisești 150€", save3: "Economisești 201€", free: "GRATUIT",
+                offer_ends: "Oferta expiră în:", days: "Zile", hours: "Ore", mins: "Min",
+                btn_claim: "Obține Oferta", btn_book: "Programează Verificarea", btn_order: "Comandă Anvelopele",
+                badge_free: "GRATUIT", badge_limited: "STOC LIMITAT",
+                partners_title: "Partenerii Noștri de Încredere",
+                p_insurance: "Asigurări Auto", p_service: "Verificări Service", p_tires: "Anvelope & Jante", p_credit: "Creditare Auto", p_transport: "Transport Auto", p_legal: "Asistență Juridică",
+                coming_title: "Servicii Disponibile Curând", coming_soon: "Curând",
+                service1_title: "Leasing & Finanțare", service1_desc: "Parteneriate cu bănci și IFN-uri pentru rate avantajoase.",
+                service2_title: "Istoric Vehicul Complet", service2_desc: "Acces la baze de date internaționale pentru verificarea istoricului.",
+                service3_title: "Test Drive la Domiciliu", service3_desc: "Îți aducem mașina acasă pentru un test drive confortabil.",
+                newsletter_title: "Fii la curent cu cele mai bune oferte", newsletter_desc: "Abonează-te și primești exclusiv ofertele partenerilor noștri.",
+                btn_subscribe: "Abonează-te"
+            },
+            en: {
+                hero_badge: "EXCLUSIVE NOVEMBER 2026 OFFERS", hero_title: "News and Partner Services", hero_subtitle: "Discover special offers from our partners: car insurance, service checks, winter tires and more.",
+                offers_title: "Active Offers in November",
+                offer1_title: "Car Insurance -25%", offer1_desc: "Special offer valid in November for all RCA and CASCO policies.",
+                offer1_f1: "RCA from 180€/year", offer1_f2: "Full CASCO -25%", offer1_f3: "Road assistance included", offer1_f4: "Online issue in 5 minutes",
+                offer2_title: "Free Service Check", offer2_desc: "Complete free check before purchase in 150+ partner workshops.",
+                offer2_f1: "120+ point check", offer2_f2: "Detailed report in 24h", offer2_f3: "Computerized diagnostics", offer2_f4: "Damage history check", offer2_f5: "Mechanic-assisted test drive",
+                offer3_title: "Premium Winter Tires", offer3_desc: "Set of 4 premium tires with free fitting and balancing.",
+                offer3_f1: "Michelin, Continental, Bridgestone", offer3_f2: "Fitting + balancing included", offer3_f3: "Free summer tire storage", offer3_f4: "5 year warranty",
+                save: "Save 60€", save2: "Save 150€", save3: "Save 201€", free: "FREE",
+                offer_ends: "Offer expires in:", days: "Days", hours: "Hours", mins: "Min",
+                btn_claim: "Get Offer", btn_book: "Book Check", btn_order: "Order Tires",
+                badge_free: "FREE", badge_limited: "LIMITED STOCK",
+                partners_title: "Our Trusted Partners",
+                p_insurance: "Car Insurance", p_service: "Service Checks", p_tires: "Tires & Rims", p_credit: "Car Financing", p_transport: "Car Transport", p_legal: "Legal Assistance",
+                coming_title: "Services Coming Soon", coming_soon: "Soon",
+                service1_title: "Leasing & Financing", service1_desc: "Partnerships with banks for advantageous rates.",
+                service2_title: "Complete Vehicle History", service2_desc: "Access to international databases for history checks.",
+                service3_title: "Home Test Drive", service3_desc: "We bring the car to your home for a comfortable test drive.",
+                newsletter_title: "Stay updated with the best offers", newsletter_desc: "Subscribe and receive exclusive partner offers.",
+                btn_subscribe: "Subscribe"
+            },
+            bg: {
+                hero_badge: "ЕКСКЛУЗИВНИ ОФЕРТИ НОЕМВРИ 2026", hero_title: "Новини и Партньорски Услуги", hero_subtitle: "Открийте специалните оферти на нашите партньори.",
+                offers_title: "Активни Оферти през Ноември",
+                offer1_title: "Авто Застраховки -25%", offer1_desc: "Специална оферта за всички застраховки през ноември.",
+                offer2_title: "Безплатна Сервизна Проверка", offer2_desc: "Пълна безплатна проверка преди покупка.",
+                offer3_title: "Зимни Гуми Премиум", offer3_desc: "Комплект от 4 гуми с безплатен монтаж.",
+                save: "Спестяваш 60€", save2: "Спестяваш 150€", save3: "Спестяваш 201€", free: "БЕЗПЛАТНО",
+                offer_ends: "Офертата изтича след:", days: "Дни", hours: "Часа", mins: "Мин",
+                btn_claim: "Вземи Оферта", btn_book: "Запази Проверка", btn_order: "Поръчай Гуми",
+                badge_free: "БЕЗПЛАТНО", badge_limited: "ОГРАНИЧЕНО КОЛИЧЕСТВО",
+                partners_title: "Нашите Доверени Партньори",
+                p_insurance: "Авто Застраховки", p_service: "Сервизни Проверки", p_tires: "Гуми и Джанти", p_credit: "Авто Кредитиране", p_transport: "Авто Транспорт", p_legal: "Правна Помощ",
+                coming_title: "Услуги Скоро", coming_soon: "Скоро",
+                service1_title: "Лизинг и Финансиране", service1_desc: "Партньорства с банки за изгодни вноски.",
+                service2_title: "Пълна История на Превозното", service2_desc: "Достъп до международни бази данни.",
+                service3_title: "Тест Драйв у Дома", service3_desc: "Доставяме колата до вас за удобен тест драйв.",
+                newsletter_title: "Бъдете информирани за най-добрите оферти", newsletter_desc: "Абонирайте се за ексклузивни оферти.",
+                btn_subscribe: "Абонирай се"
+            },
+            el: {
+                hero_badge: "ΑΠΟΚΛΕΙΣΤΙΚΕΣ ΠΡΟΣΦΟΡΕΣ ΝΟΕΜΒΡΙΟΥ 2026", hero_title: "Νέα και Υπηρεσίες Συνεργατών", hero_subtitle: "Ανακαλύψτε τις ειδικές προσφορές των συνεργατών μας.",
+                offers_title: "Ενεργές Προσφορές τον Νοέμβριο",
+                offer1_title: "Ασφάλεια Αυτοκινήτου -25%", offer1_desc: "Ειδική προσφορά για όλες τις ασφαλίσεις τον Νοέμβριο.",
+                offer2_title: "Δωρεάν Έλεγχος Service", offer2_desc: "Πλήρης δωρεάν έλεγχος πριν την αγορά.",
+                offer3_title: "Χειμερινά Ελαστικά Premium", offer3_desc: "Σετ 4 ελαστικών με δωρεάν τοποθέτηση.",
+                save: "Εξοικονομείς 60€", save2: "Εξοικονομείς 150€", save3: "Εξοικονομείς 201€", free: "ΔΩΡΕΑΝ",
+                offer_ends: "Η προσφορά λήγει σε:", days: "Ημέρες", hours: "Ώρες", mins: "Λεπτά",
+                btn_claim: "Λάβε Προσφορά", btn_book: "Κλείσε Έλεγχο", btn_order: "Παράγγειλε Ελαστικά",
+                badge_free: "ΔΩΡΕΑΝ", badge_limited: "ΠΕΡΙΟΡΙΣΜΕΝΟ ΣΤΟΚ",
+                partners_title: "Οι Αξιόπιστοι Συνεργάτες μας",
+                p_insurance: "Ασφάλεια Αυτοκινήτου", p_service: "Έλεγχοι Service", p_tires: "Ελαστικά & Ζάντες", p_credit: "Χρηματοδότηση", p_transport: "Μεταφορά Αυτοκινήτου", p_legal: "Νομική Βοήθεια",
+                coming_title: "Υπηρεσίες Σύντομα", coming_soon: "Σύντομα",
+                service1_title: "Leasing & Χρηματοδότηση", service1_desc: "Συνεργασίες με τράπεζες για ευνοϊκές δόσεις.",
+                service2_title: "Πλήρες Ιστορικό Οχήματος", service2_desc: "Πρόσβαση σε διεθνείς βάσεις δεδομένων.",
+                service3_title: "Test Drive στο Σπίτι", service3_desc: "Φέρνουμε το αυτοκίνητο στο σπίτι σας.",
+                newsletter_title: "Μείνετε ενημερωμένοι", newsletter_desc: "Εγγραφείτε για αποκλειστικές προσφορές.",
+                btn_subscribe: "Εγγραφή"
+            }
+        };
+
+        function switchLanguage(lang) {
+            const dict = translations[lang];
+            if (!dict) return;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.querySelectorAll('.flag-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+    </script>
+</body>
+</html>
