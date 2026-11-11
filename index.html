@@ -440,43 +440,47 @@ buildMarquee();
 
 // === TRENULEȚ SIGLE MĂRCI ===
 const brandsWithLogos = [
-{ name: "BMW", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/200px-BMW.svg.png" },
-{ name: "Mercedes-Benz", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/200px-Mercedes-Logo.svg.png" },
-{ name: "Audi", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/200px-Audi-Logo_2016.svg.png" },
-{ name: "Volkswagen", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/200px-Volkswagen_logo_2019.svg.png" },
-{ name: "Ford", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/200px-Ford_logo_flat.svg.png" },
-{ name: "Opel", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Opel_logo_2009.svg/200px-Opel_logo_2009.svg.png" },
-{ name: "Renault", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Renault_2015_Logo.svg/200px-Renault_2015_Logo.svg.png" },
-{ name: "Toyota", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Toyota.svg/200px-Toyota.svg.png" },
-{ name: "Porsche", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Porsche_logo.svg/200px-Porsche_logo.svg.png" },
-{ name: "Ferrari", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Ferrari_logo.svg/200px-Ferrari_logo.svg.png" },
-{ name: "Lamborghini", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Lamborghini_Logo.svg/200px-Lamborghini_Logo.svg.png" },
-{ name: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Tesla_Motors.svg/200px-Tesla_Motors.svg.png" },
-{ name: "Nissan", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nissan_2020_logo.svg/200px-Nissan_2020_logo.svg.png" },
-{ name: "Honda", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/200px-Honda.svg.png" },
-{ name: "Mazda", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Mazda_Logo.svg/200px-Mazda_Logo.svg.png" },
-{ name: "Volvo", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Volvo-Iron-Mark-Black.svg/200px-Volvo-Iron-Mark-Black.svg.png" },
-{ name: "Jaguar", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Jaguar_Logo.svg/200px-Jaguar_Logo.svg.png" },
-{ name: "KIA", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/KIA_logo2.svg/200px-KIA_logo2.svg.png" },
-{ name: "Hyundai", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Hyundai_Motor_Company_logo.svg/200px-Hyundai_Motor_Company_logo.svg.png" },
-{ name: "Citroën", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Citro%C3%ABn_2016.svg/200px-Citro%C3%ABn_2016.svg.png" },
-{ name: "Fiat", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Fiat_Automobiles.svg/200px-Fiat_Automobiles.svg.png" },
-{ name: "Peugeot", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Peugeot_Logo.svg/200px-Peugeot_Logo.svg.png" },
-{ name: "Skoda", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%C5%A0koda_logo_2016.svg/200px-%C5%A0koda_logo_2016.svg.png" },
-{ name: "SEAT", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/SEAT_logo_2012.svg/200px-SEAT_logo_2012.svg.png" },
-{ name: "Land Rover", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Land_Rover_logo_black.svg/200px-Land_Rover_logo_black.svg.png" }
+    { name: "BMW", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="black" stroke="white" stroke-width="2"/><circle cx="50" cy="50" r="36" fill="#0066B1"/><path d="M50 14 L50 50 L86 50 A36 36 0 0 0 50 14 Z" fill="white"/><path d="M50 50 L50 86 A36 36 0 0 0 14 50 L50 50 Z" fill="white"/></svg>` },
+    { name: "Mercedes-Benz", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="black" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" fill="none" stroke="#c0c0c0" stroke-width="1"/><path d="M50 15 L50 50 L78 65" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/><path d="M50 50 L22 65" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/><path d="M50 50 L50 85" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/></svg>` },
+    { name: "Audi", svg: `<svg viewBox="0 0 100 100"><circle cx="22" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="41" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="59" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="78" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/></svg>` },
+    { name: "Volkswagen", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#001E50" stroke="#c0c0c0" stroke-width="2"/><path d="M25 35 L50 75 L75 35" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M32 50 L50 80 L68 50" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>` },
+    { name: "Ford", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="48" ry="32" fill="#003478" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="60" font-size="22" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">Ford</text></svg>` },
+    { name: "Opel", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="#f7d417" stroke-width="3"/><path d="M25 50 Q50 25 75 50 Q50 75 25 50" stroke="#f7d417" stroke-width="4" fill="none"/></svg>` },
+    { name: "Renault", svg: `<svg viewBox="0 0 100 100"><path d="M50 15 L80 50 L50 85 L20 50 Z" fill="#ffcc00" stroke="#000" stroke-width="2"/><path d="M50 30 L68 50 L50 70 L32 50 Z" fill="#000"/></svg>` },
+    { name: "Toyota", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="30" fill="none" stroke="#eb0a1e" stroke-width="3"/><ellipse cx="50" cy="50" rx="28" ry="18" fill="none" stroke="#eb0a1e" stroke-width="3"/><ellipse cx="50" cy="50" rx="12" ry="30" fill="none" stroke="#eb0a1e" stroke-width="3"/></svg>` },
+    { name: "Porsche", svg: `<svg viewBox="0 0 100 100"><path d="M15 25 L85 25 L75 75 L25 75 Z" fill="#c4a000" stroke="#000" stroke-width="2"/><text x="50" y="58" font-size="14" font-weight="bold" fill="#000" text-anchor="middle" font-family="Arial">PORSCHE</text></svg>` },
+    { name: "Ferrari", svg: `<svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="#ffcc00" rx="5"/><path d="M30 25 L70 25 L60 75 L40 75 Z" fill="#000"/><text x="50" y="55" font-size="16" font-weight="bold" fill="#ffcc00" text-anchor="middle">SF</text></svg>` },
+    { name: "Lamborghini", svg: `<svg viewBox="0 0 100 100"><path d="M50 15 L85 50 L50 85 L15 50 Z" fill="#000" stroke="#f7d417" stroke-width="3"/><circle cx="50" cy="50" r="15" fill="#f7d417"/></svg>` },
+    { name: "Tesla", svg: `<svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="#000" rx="8"/><path d="M50 20 L50 80" stroke="#e82127" stroke-width="5"/><path d="M25 35 L75 35" stroke="#e82127" stroke-width="4"/></svg>` },
+    { name: "Nissan", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#c0c0c0" stroke="#000" stroke-width="2"/><rect x="15" y="42" width="70" height="16" fill="#000"/><text x="50" y="55" font-size="14" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">NISSAN</text></svg>` },
+    { name: "Honda", svg: `<svg viewBox="0 0 100 100"><rect x="20" y="25" width="60" height="50" fill="#e40521" rx="5"/><path d="M50 32 L50 68" stroke="white" stroke-width="5"/><path d="M30 50 L70 50" stroke="white" stroke-width="5"/></svg>` },
+    { name: "Mazda", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="28" fill="none" stroke="#101010" stroke-width="3"/><path d="M30 45 Q50 32 70 45 Q50 58 30 45" fill="#101010"/></svg>` },
+    { name: "Volvo", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#003057" stroke="#c0c0c0" stroke-width="3"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="4"/><path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#c0c0c0"/></svg>` },
+    { name: "Jaguar", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#000" stroke="#c0c0c0" stroke-width="2"/><path d="M25 50 Q40 30 50 50 Q60 70 75 50" stroke="#c0c0c0" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="6" fill="#c0c0c0"/></svg>` },
+    { name: "KIA", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="48" ry="32" fill="none" stroke="#05141F" stroke-width="3"/><text x="50" y="60" font-size="24" font-weight="bold" fill="#05141F" text-anchor="middle" font-family="Arial">KIA</text></svg>` },
+    { name: "Hyundai", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="32" fill="#002c5f" stroke="#c0c0c0" stroke-width="2"/><path d="M35 45 Q50 32 65 45" stroke="#c0c0c0" stroke-width="3" fill="none"/><path d="M40 58 L60 58" stroke="#c0c0c0" stroke-width="3"/></svg>` },
+    { name: "Citroën", svg: `<svg viewBox="0 0 100 100"><path d="M20 35 Q50 20 80 35" stroke="#c0c0c0" stroke-width="4" fill="none"/><path d="M20 50 Q50 35 80 50" stroke="#c0c0c0" stroke-width="4" fill="none"/><path d="M20 65 Q50 50 80 65" stroke="#c0c0c0" stroke-width="4" fill="none"/></svg>` },
+    { name: "Fiat", svg: `<svg viewBox="0 0 100 100"><rect x="15" y="30" width="70" height="40" fill="#96172e" rx="3"/><text x="50" y="58" font-size="20" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">FIAT</text></svg>` },
+    { name: "Peugeot", svg: `<svg viewBox="0 0 100 100"><path d="M50 20 L50 80" stroke="#00235b" stroke-width="4"/><path d="M30 35 L50 50 L70 35" stroke="#00235b" stroke-width="3" fill="none"/><path d="M30 65 L50 50 L70 65" stroke="#00235b" stroke-width="3" fill="none"/></svg>` },
+    { name: "Skoda", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#00843d" stroke="#c0c0c0" stroke-width="2"/><path d="M30 45 L50 32 L70 45 L50 55 Z" fill="#c0c0c0"/><path d="M30 58 L50 70 L70 58" fill="none" stroke="#c0c0c0" stroke-width="3"/></svg>` },
+    { name: "SEAT", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#333" stroke="#c0c0c0" stroke-width="2"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="4"/><path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="3"/></svg>` },
+    { name: "Land Rover", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="25" fill="#005a2b" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="55" font-size="11" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">LAND ROVER</text></svg>` }
 ];
 
 function buildMarquee() {
-const track = document.getElementById('brands-track');
-if (!track) return;
-const brandsHTML = brandsWithLogos.map(brand => `
-<a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
-<img src="${brand.logo}" alt="${brand.name}" onerror="this.style.display='none'">
-<span class="brand-marquee-name">${brand.name}</span>
-</a>
-`).join('');
-track.innerHTML = brandsHTML + brandsHTML;
+    const track = document.getElementById('brands-track');
+    if (!track) return;
+    
+    const brandsHTML = brandsWithLogos.map(brand => `
+        <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
+            <div style="width:75px;height:75px;background:white;border-radius:50%;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
+                ${brand.svg}
+            </div>
+            <span class="brand-marquee-name">${brand.name}</span>
+        </a>
+    `).join('');
+    
+    track.innerHTML = brandsHTML + brandsHTML;
 }
 
 const translations = {
