@@ -440,31 +440,31 @@ buildMarquee();
 
 // === TRENULEȚ SIGLE MĂRCI ===
 const brandsWithLogos = [
-    { name: "BMW", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="black" stroke="white" stroke-width="2"/><circle cx="50" cy="50" r="36" fill="#0066B1"/><path d="M50 14 L50 50 L86 50 A36 36 0 0 0 50 14 Z" fill="white"/><path d="M50 50 L50 86 A36 36 0 0 0 14 50 L50 50 Z" fill="white"/></svg>` },
-    { name: "Mercedes-Benz", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="black" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" fill="none" stroke="#c0c0c0" stroke-width="1"/><path d="M50 15 L50 50 L78 65" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/><path d="M50 50 L22 65" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/><path d="M50 50 L50 85" stroke="#c0c0c0" stroke-width="4" stroke-linecap="round"/></svg>` },
-    { name: "Audi", svg: `<svg viewBox="0 0 100 100"><circle cx="22" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="41" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="59" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/><circle cx="78" cy="50" r="18" fill="none" stroke="#c0c0c0" stroke-width="3"/></svg>` },
-    { name: "Volkswagen", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#001E50" stroke="#c0c0c0" stroke-width="2"/><path d="M25 35 L50 75 L75 35" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M32 50 L50 80 L68 50" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>` },
-    { name: "Ford", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="48" ry="32" fill="#003478" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="60" font-size="22" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">Ford</text></svg>` },
-    { name: "Opel", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="#f7d417" stroke-width="3"/><path d="M25 50 Q50 25 75 50 Q50 75 25 50" stroke="#f7d417" stroke-width="4" fill="none"/></svg>` },
-    { name: "Renault", svg: `<svg viewBox="0 0 100 100"><path d="M50 15 L80 50 L50 85 L20 50 Z" fill="#ffcc00" stroke="#000" stroke-width="2"/><path d="M50 30 L68 50 L50 70 L32 50 Z" fill="#000"/></svg>` },
-    { name: "Toyota", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="30" fill="none" stroke="#eb0a1e" stroke-width="3"/><ellipse cx="50" cy="50" rx="28" ry="18" fill="none" stroke="#eb0a1e" stroke-width="3"/><ellipse cx="50" cy="50" rx="12" ry="30" fill="none" stroke="#eb0a1e" stroke-width="3"/></svg>` },
-    { name: "Porsche", svg: `<svg viewBox="0 0 100 100"><path d="M15 25 L85 25 L75 75 L25 75 Z" fill="#c4a000" stroke="#000" stroke-width="2"/><text x="50" y="58" font-size="14" font-weight="bold" fill="#000" text-anchor="middle" font-family="Arial">PORSCHE</text></svg>` },
-    { name: "Ferrari", svg: `<svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="#ffcc00" rx="5"/><path d="M30 25 L70 25 L60 75 L40 75 Z" fill="#000"/><text x="50" y="55" font-size="16" font-weight="bold" fill="#ffcc00" text-anchor="middle">SF</text></svg>` },
-    { name: "Lamborghini", svg: `<svg viewBox="0 0 100 100"><path d="M50 15 L85 50 L50 85 L15 50 Z" fill="#000" stroke="#f7d417" stroke-width="3"/><circle cx="50" cy="50" r="15" fill="#f7d417"/></svg>` },
-    { name: "Tesla", svg: `<svg viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="#000" rx="8"/><path d="M50 20 L50 80" stroke="#e82127" stroke-width="5"/><path d="M25 35 L75 35" stroke="#e82127" stroke-width="4"/></svg>` },
-    { name: "Nissan", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#c0c0c0" stroke="#000" stroke-width="2"/><rect x="15" y="42" width="70" height="16" fill="#000"/><text x="50" y="55" font-size="14" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">NISSAN</text></svg>` },
-    { name: "Honda", svg: `<svg viewBox="0 0 100 100"><rect x="20" y="25" width="60" height="50" fill="#e40521" rx="5"/><path d="M50 32 L50 68" stroke="white" stroke-width="5"/><path d="M30 50 L70 50" stroke="white" stroke-width="5"/></svg>` },
-    { name: "Mazda", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="28" fill="none" stroke="#101010" stroke-width="3"/><path d="M30 45 Q50 32 70 45 Q50 58 30 45" fill="#101010"/></svg>` },
-    { name: "Volvo", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#003057" stroke="#c0c0c0" stroke-width="3"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="4"/><path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#c0c0c0"/></svg>` },
-    { name: "Jaguar", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#000" stroke="#c0c0c0" stroke-width="2"/><path d="M25 50 Q40 30 50 50 Q60 70 75 50" stroke="#c0c0c0" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="6" fill="#c0c0c0"/></svg>` },
-    { name: "KIA", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="48" ry="32" fill="none" stroke="#05141F" stroke-width="3"/><text x="50" y="60" font-size="24" font-weight="bold" fill="#05141F" text-anchor="middle" font-family="Arial">KIA</text></svg>` },
-    { name: "Hyundai", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="32" fill="#002c5f" stroke="#c0c0c0" stroke-width="2"/><path d="M35 45 Q50 32 65 45" stroke="#c0c0c0" stroke-width="3" fill="none"/><path d="M40 58 L60 58" stroke="#c0c0c0" stroke-width="3"/></svg>` },
-    { name: "Citroën", svg: `<svg viewBox="0 0 100 100"><path d="M20 35 Q50 20 80 35" stroke="#c0c0c0" stroke-width="4" fill="none"/><path d="M20 50 Q50 35 80 50" stroke="#c0c0c0" stroke-width="4" fill="none"/><path d="M20 65 Q50 50 80 65" stroke="#c0c0c0" stroke-width="4" fill="none"/></svg>` },
-    { name: "Fiat", svg: `<svg viewBox="0 0 100 100"><rect x="15" y="30" width="70" height="40" fill="#96172e" rx="3"/><text x="50" y="58" font-size="20" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">FIAT</text></svg>` },
-    { name: "Peugeot", svg: `<svg viewBox="0 0 100 100"><path d="M50 20 L50 80" stroke="#00235b" stroke-width="4"/><path d="M30 35 L50 50 L70 35" stroke="#00235b" stroke-width="3" fill="none"/><path d="M30 65 L50 50 L70 65" stroke="#00235b" stroke-width="3" fill="none"/></svg>` },
-    { name: "Skoda", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#00843d" stroke="#c0c0c0" stroke-width="2"/><path d="M30 45 L50 32 L70 45 L50 55 Z" fill="#c0c0c0"/><path d="M30 58 L50 70 L70 58" fill="none" stroke="#c0c0c0" stroke-width="3"/></svg>` },
-    { name: "SEAT", svg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#333" stroke="#c0c0c0" stroke-width="2"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="4"/><path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="3"/></svg>` },
-    { name: "Land Rover", svg: `<svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="45" ry="25" fill="#005a2b" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="55" font-size="11" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">LAND ROVER</text></svg>` }
+    { name: "BMW", logo: "https://cdn.simpleicons.org/bmw/white" },
+    { name: "Mercedes-Benz", logo: "https://cdn.simpleicons.org/mercedes/white" },
+    { name: "Audi", logo: "https://cdn.simpleicons.org/audi/white" },
+    { name: "Volkswagen", logo: "https://cdn.simpleicons.org/volkswagen/white" },
+    { name: "Ford", logo: "https://cdn.simpleicons.org/ford/white" },
+    { name: "Opel", logo: "https://cdn.simpleicons.org/opel/white" },
+    { name: "Renault", logo: "https://cdn.simpleicons.org/renault/white" },
+    { name: "Toyota", logo: "https://cdn.simpleicons.org/toyota/white" },
+    { name: "Porsche", logo: "https://cdn.simpleicons.org/porsche/white" },
+    { name: "Ferrari", logo: "https://cdn.simpleicons.org/ferrari/white" },
+    { name: "Lamborghini", logo: "https://cdn.simpleicons.org/lamborghini/white" },
+    { name: "Tesla", logo: "https://cdn.simpleicons.org/tesla/white" },
+    { name: "Nissan", logo: "https://cdn.simpleicons.org/nissan/white" },
+    { name: "Honda", logo: "https://cdn.simpleicons.org/honda/white" },
+    { name: "Mazda", logo: "https://cdn.simpleicons.org/mazda/white" },
+    { name: "Volvo", logo: "https://cdn.simpleicons.org/volvo/white" },
+    { name: "Jaguar", logo: "https://cdn.simpleicons.org/jaguar/white" },
+    { name: "KIA", logo: "https://cdn.simpleicons.org/kia/white" },
+    { name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai/white" },
+    { name: "Citroën", logo: "https://cdn.simpleicons.org/citroen/white" },
+    { name: "Fiat", logo: "https://cdn.simpleicons.org/fiat/white" },
+    { name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot/white" },
+    { name: "Skoda", logo: "https://cdn.simpleicons.org/skoda/white" },
+    { name: "SEAT", logo: "https://cdn.simpleicons.org/seat/white" },
+    { name: "Land Rover", logo: "https://cdn.simpleicons.org/landrover/white" }
 ];
 
 function buildMarquee() {
@@ -473,16 +473,13 @@ function buildMarquee() {
     
     const brandsHTML = brandsWithLogos.map(brand => `
         <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
-            <div style="width:75px;height:75px;background:white;border-radius:50%;padding:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
-                ${brand.svg}
-            </div>
+            <img src="${brand.logo}" alt="${brand.name}" onerror="this.style.display='none'">
             <span class="brand-marquee-name">${brand.name}</span>
         </a>
     `).join('');
     
     track.innerHTML = brandsHTML + brandsHTML;
 }
-
 const translations = {
 ro: { nav_buy: "Cumpără", nav_sell: "Vinde", nav_dealers: "Dealeri", nav_news: "Noutăți", nav_login: "Logare", sell_button: "Vinde mașina ta cu noi", hero_title: "Găsește mașina perfectă", hero_subtitle: "Peste 12.450 de anunțuri verificate", filter_brand: "Marca", filter_model: "Modelul", filter_body: "Caroserie", filter_fuel: "Combustibil", filter_price_min: "Preț Min (€)", filter_price_max: "Preț Max (€)", filter_year_min: "An Min", filter_year_max: "An Max", body_sedan: "Sedan", body_suv: "SUV", fuel_diesel: "Diesel", fuel_gas: "Benzină", search_button: "Caută în 12.450 de anunțuri", cat_cheap: "Ieftine și puternice", cat_cheap_desc: "Cea mai bună putere/bani", cat_exclusive: "Exclusiviste", cat_exclusive_desc: "Peste 100.000 €", cat_electric: "Electrice", cat_electric_desc: "100% electric", cat_suv: "SUV-uri", cat_suv_desc: "4x4 și off-road", cat_cabrio: "Cabrio", cat_cabrio_desc: "Acoperiș decapotabil", cat_sport: "Sport", cat_sport_desc: "Performanță maximă", cat_family: "Familiale", cat_family_desc: "7+ locuri", cat_vintage: "Vintage", cat_vintage_desc: "Clasice și de colecție", cat_hybrid: "Hybrid", cat_hybrid_desc: "Eco-friendly", cat_business: "Business", cat_business_desc: "Clase premium", cat_pickup: "Pick-up", cat_pickup_desc: "Utilitare și 4x4", cat_new: "Noutăți 2026", cat_new_desc: "Cele mai noi modele", brands_title: "Explorează după Marcă", brands_subtitle: "Apasă pe o siglă pentru a vedea toate mașinile disponibile", why_title: "ViaCars.eu - Marketplace-ul auto premium", why_1: "Caută în cea mai mare ofertă online", why_2: "Opțiuni avansate de filtrare", why_3: "Salvează căutările tale", why_4: "Vinde o mașină gratuit", recent_title: "Anunțuri Recente", see_all: "Vezi toate", badge_verified: "VERIFICAT", badge_dealer: "DEALER", badge_top: "TOP OFERTĂ", fuel_hybrid: "Hybrid", trans_auto: "Automată", trans_manual: "Manuală", btn_details: "Vezi Detalii", footer_about: "Despre ViaCars", footer_who: "Cine suntem", footer_how: "Cum funcționează", footer_buyers: "Cumpărători", footer_search: "Caută mașini", footer_guide: "Ghid cumpărare", footer_sellers: "Vânzători", footer_add: "Adaugă anunț", footer_packages: "Pachete premium", footer_contact: "Contact", footer_rights: "Toate drepturile rezervate." },
 bg: { nav_buy: "Купи", nav_sell: "Продай", nav_dealers: "Дилъри", nav_news: "Новини", nav_login: "Вход", sell_button: "Продай колата си с нас", hero_title: "Намерете перфектния автомобил", hero_subtitle: "Над 12 450 проверени обяви", filter_brand: "Марка", filter_model: "Модел", filter_body: "Каросерия", filter_fuel: "Гориво", filter_price_min: "Мин. цена (€)", filter_price_max: "Макс. цена (€)", filter_year_min: "Мин. година", filter_year_max: "Макс. година", body_sedan: "Седан", body_suv: "SUV", fuel_diesel: "Дизел", fuel_gas: "Бензин", search_button: "Търси в 12 450 обяви", cat_cheap: "Евтини и мощни", cat_cheap_desc: "Най-добра мощност/цена", cat_exclusive: "Ексклузивни", cat_exclusive_desc: "Над 100 000 €", cat_electric: "Електрически", cat_electric_desc: "100% електрически", cat_suv: "SUV", cat_suv_desc: "4x4 и офроуд", cat_cabrio: "Кабрио", cat_cabrio_desc: "Отварящ се покрив", cat_sport: "Спортни", cat_sport_desc: "Максимална производителност", cat_family: "Семейни", cat_family_desc: "7+ места", cat_vintage: "Винтидж", cat_vintage_desc: "Класически и колекционерски", cat_hybrid: "Хибридни", cat_hybrid_desc: "Екологични", cat_business: "Бизнес", cat_business_desc: "Премиум класове", cat_pickup: "Пикап", cat_pickup_desc: "Ползотворни и 4x4", cat_new: "Новини 2026", cat_new_desc: "Най-новите модели", brands_title: "Разгледай по марка", brands_subtitle: "Кликнете върху лого, за да видите всички налични коли", why_title: "ViaCars.eu - Премиум автомобилен пазар", why_1: "Търсете в най-голямата онлайн оферта", why_2: "Разширени опции за филтриране", why_3: "Запазете вашите търсения", why_4: "Продайте автомобил безплатно", recent_title: "Последни обяви", see_all: "Виж всички", badge_verified: "ПРОВЕРЕНО", badge_dealer: "ДИЛЪР", badge_top: "ТОП ОФЕРТА", fuel_hybrid: "Хибрид", trans_auto: "Автоматична", trans_manual: "Ръчна", btn_details: "Виж детайли", footer_about: "За ViaCars", footer_who: "Кой сме ние", footer_how: "Как работи", footer_buyers: "Купувачи", footer_search: "Търси автомобили", footer_guide: "Ръководство за купувачи", footer_sellers: "Продавачи", footer_add: "Добави обява", footer_packages: "Премиум пакети", footer_contact: "Контакт", footer_rights: "Всички права запазени." },
