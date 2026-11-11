@@ -456,7 +456,7 @@ const brandsWithLogos = [
     { name: "Honda", logo: "https://cdn.simpleicons.org/honda/000000" },
     { name: "Mazda", logo: "https://cdn.simpleicons.org/mazda/000000" },
     { name: "Volvo", logo: "https://cdn.simpleicons.org/volvo/003057" },
-    { name: "Jaguar", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/jaguar.svg" },
+    { name: "Jaguar", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/jaguar.svg", color: "#004225" },
     { name: "KIA", logo: "https://cdn.simpleicons.org/kia/05141F" },
     { name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai/002C5F" },
     { name: "Citroën", logo: "https://cdn.simpleicons.org/citroen/000000" },
@@ -464,7 +464,7 @@ const brandsWithLogos = [
     { name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot/00235B" },
     { name: "Skoda", logo: "https://cdn.simpleicons.org/skoda/00843D" },
     { name: "SEAT", logo: "https://cdn.simpleicons.org/seat/333333" },
-    { name: "Land Rover", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/landrover.svg" }
+    { name: "Land Rover", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/landrover.svg", color: "#004225" }
 ];
 
 function buildMarquee() {
@@ -474,7 +474,9 @@ function buildMarquee() {
     const brandsHTML = brandsWithLogos.map(brand => `
         <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
             <div style="width:75px;height:75px;background:white;border-radius:50%;padding:10px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
-                <img src="${brand.logo}" alt="${brand.name}" style="width:55px;height:55px;object-fit:contain;" onerror="this.parentElement.innerHTML='<div style=\\'font-size:24px;font-weight:bold;color:#333;text-align:center;\\'>${brand.name.substring(0,2)}</div>'">
+                ${brand.color
+                    ? `<div role="img" aria-label="${brand.name}" style="width:55px;height:55px;background:${brand.color};-webkit-mask:url('${brand.logo}') center/contain no-repeat;mask:url('${brand.logo}') center/contain no-repeat;"></div>`
+                    : `<img src="${brand.logo}" alt="${brand.name}" style="width:55px;height:55px;object-fit:contain;" onerror="this.parentElement.innerHTML='<div style=\\'font-size:24px;font-weight:bold;color:#333;text-align:center;\\'>${brand.name.substring(0,2)}</div>'">`}
             </div>
             <span class="brand-marquee-name">${brand.name}</span>
         </a>
