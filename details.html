@@ -213,6 +213,9 @@
 }
 @media (prefers-reduced-motion: reduce) { .btn-sell { animation-duration: 10s; } }
 nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
+.via-tagline { text-transform: uppercase; font-family: 'Merriweather Sans', sans-serif; font-weight: 300; color: rgba(255,255,255,0.75); letter-spacing: 0.22em; }
+.via-tagline-sm { font-size: 7.5px; margin-top: 3px; letter-spacing: 0.18em; }
+.via-tagline-hero { font-size: 11px; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -238,7 +241,7 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
                         <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
                         <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
                     </svg>
-                    <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
+                    <span class="flex flex-col leading-none"><span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span><span class="via-tagline via-tagline-sm" data-vi18n="tagline">Calitate și prestigiu</span></span>
                 </a>
             </div>
             <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -563,16 +566,16 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 // ===== VIACARS COMUN =====
 // comun pentru toate paginile ViaCars: subsolul si butonul "Vinde masina ta cu noi" se traduc odata cu steagurile
 const VIA_T = {
-    ro: { nav_buy: 'Cumpără', nav_dealers: 'Dealeri', nav_about: 'Despre Noi', nav_news: 'Noutăți', nav_login: 'Logare',
+    ro: { tagline: 'Calitate și prestigiu', nav_buy: 'Cumpără', nav_dealers: 'Dealeri', nav_about: 'Despre Noi', nav_news: 'Noutăți', nav_login: 'Logare',
           foot_about: 'Despre ViaCars', foot_who: 'Cine suntem', foot_how: 'Cum funcționează', foot_contact: 'Contact',
           foot_rights: '© 2026 ViaCars.eu. Toate drepturile rezervate.', btn_sell: 'Vinde mașina ta cu noi' },
-    en: { nav_buy: 'Buy', nav_dealers: 'Dealers', nav_about: 'About us', nav_news: 'News', nav_login: 'Log in',
+    en: { tagline: 'Quality and prestige', nav_buy: 'Buy', nav_dealers: 'Dealers', nav_about: 'About us', nav_news: 'News', nav_login: 'Log in',
           foot_about: 'About ViaCars', foot_who: 'About us', foot_how: 'How it works', foot_contact: 'Contact',
           foot_rights: '© 2026 ViaCars.eu. All rights reserved.', btn_sell: 'Sell your car with us' },
-    bg: { nav_buy: 'Купи', nav_dealers: 'Дилъри', nav_about: 'За нас', nav_news: 'Новини', nav_login: 'Вход',
+    bg: { tagline: 'Качество и престиж', nav_buy: 'Купи', nav_dealers: 'Дилъри', nav_about: 'За нас', nav_news: 'Новини', nav_login: 'Вход',
           foot_about: 'За ViaCars', foot_who: 'Кои сме ние', foot_how: 'Как работи', foot_contact: 'Контакт',
           foot_rights: '© 2026 ViaCars.eu. Всички права запазени.', btn_sell: 'Продайте колата си с нас' },
-    el: { nav_buy: 'Αγορά', nav_dealers: 'Αντιπρόσωποι', nav_about: 'Σχετικά με εμάς', nav_news: 'Νέα', nav_login: 'Σύνδεση',
+    el: { tagline: 'Ποιότητα και κύρος', nav_buy: 'Αγορά', nav_dealers: 'Αντιπρόσωποι', nav_about: 'Σχετικά με εμάς', nav_news: 'Νέα', nav_login: 'Σύνδεση',
           foot_about: 'Σχετικά με το ViaCars', foot_who: 'Ποιοι είμαστε', foot_how: 'Πώς λειτουργεί', foot_contact: 'Επικοινωνία',
           foot_rights: '© 2026 ViaCars.eu. Με την επιφύλαξη παντός δικαιώματος.', btn_sell: 'Πουλήστε το αυτοκίνητό σας μαζί μας' }
 };
