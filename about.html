@@ -71,14 +71,6 @@
             margin-bottom: 20px;
             border: 1px solid rgba(96, 165, 250, 0.3);
         }
-        .team-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(96, 165, 250, 0.4);
-            margin-bottom: 16px;
-        }
         .flag-btn {
             width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
             transition: all 0.3s ease; border: 2px solid transparent;
@@ -102,23 +94,16 @@
             color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
             margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
         }
+        .pass-input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.3); }
         .pass-btn {
             background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
             border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
             border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
         }
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
+        .section-title { position: relative; display: inline-block; }
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, #1e3a8a, transparent);
+            content: ''; position: absolute; bottom: -8px; left: 0;
+            width: 40px; height: 2px; background: linear-gradient(90deg, #1e3a8a, transparent);
         }
     </style>
 </head>
@@ -343,42 +328,6 @@
         </div>
     </section>
 
-    <!-- ECHIPA -->
-    <section class="py-16">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="section-title text-3xl font-bold text-white mb-4" data-i18n="team_title">Echipa Noastră</h2>
-                <p class="text-white/60 max-w-2xl mx-auto" data-i18n="team_subtitle">Oameni pasionați, cu experiență, dedicați să îți ofere cea mai bună experiență în achiziția unei mașini.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card text-center">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="CEO" class="team-photo mx-auto">
-                    <h3 class="font-bold text-white text-lg">Alexandru Popescu</h3>
-                    <p class="text-blue-300 text-sm mb-3" data-i18n="team1_role">Fondator & CEO</p>
-                    <p class="text-white/60 text-xs" data-i18n="team1_desc">15 ani experiență în industria auto. Passionat de mașini premium și transparență.</p>
-                </div>
-                <div class="glass-card text-center">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="CTO" class="team-photo mx-auto">
-                    <h3 class="font-bold text-white text-lg">Maria Ionescu</h3>
-                    <p class="text-blue-300 text-sm mb-3" data-i18n="team2_role">Director Operațiuni</p>
-                    <p class="text-white/60 text-xs" data-i18n="team2_desc">Expert în verificări tehnice. Fost inginer la un producător auto german.</p>
-                </div>
-                <div class="glass-card text-center">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Sales" class="team-photo mx-auto">
-                    <h3 class="font-bold text-white text-lg">Andrei Dumitrescu</h3>
-                    <p class="text-blue-300 text-sm mb-3" data-i18n="team3_role">Director Vânzări</p>
-                    <p class="text-white/60 text-xs" data-i18n="team3_desc">Specialist în relații cu clienții. Crede că fiecare client merită atenție personalizată.</p>
-                </div>
-                <div class="glass-card text-center">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Tech" class="team-photo mx-auto">
-                    <h3 class="font-bold text-white text-lg">Elena Vasile</h3>
-                    <p class="text-blue-300 text-sm mb-3" data-i18n="team4_role">Expert Verificări</p>
-                    <p class="text-white/60 text-xs" data-i18n="team4_desc">Mecanic autorizat cu 12 ani experiență. Detectează orice problemă ascunsă.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- PROMISIUNEA NOASTRĂ -->
     <section class="py-16">
         <div class="container mx-auto px-6">
@@ -389,10 +338,10 @@
                     Onestitatea aduce câștigul pe termen lung. Vânzând mașini bune și verificate, aducem mulțumirea și încrederea clientului, care va recomanda serviciile noastre altora. Aceasta este filosofia noastră de business.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="buy.html" class="btn-primary" style="background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 8px; text-decoration: none; display: inline-block;">
+                    <a href="buy.html" style="background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 8px; text-decoration: none; display: inline-block;">
                         <i class="fa-solid fa-car mr-2"></i> <span data-i18n="promise_cta1">Vezi Mașinile Disponibile</span>
                     </a>
-                    <a href="contact.html" class="btn-secondary" style="background: transparent; color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; display: inline-block;">
+                    <a href="contact.html" style="background: transparent; color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; display: inline-block;">
                         <i class="fa-solid fa-envelope mr-2"></i> <span data-i18n="promise_cta2">Contactează-ne</span>
                     </a>
                 </div>
@@ -475,11 +424,6 @@
                 why4_title: "Prețuri Corecte și Negociabile", why4_desc: "Prețuri bazate pe evaluări reale. Fără costuri ascunse.",
                 why5_title: "Suport Dedicat Post-Vânzare", why5_desc: "Relația nu se termină la vânzare. Oferim suport continuu.",
                 why6_title: "Livrare la Domiciliu", why6_desc: "Îți aducem mașina acasă, oriunde în România.",
-                team_title: "Echipa Noastră", team_subtitle: "Oameni pasionați, dedicați să îți ofere cea mai bună experiență.",
-                team1_role: "Fondator & CEO", team1_desc: "15 ani experiență în industria auto.",
-                team2_role: "Director Operațiuni", team2_desc: "Expert în verificări tehnice.",
-                team3_role: "Director Vânzări", team3_desc: "Specialist în relații cu clienții.",
-                team4_role: "Expert Verificări", team4_desc: "Mecanic autorizat cu 12 ani experiență.",
                 promise_title: "Promisiunea Noastră",
                 promise_text: "Onestitatea aduce câștigul pe termen lung. Vânzând mașini bune și verificate, aducem mulțumirea și încrederea clientului, care va recomanda serviciile noastre altora.",
                 promise_cta1: "Vezi Mașinile Disponibile", promise_cta2: "Contactează-ne"
@@ -505,11 +449,6 @@
                 why4_title: "Fair Negotiable Prices", why4_desc: "Prices based on real market evaluations. No hidden costs.",
                 why5_title: "Dedicated After-Sales Support", why5_desc: "The relationship doesn't end at the sale.",
                 why6_title: "Home Delivery", why6_desc: "We bring the car to your home, anywhere in Romania.",
-                team_title: "Our Team", team_subtitle: "Passionate people dedicated to your best experience.",
-                team1_role: "Founder & CEO", team1_desc: "15 years experience in the auto industry.",
-                team2_role: "Operations Director", team2_desc: "Expert in technical inspections.",
-                team3_role: "Sales Director", team3_desc: "Customer relations specialist.",
-                team4_role: "Inspection Expert", team4_desc: "Certified mechanic with 12 years experience.",
                 promise_title: "Our Promise",
                 promise_text: "Honesty brings long-term profit. By selling good, verified cars, we bring customer satisfaction and trust, who will recommend our services to others.",
                 promise_cta1: "See Available Cars", promise_cta2: "Contact Us"
@@ -535,11 +474,6 @@
                 why4_title: "Справедливи Цени", why4_desc: "Цени базирани на реални пазарни оценки.",
                 why5_title: "Следпродажбена Поддръжка", why5_desc: "Връзката не свършва с продажбата.",
                 why6_title: "Доставка до Дома", why6_desc: "Доставяме колата до вас, навсякъде в България.",
-                team_title: "Нашият Екип", team_subtitle: "Страстни хора, посветени на най-добрия ви опит.",
-                team1_role: "Основател и CEO", team1_desc: "15 години опит в авто индустрията.",
-                team2_role: "Директор Операции", team2_desc: "Експерт в техническите проверки.",
-                team3_role: "Директор Продажби", team3_desc: "Специалист по клиентски отношения.",
-                team4_role: "Експерт Проверки", team4_desc: "Сертифициран механик с 12 години опит.",
                 promise_title: "Нашето Обещание",
                 promise_text: "Честността носи дългосрочна печалба. Продавайки добри, проверени коли, носим удовлетворение и доверие на клиента.",
                 promise_cta1: "Виж Наличните Коли", promise_cta2: "Свържи се с нас"
@@ -565,11 +499,6 @@
                 why4_title: "Δίκαιες Τιμές", why4_desc: "Τιμές βασισμένες σε πραγματικές αξιολογήσεις αγοράς.",
                 why5_title: "Υποστήριξη Μετά την Πώληση", why5_desc: "Η σχέση δεν τελειώνει με την πώληση.",
                 why6_title: "Παράδοση στο Σπίτι", why6_desc: "Φέρνουμε το αυτοκίνητο στο σπίτι σας.",
-                team_title: "Η Ομάδα μας", team_subtitle: "Παθιασμένοι άνθρωποι αφοσιωμένοι στην καλύτερη εμπειρία σας.",
-                team1_role: "Ιδρυτής & CEO", team1_desc: "15 χρόνια εμπειρίας.",
-                team2_role: "Διευθυντής Λειτουργιών", team2_desc: "Ειδικός σε τεχνικούς ελέγχους.",
-                team3_role: "Διευθυντής Πωλήσεων", team3_desc: "Ειδικός στις σχέσεις πελατών.",
-                team4_role: "Ειδικός Ελέγχων", team4_desc: "Πιστοποιημένος μηχανικός με 12 χρόνια εμπειρίας.",
                 promise_title: "Η Υπόσχεσή μας",
                 promise_text: "Η ειλικρίνεια φέρνει μακροπρόθεσμο κέρδος. Πουλώντας καλά, επαληθευμένα αυτοκίνητα.",
                 promise_cta1: "Δείτε Διαθέσιμα Αυτοκίνητα", promise_cta2: "Επικοινωνήστε μαζί μας"
