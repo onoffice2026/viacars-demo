@@ -425,32 +425,41 @@ buildMarquee();
 });
 
 const brandsWithLogos = [
-{ name: "BMW", logo: "https://cdn.simpleicons.org/bmw/0066B1" },
-{ name: "Mercedes-Benz", logo: "https://cdn.simpleicons.org/mercedes/000000" },
-{ name: "Audi", logo: "https://cdn.simpleicons.org/audi/000000" },
-{ name: "Volkswagen", logo: "https://cdn.simpleicons.org/volkswagen/001E50" },
-{ name: "Ford", logo: "https://cdn.simpleicons.org/ford/003478" },
-{ name: "Opel", logo: "https://cdn.simpleicons.org/opel/000000" },
-{ name: "Renault", logo: "https://cdn.simpleicons.org/renault/FFCC00" },
-{ name: "Toyota", logo: "https://cdn.simpleicons.org/toyota/EB0A1E" },
-{ name: "Porsche", logo: "https://cdn.simpleicons.org/porsche/000000" },
-{ name: "Ferrari", logo: "https://cdn.simpleicons.org/ferrari/DC0000" },
-{ name: "Lamborghini", logo: "https://cdn.simpleicons.org/lamborghini/000000" },
-{ name: "Tesla", logo: "https://cdn.simpleicons.org/tesla/CC0000" },
-{ name: "Nissan", logo: "https://cdn.simpleicons.org/nissan/000000" },
-{ name: "Honda", logo: "https://cdn.simpleicons.org/honda/000000" },
-{ name: "Mazda", logo: "https://cdn.simpleicons.org/mazda/000000" },
-{ name: "Volvo", logo: "https://cdn.simpleicons.org/volvo/003057" },
-{ name: "Jaguar", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Jaguar_Logo.svg/200px-Jaguar_Logo.svg.png" },
-{ name: "KIA", logo: "https://cdn.simpleicons.org/kia/05141F" },
-{ name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai/002C5F" },
-{ name: "Citroën", logo: "https://cdn.simpleicons.org/citroen/000000" },
-{ name: "Fiat", logo: "https://cdn.simpleicons.org/fiat/96172E" },
-{ name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot/00235B" },
-{ name: "Skoda", logo: "https://cdn.simpleicons.org/skoda/00843D" },
-{ name: "SEAT", logo: "https://cdn.simpleicons.org/seat/333333" },
-{ name: "Land Rover", logo: "https://cdn.simpleicons.org/landrover/005A2B" }
-];
+<section class="brands-animated-bg py-14 relative">
+<div class="orb bg-blue-600 w-64 h-64 top-10 left-1/4"></div>
+<div class="orb bg-blue-800 w-48 h-48 top-20 right-1/4" style="animation-delay: 2s;"></div>
+<div class="orb bg-blue-500 w-32 h-32 bottom-10 left-1/2" style="animation-delay: 4s;"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="text-center mb-10"><h2 class="section-title text-2xl font-bold text-white" data-i18n="brands_title">Explorează după Marcă</h2></div>
+<div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" fill="#0066B1"/><path d="M50 12 L50 50 L88 50 A38 38 0 0 0 50 12 Z" fill="white"/><path d="M50 50 L50 88 A38 38 0 0 0 12 50 L50 50 Z" fill="white"/></svg><p class="text-[10px] text-white/70 font-medium">BMW</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" stroke="#c0c0c0" stroke-width="1" fill="none"/><path d="M50 15 L50 50 L78 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/><path d="M50 50 L22 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/><path d="M50 50 L50 85" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/></svg><p class="text-[10px] text-white/70 font-medium">Mercedes</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="22" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="41" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="59" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="78" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Audi</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><path d="M28 32 L50 72 L72 32" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M33 48 L50 78 L67 48" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">VW</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="58" font-size="22" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">Ford</text></svg><p class="text-[10px] text-white/70 font-medium">Ford</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#c0c0c0" stroke-width="2"/><path d="M28 50 Q50 28 72 50 Q50 72 28 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Opel</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 18 L78 50 L50 82 L22 50 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M50 32 L68 50 L50 68 L32 50 Z" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Renault</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/><ellipse cx="50" cy="50" rx="28" ry="18" stroke="#c0c0c0" stroke-width="2.5"/><ellipse cx="50" cy="50" rx="12" ry="28" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Toyota</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M18 28 L82 28 L72 72 L28 72 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><text x="50" y="56" font-size="16" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">P</text></svg><p class="text-[10px] text-white/70 font-medium">Porsche</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M28 18 L72 18 L62 82 L38 82 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M50 28 L50 72" stroke="#c0c0c0" stroke-width="2.5"/><path d="M42 38 L58 38" stroke="#c0c0c0" stroke-width="2"/></svg><p class="text-[10px] text-white/70 font-medium">Ferrari</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M22 50 L50 22 L78 50 L50 78 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="12" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Lambo</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 18 L50 82" stroke="#c0c0c0" stroke-width="3.5"/><path d="M28 35 L72 35" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Tesla</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><rect x="22" y="44" width="56" height="12" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Nissan</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><rect x="22" y="28" width="56" height="44" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="3"/><path d="M50 35 L50 65" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 50 L68 50" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Honda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 45 Q50 32 68 45 Q50 58 32 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Mazda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c0c0c0" stroke-width="2.5"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/><path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Volvo</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#006600" stroke-width="2.5"/><path d="M28 50 Q38 30 50 50 Q62 70 72 50" stroke="#006600" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="5" fill="#006600"/></svg><p class="text-[10px] text-white/70 font-medium">Jaguar</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2.5"/><text x="50" y="58" font-size="24" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">KIA</text></svg><p class="text-[10px] text-white/70 font-medium">KIA</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="32" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 45 Q50 32 68 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M38 58 L62 58" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Hyundai</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M25 38 Q50 25 75 38" stroke="#c0c0c0" stroke-width="3.5" fill="none"/><path d="M25 50 Q50 37 75 50" stroke="#c0c0c0" stroke-width="3.5" fill="none"/><path d="M25 62 Q50 49 75 62" stroke="#c0c0c0" stroke-width="3.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Citroën</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><rect x="18" y="32" width="64" height="36" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="2"/><text x="50" y="56" font-size="18" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">FIAT</text></svg><p class="text-[10px] text-white/70 font-medium">Fiat</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 22 L50 78" stroke="#c0c0c0" stroke-width="3.5"/><path d="M32 38 L50 50 L68 38" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M32 62 L50 50 L68 62" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Peugeot</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 42 L50 32 L68 42 L50 52 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M32 58 L50 68 L68 58" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Skoda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/><path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">SEAT</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="48" ry="28" stroke="#006600" stroke-width="2.5"/><text x="50" y="56" font-size="14" font-weight="bold" fill="#006600" text-anchor="middle" font-family="Arial">LR</text></svg><p class="text-[10px] text-white/70 font-medium">Land Rover</p></div>
+</div>
+</div>
+</section>
 
 function buildMarquee() {
 const track = document.getElementById('brands-track');
