@@ -22,6 +22,15 @@ min-height: 100vh;
 }
 .section-transparent { background: rgba(10, 15, 30, 0.4); backdrop-filter: blur(8px); }
 .section-darker { background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); }
+.brands-animated-bg {
+background: linear-gradient(135deg, rgba(10, 15, 30, 0.75) 0%, rgba(30, 58, 138, 0.5) 50%, rgba(10, 15, 30, 0.75) 100%);
+background-size: 400% 400%;
+animation: gradientShift 15s ease infinite;
+position: relative;
+backdrop-filter: blur(10px);
+}
+.brands-animated-bg:hover { animation-duration: 5s; }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .blue-glow-subtle { box-shadow: 0 0 20px rgba(30, 58, 138, 0.3); }
 .header-integrated {
 background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
@@ -32,6 +41,18 @@ border-bottom: 1px solid rgba(59, 130, 246, 0.2);
 background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
 border: 1px solid rgba(96, 165, 250, 0.3);
 box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
+}
+.brand-logo {
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+background: rgba(10, 15, 30, 0.6);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(30, 58, 138, 0.2);
+}
+.brand-logo:hover {
+transform: translateY(-4px) scale(1.05);
+background: rgba(30, 58, 138, 0.3);
+border-color: rgba(96, 165, 250, 0.5);
+box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
 }
 .car-card {
 background: linear-gradient(145deg, rgba(10, 15, 30, 0.85), rgba(30, 58, 138, 0.15));
@@ -132,75 +153,11 @@ transform: translateY(-3px);
 content: ''; position: absolute; bottom: -8px; left: 0;
 width: 40px; height: 2px; background: linear-gradient(90deg, #1e3a8a, transparent);
 }
-
-/* === TRENULEȚ SIGLE MĂRCI === */
-.brands-marquee-section {
-background: rgba(10, 15, 30, 0.5);
-backdrop-filter: blur(10px);
-padding: 50px 0;
-position: relative;
-overflow: hidden;
+.orb {
+position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.3;
+animation: float 8s ease-in-out infinite;
 }
-.brands-marquee-wrapper {
-overflow: hidden;
-position: relative;
-padding: 20px 0;
-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
--webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
-}
-.brands-marquee-track {
-display: flex;
-width: max-content;
-animation: marqueeScroll 80s linear infinite;
-gap: 50px;
-align-items: center;
-}
-.brands-marquee-track:hover {
-animation-play-state: paused;
-}
-@keyframes marqueeScroll {
-0% { transform: translateX(0); }
-100% { transform: translateX(-50%); }
-}
-.brand-marquee-item {
-flex-shrink: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 10px;
-cursor: pointer;
-transition: transform 0.3s ease;
-text-decoration: none;
-width: 100px;
-}
-.brand-marquee-item:hover {
-transform: scale(1.15);
-}
-.brand-marquee-item img {
-width: 75px;
-height: 75px;
-object-fit: contain;
-filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-transition: all 0.3s ease;
-background: rgba(255,255,255,0.95);
-border-radius: 50%;
-padding: 8px;
-}
-.brand-marquee-item:hover img {
-filter: drop-shadow(0 6px 20px rgba(96, 165, 250, 0.8));
-transform: translateY(-4px);
-}
-.brand-marquee-name {
-font-size: 11px;
-font-weight: 600;
-color: rgba(255,255,255,0.85);
-text-align: center;
-letter-spacing: 0.3px;
-}
-.brand-marquee-item:hover .brand-marquee-name {
-color: #60a5fa;
-}
-
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
 .flag-btn {
 width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
 transition: all 0.3s ease; border: 2px solid transparent;
@@ -235,30 +192,6 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 transition: all 0.3s ease;
 }
 .pass-btn:hover { background: linear-gradient(135deg, #2563eb, #1e3a8a); box-shadow: 0 5px 15px rgba(30, 58, 138, 0.5); }
-
-/* === BARA DE SUS (TASKBAR) === */
-.topbar {
-background: linear-gradient(90deg, rgba(10, 15, 30, 0.95) 0%, rgba(30, 58, 138, 0.55) 50%, rgba(10, 15, 30, 0.95) 100%);
-border-bottom: 1px solid rgba(96, 165, 250, 0.15);
-font-size: 11px;
-color: rgba(255, 255, 255, 0.7);
-}
-.topbar a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color 0.3s ease; }
-.topbar a:hover { color: #60a5fa; }
-.topbar i { color: #60a5fa; margin-right: 5px; }
-.topbar-sep { width: 1px; height: 12px; background: rgba(255, 255, 255, 0.15); }
-.topbar-promo { overflow: hidden; height: 16px; }
-.topbar-promo-track { animation: topbarRoll 12s infinite; }
-.topbar-promo-track div { height: 16px; line-height: 16px; white-space: nowrap; }
-@keyframes topbarRoll {
-0%, 28% { transform: translateY(0); }
-33%, 61% { transform: translateY(-16px); }
-66%, 95% { transform: translateY(-32px); }
-100% { transform: translateY(0); }
-}
-.topbar-social a { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(96, 165, 250, 0.25); }
-.topbar-social a:hover { background: rgba(96, 165, 250, 0.2); border-color: #60a5fa; }
-.topbar-social i { margin: 0; font-size: 10px; color: rgba(255,255,255,0.8); }
 </style>
 </head>
 <body>
@@ -273,38 +206,6 @@ color: rgba(255, 255, 255, 0.7);
 <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
 </div>
 </div>
-
-<!-- BARA DE SUS (TASKBAR) -->
-<div class="topbar">
-<div class="container mx-auto px-6 py-1.5 flex justify-between items-center">
-<div class="flex items-center space-x-4">
-<a href="tel:+40123456789"><i class="fa-solid fa-phone"></i>+40 123 456 789</a>
-<span class="topbar-sep hidden md:block"></span>
-<a href="mailto:contact@viacars.eu" class="hidden md:inline"><i class="fa-solid fa-envelope"></i>contact@viacars.eu</a>
-<span class="topbar-sep hidden lg:block"></span>
-<span class="hidden lg:inline"><i class="fa-regular fa-clock"></i><span data-i18n="top_hours">Luni - Vineri 09:00 - 18:00</span></span>
-</div>
-<div class="topbar-promo hidden md:block">
-<div class="topbar-promo-track">
-<div><i class="fa-solid fa-shield-halved"></i><span data-i18n="top_promo_1">Toate mașinile sunt verificate tehnic</span></div>
-<div><i class="fa-solid fa-truck-fast"></i><span data-i18n="top_promo_2">Livrare în toată Uniunea Europeană</span></div>
-<div><i class="fa-solid fa-hand-holding-dollar"></i><span data-i18n="top_promo_3">Anunțul tău de vânzare este gratuit</span></div>
-<div><i class="fa-solid fa-shield-halved"></i><span data-i18n="top_promo_1">Toate mașinile sunt verificate tehnic</span></div>
-</div>
-</div>
-<div class="flex items-center space-x-3">
-<a href="#" class="hidden sm:inline"><i class="fa-regular fa-heart"></i><span data-i18n="top_favorites">Favorite</span></a>
-<span class="topbar-sep hidden sm:block"></span>
-<div class="topbar-social flex items-center space-x-1.5">
-<a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-<a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-<a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-<a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-</div>
-</div>
-</div>
-</div>
-
 <!-- HEADER -->
 <header class="header-integrated sticky top-0 z-50">
 <div class="container mx-auto px-6 py-3 flex justify-between items-center">
@@ -346,7 +247,6 @@ color: rgba(255, 255, 255, 0.7);
 </div>
 </div>
 </header>
-
 <!-- HERO -->
 <section class="relative py-24">
 <div class="container mx-auto px-6 relative z-10">
@@ -371,7 +271,6 @@ color: rgba(255, 255, 255, 0.7);
 </div>
 </div>
 </section>
-
 <!-- CATEGORII -->
 <section class="py-10 section-transparent">
 <div class="container mx-auto px-6">
@@ -391,22 +290,41 @@ color: rgba(255, 255, 255, 0.7);
 </div>
 </div>
 </section>
-
-<!-- TRENULEȚ SIGLE MĂRCI -->
-<section class="brands-marquee-section">
-<div class="container mx-auto px-6 mb-4">
-<div class="text-center">
-<h2 class="section-title text-2xl font-bold text-white" data-i18n="brands_title">Explorează după Marcă</h2>
-<p class="text-white/50 text-sm mt-3" data-i18n="brands_subtitle">Apasă pe o siglă pentru a vedea toate mașinile disponibile</p>
-</div>
-</div>
-<div class="brands-marquee-wrapper">
-<div class="brands-marquee-track" id="brands-track">
-<!-- Brandurile vor fi duplicate automat pentru loop infinit -->
+<!-- MĂRCI -->
+<section class="brands-animated-bg py-14 relative">
+<div class="orb bg-blue-600 w-64 h-64 top-10 left-1/4"></div>
+<div class="orb bg-blue-800 w-48 h-48 top-20 right-1/4" style="animation-delay: 2s;"></div>
+<div class="orb bg-blue-500 w-32 h-32 bottom-10 left-1/2" style="animation-delay: 4s;"></div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="text-center mb-10"><h2 class="section-title text-2xl font-bold text-white" data-i18n="brands_title">Explorează după Marcă</h2></div>
+<div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2">
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" fill="#0066B1"/><path d="M50 12 L50 50 L88 50 A38 38 0 0 0 50 12 Z" fill="white"/><path d="M50 50 L50 88 A38 38 0 0 0 12 50 L50 50 Z" fill="white"/></svg><p class="text-[10px] text-white/70 font-medium">BMW</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><circle cx="50" cy="50" r="38" stroke="#c0c0c0" stroke-width="1" fill="none"/><path d="M50 15 L50 50 L78 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/><path d="M50 50 L22 65" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/><path d="M50 50 L50 85" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/></svg><p class="text-[10px] text-white/70 font-medium">Mercedes</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="22" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="41" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="59" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/><circle cx="78" cy="50" r="18" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Audi</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="#c0c0c0" stroke-width="2"/><path d="M28 32 L50 72 L72 32" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M33 48 L50 78 L67 48" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">VW</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2"/><text x="50" y="58" font-size="22" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">Ford</text></svg><p class="text-[10px] text-white/70 font-medium">Ford</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="42" stroke="#c0c0c0" stroke-width="2"/><path d="M28 50 Q50 28 72 50 Q50 72 28 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Opel</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 18 L78 50 L50 82 L22 50 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M50 32 L68 50 L50 68 L32 50 Z" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Renault</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/><ellipse cx="50" cy="50" rx="28" ry="18" stroke="#c0c0c0" stroke-width="2.5"/><ellipse cx="50" cy="50" rx="12" ry="28" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Toyota</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M18 28 L82 28 L72 72 L28 72 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><text x="50" y="56" font-size="16" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">P</text></svg><p class="text-[10px] text-white/70 font-medium">Porsche</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M28 18 L72 18 L62 82 L38 82 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M50 28 L50 72" stroke="#c0c0c0" stroke-width="2.5"/><path d="M42 38 L58 38" stroke="#c0c0c0" stroke-width="2"/></svg><p class="text-[10px] text-white/70 font-medium">Ferrari</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M22 50 L50 22 L78 50 L50 78 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="12" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Lambo</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 18 L50 82" stroke="#c0c0c0" stroke-width="3.5"/><path d="M28 35 L72 35" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Tesla</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><rect x="22" y="44" width="56" height="12" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Nissan</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><rect x="22" y="28" width="56" height="44" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="3"/><path d="M50 35 L50 65" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 50 L68 50" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Honda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="28" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 45 Q50 32 68 45 Q50 58 32 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Mazda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c0c0c0" stroke-width="2.5"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/><path d="M50 25 L50 75" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Volvo</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><path d="M28 50 Q38 30 50 50 Q62 70 72 50" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><circle cx="50" cy="50" r="5" fill="#c0c0c0"/></svg><p class="text-[10px] text-white/70 font-medium">Jaguar</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="48" ry="32" stroke="#c0c0c0" stroke-width="2.5"/><text x="50" y="58" font-size="24" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">KIA</text></svg><p class="text-[10px] text-white/70 font-medium">KIA</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="45" ry="32" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 45 Q50 32 68 45" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M38 58 L62 58" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">Hyundai</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M25 38 Q50 25 75 38" stroke="#c0c0c0" stroke-width="3.5" fill="none"/><path d="M25 50 Q50 37 75 50" stroke="#c0c0c0" stroke-width="3.5" fill="none"/><path d="M25 62 Q50 49 75 62" stroke="#c0c0c0" stroke-width="3.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Citroën</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><rect x="18" y="32" width="64" height="36" stroke="#c0c0c0" stroke-width="2.5" fill="none" rx="2"/><text x="50" y="56" font-size="18" font-weight="bold" fill="#c0c0c0" text-anchor="middle" font-family="Arial">FIAT</text></svg><p class="text-[10px] text-white/70 font-medium">Fiat</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><path d="M50 22 L50 78" stroke="#c0c0c0" stroke-width="3.5"/><path d="M32 38 L50 50 L68 38" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M32 62 L50 50 L68 62" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Peugeot</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><path d="M32 42 L50 32 L68 42 L50 52 Z" stroke="#c0c0c0" stroke-width="2.5" fill="none"/><path d="M32 58 L50 68 L68 58" stroke="#c0c0c0" stroke-width="2.5" fill="none"/></svg><p class="text-[10px] text-white/70 font-medium">Skoda</p></div>
+<div class="brand-logo p-3 rounded cursor-pointer text-center"><svg class="w-10 h-10 mx-auto mb-1" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#c0c0c0" stroke-width="2.5"/><path d="M25 50 L75 50" stroke="#c0c0c0" stroke-width="3.5"/><path d="M38 38 L62 62" stroke="#c0c0c0" stroke-width="2.5"/></svg><p class="text-[10px] text-white/70 font-medium">SEAT</p></div>
 </div>
 </div>
 </section>
-
 <!-- DE CE SĂ CUMPERI -->
 <section class="py-12 section-transparent">
 <div class="container mx-auto px-6">
@@ -421,7 +339,6 @@ color: rgba(255, 255, 255, 0.7);
 </div>
 </div>
 </section>
-
 <!-- ANUNȚURI RECENTE -->
 <section class="py-14 section-darker">
 <div class="container mx-auto px-6">
@@ -449,12 +366,11 @@ color: rgba(255, 255, 255, 0.7);
 </div>
 </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="section-darker border-t border-blue-900/30 py-8">
 <div class="container mx-auto px-6">
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-<div><h4 class="text-white font-bold mb-3 text-sm" data-i18n="footer_about">Despre ViaCars</h4><ul class="space-y-1 text-xs text-white/50"><li><a href="#" class="hover:text-white transition" data-i18n="footer_who">Cine suntem</a></li><li><a href="#" class="hover:text-white transition" data-i18n="footer_how">Cum funcționează</a></li></ul></div>
+<div><h4 class="text-white font-bold mb-3 text-sm" data-i18n="footer_about">Despre ViaCars</h4><ul class="space-y-1 text-xs text-white/50"><li><a href="about.html" class="hover:text-white transition" data-i18n="footer_who">Cine suntem</a></li><li><a href="#" class="hover:text-white transition" data-i18n="footer_how">Cum funcționează</a></li></ul></div>
 <div><h4 class="text-white font-bold mb-3 text-sm" data-i18n="footer_buyers">Cumpărători</h4><ul class="space-y-1 text-xs text-white/50"><li><a href="#" class="hover:text-white transition" data-i18n="footer_search">Caută mașini</a></li><li><a href="#" class="hover:text-white transition" data-i18n="footer_guide">Ghid cumpărare</a></li></ul></div>
 <div><h4 class="text-white font-bold mb-3 text-sm" data-i18n="footer_sellers">Vânzători</h4><ul class="space-y-1 text-xs text-white/50"><li><a href="#" class="hover:text-white transition" data-i18n="footer_add">Adaugă anunț</a></li><li><a href="#" class="hover:text-white transition" data-i18n="footer_packages">Pachete premium</a></li></ul></div>
 <div><h4 class="text-white font-bold mb-3 text-sm" data-i18n="footer_contact">Contact</h4><ul class="space-y-1 text-xs text-white/50"><li><i class="fa-solid fa-envelope mr-1"></i>contact@viacars.eu</li><li><i class="fa-solid fa-phone mr-1"></i>+40 123 456 789</li></ul></div>
@@ -463,7 +379,6 @@ color: rgba(255, 255, 255, 0.7);
 <div class="text-center text-xs text-white/40"><p>&copy; 2026 ViaCars.eu. <span data-i18n="footer_rights">Toate drepturile rezervate.</span></p></div>
 </div>
 </footer>
-
 <!-- JAVASCRIPT -->
 <script>
 const SITE_PASSWORD = "1234";
@@ -491,62 +406,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const passInput = document.getElementById('pass-input');
 if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
 initGate();
-buildMarquee();
 });
-
-// === TRENULEȚ SIGLE MĂRCI ===
-const brandsWithLogos = [
-    { name: "BMW", logo: "https://cdn.simpleicons.org/bmw/0066B1" },
-    { name: "Mercedes-Benz", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/mercedes.svg" },
-    { name: "Audi", logo: "https://cdn.simpleicons.org/audi/000000" },
-    { name: "Volkswagen", logo: "https://cdn.simpleicons.org/volkswagen/001E50" },
-    { name: "Ford", logo: "https://cdn.simpleicons.org/ford/003478" },
-    { name: "Opel", logo: "https://cdn.simpleicons.org/opel/000000" },
-    { name: "Renault", logo: "https://cdn.simpleicons.org/renault/FFCC00" },
-    { name: "Toyota", logo: "https://cdn.simpleicons.org/toyota/EB0A1E" },
-    { name: "Porsche", logo: "https://cdn.simpleicons.org/porsche/000000" },
-    { name: "Ferrari", logo: "https://cdn.simpleicons.org/ferrari/DC0000" },
-    { name: "Lamborghini", logo: "https://cdn.simpleicons.org/lamborghini/000000" },
-    { name: "Tesla", logo: "https://cdn.simpleicons.org/tesla/CC0000" },
-    { name: "Nissan", logo: "https://cdn.simpleicons.org/nissan/000000" },
-    { name: "Honda", logo: "https://cdn.simpleicons.org/honda/000000" },
-    { name: "Mazda", logo: "https://cdn.simpleicons.org/mazda/000000" },
-    { name: "Volvo", logo: "https://cdn.simpleicons.org/volvo/003057" },
-    { name: "Jaguar", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/jaguar.svg", color: "#004225" },
-    { name: "KIA", logo: "https://cdn.simpleicons.org/kia/05141F" },
-    { name: "Hyundai", logo: "https://cdn.simpleicons.org/hyundai/002C5F" },
-    { name: "Citroën", logo: "https://cdn.simpleicons.org/citroen/000000" },
-    { name: "Fiat", logo: "https://cdn.simpleicons.org/fiat/96172E" },
-    { name: "Peugeot", logo: "https://cdn.simpleicons.org/peugeot/00235B" },
-    { name: "Skoda", logo: "https://cdn.simpleicons.org/skoda/00843D" },
-    { name: "SEAT", logo: "https://cdn.simpleicons.org/seat/333333" },
-    { name: "Land Rover", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/landrover.svg", color: "#004225" }
-];
-
-function buildMarquee() {
-    const track = document.getElementById('brands-track');
-    if (!track) return;
-    
-    const brandsHTML = brandsWithLogos.map(brand => `
-        <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-marquee-item" title="${brand.name}">
-            <div style="width:75px;height:75px;background:white;border-radius:50%;padding:10px;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
-                ${brand.color
-                    ? `<div role="img" aria-label="${brand.name}" style="width:55px;height:55px;background:${brand.color};-webkit-mask:url('${brand.logo}') center/contain no-repeat;mask:url('${brand.logo}') center/contain no-repeat;"></div>`
-                    : `<img src="${brand.logo}" alt="${brand.name}" style="width:55px;height:55px;object-fit:contain;" onerror="this.parentElement.innerHTML='<div style=\\'font-size:24px;font-weight:bold;color:#333;text-align:center;\\'>${brand.name.substring(0,2)}</div>'">`}
-            </div>
-            <span class="brand-marquee-name">${brand.name}</span>
-        </a>
-    `).join('');
-    
-    track.innerHTML = brandsHTML + brandsHTML;
-}
 const translations = {
-ro: { top_hours: "Luni - Vineri 09:00 - 18:00", top_promo_1: "Toate mașinile sunt verificate tehnic", top_promo_2: "Livrare în toată Uniunea Europeană", top_promo_3: "Anunțul tău de vânzare este gratuit", top_favorites: "Favorite", nav_buy: "Cumpără", nav_sell: "Vinde", nav_dealers: "Dealeri", nav_news: "Noutăți", nav_login: "Logare", sell_button: "Vinde mașina ta cu noi", hero_title: "Găsește mașina perfectă", hero_subtitle: "Peste 12.450 de anunțuri verificate", filter_brand: "Marca", filter_model: "Modelul", filter_body: "Caroserie", filter_fuel: "Combustibil", filter_price_min: "Preț Min (€)", filter_price_max: "Preț Max (€)", filter_year_min: "An Min", filter_year_max: "An Max", body_sedan: "Sedan", body_suv: "SUV", fuel_diesel: "Diesel", fuel_gas: "Benzină", search_button: "Caută în 12.450 de anunțuri", cat_cheap: "Ieftine și puternice", cat_cheap_desc: "Cea mai bună putere/bani", cat_exclusive: "Exclusiviste", cat_exclusive_desc: "Peste 100.000 €", cat_electric: "Electrice", cat_electric_desc: "100% electric", cat_suv: "SUV-uri", cat_suv_desc: "4x4 și off-road", cat_cabrio: "Cabrio", cat_cabrio_desc: "Acoperiș decapotabil", cat_sport: "Sport", cat_sport_desc: "Performanță maximă", cat_family: "Familiale", cat_family_desc: "7+ locuri", cat_vintage: "Vintage", cat_vintage_desc: "Clasice și de colecție", cat_hybrid: "Hybrid", cat_hybrid_desc: "Eco-friendly", cat_business: "Business", cat_business_desc: "Clase premium", cat_pickup: "Pick-up", cat_pickup_desc: "Utilitare și 4x4", cat_new: "Noutăți 2026", cat_new_desc: "Cele mai noi modele", brands_title: "Explorează după Marcă", brands_subtitle: "Apasă pe o siglă pentru a vedea toate mașinile disponibile", why_title: "ViaCars.eu - Marketplace-ul auto premium", why_1: "Caută în cea mai mare ofertă online", why_2: "Opțiuni avansate de filtrare", why_3: "Salvează căutările tale", why_4: "Vinde o mașină gratuit", recent_title: "Anunțuri Recente", see_all: "Vezi toate", badge_verified: "VERIFICAT", badge_dealer: "DEALER", badge_top: "TOP OFERTĂ", fuel_hybrid: "Hybrid", trans_auto: "Automată", trans_manual: "Manuală", btn_details: "Vezi Detalii", footer_about: "Despre ViaCars", footer_who: "Cine suntem", footer_how: "Cum funcționează", footer_buyers: "Cumpărători", footer_search: "Caută mașini", footer_guide: "Ghid cumpărare", footer_sellers: "Vânzători", footer_add: "Adaugă anunț", footer_packages: "Pachete premium", footer_contact: "Contact", footer_rights: "Toate drepturile rezervate." },
-bg: { top_hours: "Понеделник - Петък 09:00 - 18:00", top_promo_1: "Всички автомобили са технически проверени", top_promo_2: "Доставка в целия Европейски съюз", top_promo_3: "Обявата ви за продажба е безплатна", top_favorites: "Любими", nav_buy: "Купи", nav_sell: "Продай", nav_dealers: "Дилъри", nav_news: "Новини", nav_login: "Вход", sell_button: "Продай колата си с нас", hero_title: "Намерете перфектния автомобил", hero_subtitle: "Над 12 450 проверени обяви", filter_brand: "Марка", filter_model: "Модел", filter_body: "Каросерия", filter_fuel: "Гориво", filter_price_min: "Мин. цена (€)", filter_price_max: "Макс. цена (€)", filter_year_min: "Мин. година", filter_year_max: "Макс. година", body_sedan: "Седан", body_suv: "SUV", fuel_diesel: "Дизел", fuel_gas: "Бензин", search_button: "Търси в 12 450 обяви", cat_cheap: "Евтини и мощни", cat_cheap_desc: "Най-добра мощност/цена", cat_exclusive: "Ексклузивни", cat_exclusive_desc: "Над 100 000 €", cat_electric: "Електрически", cat_electric_desc: "100% електрически", cat_suv: "SUV", cat_suv_desc: "4x4 и офроуд", cat_cabrio: "Кабрио", cat_cabrio_desc: "Отварящ се покрив", cat_sport: "Спортни", cat_sport_desc: "Максимална производителност", cat_family: "Семейни", cat_family_desc: "7+ места", cat_vintage: "Винтидж", cat_vintage_desc: "Класически и колекционерски", cat_hybrid: "Хибридни", cat_hybrid_desc: "Екологични", cat_business: "Бизнес", cat_business_desc: "Премиум класове", cat_pickup: "Пикап", cat_pickup_desc: "Ползотворни и 4x4", cat_new: "Новини 2026", cat_new_desc: "Най-новите модели", brands_title: "Разгледай по марка", brands_subtitle: "Кликнете върху лого, за да видите всички налични коли", why_title: "ViaCars.eu - Премиум автомобилен пазар", why_1: "Търсете в най-голямата онлайн оферта", why_2: "Разширени опции за филтриране", why_3: "Запазете вашите търсения", why_4: "Продайте автомобил безплатно", recent_title: "Последни обяви", see_all: "Виж всички", badge_verified: "ПРОВЕРЕНО", badge_dealer: "ДИЛЪР", badge_top: "ТОП ОФЕРТА", fuel_hybrid: "Хибрид", trans_auto: "Автоматична", trans_manual: "Ръчна", btn_details: "Виж детайли", footer_about: "За ViaCars", footer_who: "Кой сме ние", footer_how: "Как работи", footer_buyers: "Купувачи", footer_search: "Търси автомобили", footer_guide: "Ръководство за купувачи", footer_sellers: "Продавачи", footer_add: "Добави обява", footer_packages: "Премиум пакети", footer_contact: "Контакт", footer_rights: "Всички права запазени." },
-el: { top_hours: "Δευτέρα - Παρασκευή 09:00 - 18:00", top_promo_1: "Όλα τα αυτοκίνητα είναι τεχνικά ελεγμένα", top_promo_2: "Παράδοση σε όλη την Ευρωπαϊκή Ένωση", top_promo_3: "Η αγγελία πώλησής σας είναι δωρεάν", top_favorites: "Αγαπημένα", nav_buy: "Αγορά", nav_sell: "Πώληση", nav_dealers: "Έμποροι", nav_news: "Νέα", nav_login: "Σύνδεση", sell_button: "Πουλήστε το αυτοκίνητό σας", hero_title: "Βρείτε το τέλειο αυτοκίνητο", hero_subtitle: "Πάνω από 12.450 επαληθευμένες αγγελίες", filter_brand: "Μάρκα", filter_model: "Μοντέλο", filter_body: "Αμάξωμα", filter_fuel: "Καύσιμο", filter_price_min: "Ελάχ. Τιμή (€)", filter_price_max: "Μέγ. Τιμή (€)", filter_year_min: "Ελάχ. Έτος", filter_year_max: "Μέγ. Έτος", body_sedan: "Σεντάν", body_suv: "SUV", fuel_diesel: "Ντίζελ", fuel_gas: "Βενζίνη", search_button: "Αναζήτηση σε 12.450 αγγελίες", cat_cheap: "Φθηνά και ισχυρά", cat_cheap_desc: "Καλύτερη ισχύς/χρήμα", cat_exclusive: "Αποκλειστικά", cat_exclusive_desc: "Πάνω από 100.000 €", cat_electric: "Ηλεκτρικά", cat_electric_desc: "100% ηλεκτρικά", cat_suv: "SUV", cat_suv_desc: "4x4 και off-road", cat_cabrio: "Καμπριολέ", cat_cabrio_desc: "Αναδιπλούμενη οροφή", cat_sport: "Σπορ", cat_sport_desc: "Μέγιστη απόδοση", cat_family: "Οικογενειακά", cat_family_desc: "7+ θέσεις", cat_vintage: "Βίντατζ", cat_vintage_desc: "Κλασικά και συλλεκτικά", cat_hybrid: "Υβριδικά", cat_hybrid_desc: "Φιλικά προς το περιβάλλον", cat_business: "Επιχειρηματικά", cat_business_desc: "Πρέμιουμ κατηγορίες", cat_pickup: "Πικ-απ", cat_pickup_desc: "Επαγγελματικά και 4x4", cat_new: "Νέα 2026", cat_new_desc: "Τα πιο πρόσφατα μοντέλα", brands_title: "Εξερεύνηση ανά Μάρκα", brands_subtitle: "Κάντε κλικ σε ένα λογότυπο για να δείτε όλα τα διαθέσιμα αυτοκίνητα", why_title: "ViaCars.eu - Η premium αγορά αυτοκινήτων", why_1: "Αναζητήστε στη μεγαλύτερη online προσφορά", why_2: "Προηγμένες επιλογές φιλτραρίσματος", why_3: "Αποθηκεύστε τις αναζητήσεις σας", why_4: "Πουλήστε ένα αυτοκίνητο δωρεάν", recent_title: "Πρόσφατες Αγγελίες", see_all: "Δείτε όλες", badge_verified: "ΕΠΑΛΗΘΕΥΜΕΝΟ", badge_dealer: "ΕΜΠΟΡΟΣ", badge_top: "ΚΟΡΥΦΑΙΑ ΠΡΟΣΦΟΡΑ", fuel_hybrid: "Υβριδικό", trans_auto: "Αυτόματο", trans_manual: "Χειροκίνητο", btn_details: "Δείτε Λεπτομέρειες", footer_about: "Σχετικά με ViaCars", footer_who: "Ποιοι είμαστε", footer_how: "Πώς λειτουργεί", footer_buyers: "Αγοραστές", footer_search: "Αναζήτηση αυτοκινήτων", footer_guide: "Οδηγός αγοραστή", footer_sellers: "Πωλητές", footer_add: "Προσθήκη αγγελίας", footer_packages: "Πρέμιουμ πακέτα", footer_contact: "Επικοινωνία", footer_rights: "Όλα τα δικαιώματα διατηρούνται." },
-en: { top_hours: "Monday - Friday 09:00 - 18:00", top_promo_1: "Every car is technically inspected", top_promo_2: "Delivery across the European Union", top_promo_3: "Your sale listing is free", top_favorites: "Favorites", nav_buy: "Buy", nav_sell: "Sell", nav_dealers: "Dealers", nav_news: "News", nav_login: "Login", sell_button: "Sell your car with us", hero_title: "Find the perfect car", hero_subtitle: "Over 12,450 verified listings", filter_brand: "Brand", filter_model: "Model", filter_body: "Body Type", filter_fuel: "Fuel", filter_price_min: "Min Price (€)", filter_price_max: "Max Price (€)", filter_year_min: "Min Year", filter_year_max: "Max Year", body_sedan: "Sedan", body_suv: "SUV", fuel_diesel: "Diesel", fuel_gas: "Petrol", search_button: "Search in 12,450 listings", cat_cheap: "Cheap & Powerful", cat_cheap_desc: "Best power/money ratio", cat_exclusive: "Exclusive", cat_exclusive_desc: "Over €100,000", cat_electric: "Electric", cat_electric_desc: "100% electric", cat_suv: "SUVs", cat_suv_desc: "4x4 and off-road", cat_cabrio: "Cabrio", cat_cabrio_desc: "Convertible roof", cat_sport: "Sport", cat_sport_desc: "Maximum performance", cat_family: "Family", cat_family_desc: "7+ seats", cat_vintage: "Vintage", cat_vintage_desc: "Classic & collector", cat_hybrid: "Hybrid", cat_hybrid_desc: "Eco-friendly", cat_business: "Business", cat_business_desc: "Premium classes", cat_pickup: "Pick-up", cat_pickup_desc: "Utility & 4x4", cat_new: "New 2026", cat_new_desc: "Latest models", brands_title: "Explore by Brand", brands_subtitle: "Click on a logo to see all available cars", why_title: "ViaCars.eu - Premium Auto Marketplace", why_1: "Search the largest online offering", why_2: "Advanced filtering options", why_3: "Save your searches", why_4: "Sell a car for free", recent_title: "Recent Listings", see_all: "See all", badge_verified: "VERIFIED", badge_dealer: "DEALER", badge_top: "TOP DEAL", fuel_hybrid: "Hybrid", trans_auto: "Automatic", trans_manual: "Manual", btn_details: "View Details", footer_about: "About ViaCars", footer_who: "Who we are", footer_how: "How it works", footer_buyers: "Buyers", footer_search: "Search cars", footer_guide: "Buying guide", footer_sellers: "Sellers", footer_add: "Add listing", footer_packages: "Premium packages", footer_contact: "Contact", footer_rights: "All rights reserved." }
+ro: { nav_buy: "Cumpără", nav_sell: "Vinde", nav_dealers: "Dealeri", nav_about: "Despre Noi", nav_news: "Noutăți", nav_login: "Logare", sell_button: "Vinde mașina ta cu noi", hero_title: "Găsește mașina perfectă", hero_subtitle: "Peste 12.450 de anunțuri verificate", filter_brand: "Marca", filter_model: "Modelul", filter_body: "Caroserie", filter_fuel: "Combustibil", filter_price_min: "Preț Min (€)", filter_price_max: "Preț Max (€)", filter_year_min: "An Min", filter_year_max: "An Max", body_sedan: "Sedan", body_suv: "SUV", fuel_diesel: "Diesel", fuel_gas: "Benzină", search_button: "Caută în 12.450 de anunțuri", cat_cheap: "Ieftine și puternice", cat_cheap_desc: "Cea mai bună putere/bani", cat_exclusive: "Exclusiviste", cat_exclusive_desc: "Peste 100.000 €", cat_electric: "Electrice", cat_electric_desc: "100% electric", cat_suv: "SUV-uri", cat_suv_desc: "4x4 și off-road", cat_cabrio: "Cabrio", cat_cabrio_desc: "Acoperiș decapotabil", cat_sport: "Sport", cat_sport_desc: "Performanță maximă", cat_family: "Familiale", cat_family_desc: "7+ locuri", cat_vintage: "Vintage", cat_vintage_desc: "Clasice și de colecție", cat_hybrid: "Hybrid", cat_hybrid_desc: "Eco-friendly", cat_business: "Business", cat_business_desc: "Clase premium", cat_pickup: "Pick-up", cat_pickup_desc: "Utilitare și 4x4", cat_new: "Noutăți 2026", cat_new_desc: "Cele mai noi modele", brands_title: "Explorează după Marcă", why_title: "ViaCars.eu - Marketplace-ul auto premium", why_1: "Caută în cea mai mare ofertă online", why_2: "Opțiuni avansate de filtrare", why_3: "Salvează căutările tale", why_4: "Vinde o mașină gratuit", recent_title: "Anunțuri Recente", see_all: "Vezi toate", badge_verified: "VERIFICAT", badge_dealer: "DEALER", badge_top: "TOP OFERTĂ", fuel_hybrid: "Hybrid", trans_auto: "Automată", trans_manual: "Manuală", btn_details: "Vezi Detalii", footer_about: "Despre ViaCars", footer_who: "Cine suntem", footer_how: "Cum funcționează", footer_buyers: "Cumpărători", footer_search: "Caută mașini", footer_guide: "Ghid cumpărare", footer_sellers: "Vânzători", footer_add: "Adaugă anunț", footer_packages: "Pachete premium", footer_contact: "Contact", footer_rights: "Toate drepturile rezervate." },
+bg: { nav_buy: "Купи", nav_sell: "Продай", nav_dealers: "Дилъри", nav_about: "За нас", nav_news: "Новини", nav_login: "Вход", sell_button: "Продай колата си с нас", hero_title: "Намерете перфектния автомобил", hero_subtitle: "Над 12 450 проверени обяви", filter_brand: "Марка", filter_model: "Модел", filter_body: "Каросерия", filter_fuel: "Гориво", filter_price_min: "Мин. цена (€)", filter_price_max: "Макс. цена (€)", filter_year_min: "Мин. година", filter_year_max: "Макс. година", body_sedan: "Седан", body_suv: "SUV", fuel_diesel: "Дизел", fuel_gas: "Бензин", search_button: "Търси в 12 450 обяви", cat_cheap: "Евтини и мощни", cat_cheap_desc: "Най-добра мощност/цена", cat_exclusive: "Ексклузивни", cat_exclusive_desc: "Над 100 000 €", cat_electric: "Електрически", cat_electric_desc: "100% електрически", cat_suv: "SUV", cat_suv_desc: "4x4 и офроуд", cat_cabrio: "Кабрио", cat_cabrio_desc: "Отварящ се покрив", cat_sport: "Спортни", cat_sport_desc: "Максимална производителност", cat_family: "Семейни", cat_family_desc: "7+ места", cat_vintage: "Винтидж", cat_vintage_desc: "Класически и колекционерски", cat_hybrid: "Хибридни", cat_hybrid_desc: "Екологични", cat_business: "Бизнес", cat_business_desc: "Премиум класове", cat_pickup: "Пикап", cat_pickup_desc: "Ползотворни и 4x4", cat_new: "Новини 2026", cat_new_desc: "Най-новите модели", brands_title: "Разгледай по марка", why_title: "ViaCars.eu - Премиум автомобилен пазар", why_1: "Търсете в най-голямата онлайн оферта", why_2: "Разширени опции за филтриране", why_3: "Запазете вашите търсения", why_4: "Продайте автомобил безплатно", recent_title: "Последни обяви", see_all: "Виж всички", badge_verified: "ПРОВЕРЕНО", badge_dealer: "ДИЛЪР", badge_top: "ТОП ОФЕРТА", fuel_hybrid: "Хибрид", trans_auto: "Автоматична", trans_manual: "Ръчна", btn_details: "Виж детайли", footer_about: "За ViaCars", footer_who: "Кой сме ние", footer_how: "Как работи", footer_buyers: "Купувачи", footer_search: "Търси автомобили", footer_guide: "Ръководство за купувачи", footer_sellers: "Продавачи", footer_add: "Добави обява", footer_packages: "Премиум пакети", footer_contact: "Контакт", footer_rights: "Всички права запазени." },
+el: { nav_buy: "Αγορά", nav_sell: "Πώληση", nav_dealers: "Έμποροι", nav_about: "Σχετικά με εμάς", nav_news: "Νέα", nav_login: "Σύνδεση", sell_button: "Πουλήστε το αυτοκίνητό σας", hero_title: "Βρείτε το τέλειο αυτοκίνητο", hero_subtitle: "Πάνω από 12.450 επαληθευμένες αγγελίες", filter_brand: "Μάρκα", filter_model: "Μοντέλο", filter_body: "Αμάξωμα", filter_fuel: "Καύσιμο", filter_price_min: "Ελάχ. Τιμή (€)", filter_price_max: "Μέγ. Τιμή (€)", filter_year_min: "Ελάχ. Έτος", filter_year_max: "Μέγ. Έτος", body_sedan: "Σεντάν", body_suv: "SUV", fuel_diesel: "Ντίζελ", fuel_gas: "Βενζίνη", search_button: "Αναζήτηση σε 12.450 αγγελίες", cat_cheap: "Φθηνά και ισχυρά", cat_cheap_desc: "Καλύτερη ισχύς/χρήμα", cat_exclusive: "Αποκλειστικά", cat_exclusive_desc: "Πάνω από 100.000 €", cat_electric: "Ηλεκτρικά", cat_electric_desc: "100% ηλεκτρικά", cat_suv: "SUV", cat_suv_desc: "4x4 και off-road", cat_cabrio: "Καμπριολέ", cat_cabrio_desc: "Αναδιπλούμενη οροφή", cat_sport: "Σπορ", cat_sport_desc: "Μέγιστη απόδοση", cat_family: "Οικογενειακά", cat_family_desc: "7+ θέσεις", cat_vintage: "Βίντατζ", cat_vintage_desc: "Κλασικά και συλλεκτικά", cat_hybrid: "Υβριδικά", cat_hybrid_desc: "Φιλικά προς το περιβάλλον", cat_business: "Επιχειρηματικά", cat_business_desc: "Πρέμιουμ κατηγορίες", cat_pickup: "Πικ-απ", cat_pickup_desc: "Επαγγελματικά και 4x4", cat_new: "Νέα 2026", cat_new_desc: "Τα πιο πρόσφατα μοντέλα", brands_title: "Εξερεύνηση ανά Μάρκα", why_title: "ViaCars.eu - Η premium αγορά αυτοκινήτων", why_1: "Αναζητήστε στη μεγαλύτερη online προσφορά", why_2: "Προηγμένες επιλογές φιλτραρίσματος", why_3: "Αποθηκεύστε τις αναζητήσεις σας", why_4: "Πουλήστε ένα αυτοκίνητο δωρεάν", recent_title: "Πρόσφατες Αγγελίες", see_all: "Δείτε όλες", badge_verified: "ΕΠΑΛΗΘΕΥΜΕΝΟ", badge_dealer: "ΕΜΠΟΡΟΣ", badge_top: "ΚΟΡΥΦΑΙΑ ΠΡΟΣΦΟΡΑ", fuel_hybrid: "Υβριδικό", trans_auto: "Αυτόματο", trans_manual: "Χειροκίνητο", btn_details: "Δείτε Λεπτομέρειες", footer_about: "Σχετικά με ViaCars", footer_who: "Ποιοι είμαστε", footer_how: "Πώς λειτουργεί", footer_buyers: "Αγοραστές", footer_search: "Αναζήτηση αυτοκινήτων", footer_guide: "Οδηγός αγοραστή", footer_sellers: "Πωλητές", footer_add: "Προσθήκη αγγελίας", footer_packages: "Πρέμιουμ πακέτα", footer_contact: "Επικοινωνία", footer_rights: "Όλα τα δικαιώματα διατηρούνται." },
+en: { nav_buy: "Buy", nav_sell: "Sell", nav_dealers: "Dealers", nav_about: "About Us", nav_news: "News", nav_login: "Login", sell_button: "Sell your car with us", hero_title: "Find the perfect car", hero_subtitle: "Over 12,450 verified listings", filter_brand: "Brand", filter_model: "Model", filter_body: "Body Type", filter_fuel: "Fuel", filter_price_min: "Min Price (€)", filter_price_max: "Max Price (€)", filter_year_min: "Min Year", filter_year_max: "Max Year", body_sedan: "Sedan", body_suv: "SUV", fuel_diesel: "Diesel", fuel_gas: "Petrol", search_button: "Search in 12,450 listings", cat_cheap: "Cheap & Powerful", cat_cheap_desc: "Best power/money ratio", cat_exclusive: "Exclusive", cat_exclusive_desc: "Over €100,000", cat_electric: "Electric", cat_electric_desc: "100% electric", cat_suv: "SUVs", cat_suv_desc: "4x4 and off-road", cat_cabrio: "Cabrio", cat_cabrio_desc: "Convertible roof", cat_sport: "Sport", cat_sport_desc: "Maximum performance", cat_family: "Family", cat_family_desc: "7+ seats", cat_vintage: "Vintage", cat_vintage_desc: "Classic & collector", cat_hybrid: "Hybrid", cat_hybrid_desc: "Eco-friendly", cat_business: "Business", cat_business_desc: "Premium classes", cat_pickup: "Pick-up", cat_pickup_desc: "Utility & 4x4", cat_new: "New 2026", cat_new_desc: "Latest models", brands_title: "Explore by Brand", why_title: "ViaCars.eu - Premium Auto Marketplace", why_1: "Search the largest online offering", why_2: "Advanced filtering options", why_3: "Save your searches", why_4: "Sell a car for free", recent_title: "Recent Listings", see_all: "See all", badge_verified: "VERIFIED", badge_dealer: "DEALER", badge_top: "TOP DEAL", fuel_hybrid: "Hybrid", trans_auto: "Automatic", trans_manual: "Manual", btn_details: "View Details", footer_about: "About ViaCars", footer_who: "Who we are", footer_how: "How it works", footer_buyers: "Buyers", footer_search: "Search cars", footer_guide: "Buying guide", footer_sellers: "Sellers", footer_add: "Add listing", footer_packages: "Premium packages", footer_contact: "Contact", footer_rights: "All rights reserved." }
 };
-
 function switchLanguage(lang) {
 const dict = translations[lang];
 if (!dict) return;
@@ -564,7 +430,6 @@ btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
 localStorage.setItem('viacars_lang', lang);
 document.documentElement.lang = lang;
 }
-
 document.addEventListener('DOMContentLoaded', () => {
 const savedLang = localStorage.getItem('viacars_lang') || 'ro';
 switchLanguage(savedLang);
