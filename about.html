@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViaCars.eu - Cine Suntem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body {
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .header-integrated {
+            background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .logo-container {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
+        }
+        .glass-card {
+            background: rgba(10, 15, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.3);
+            transform: translateY(-4px);
+        }
+        .hero-quote {
+            font-size: 32px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.9);
+            border-left: 4px solid #60a5fa;
+            padding-left: 24px;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #1e3a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+        }
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(96, 165, 250, 0.4);
+            margin-bottom: 16px;
+        }
+        .flag-btn {
+            width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
+            transition: all 0.3s ease; border: 2px solid transparent;
+            opacity: 0.6; overflow: hidden; display: inline-block;
+        }
+        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
+        .flag-btn.active { opacity: 1; border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.6); }
+        .flag-btn svg { width: 100%; height: 100%; display: block; }
+        #password-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0a0f1e; z-index: 99999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .pass-box {
+            text-align: center; background: rgba(30, 58, 138, 0.1); padding: 40px;
+            border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 0 40px rgba(30, 58, 138, 0.4); backdrop-filter: blur(10px);
+        }
+        .pass-input {
+            background: rgba(10, 15, 30, 0.7); border: 1px solid rgba(96, 165, 250, 0.3);
+            color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
+            margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
+        }
+        .pass-btn {
+            background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
+            border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
+            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #1e3a8a, transparent);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="password-gate">
+        <div class="pass-box">
+            <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
+            <input type="password" id="pass-input" class="pass-input" placeholder="Parola">
+            <br>
+            <button onclick="checkPassword()" class="pass-btn">Intră</button>
+            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
+        </div>
+    </div>
+
+    <header class="header-integrated sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="logo-container rounded-lg p-2 flex items-center space-x-2 no-underline">
+                    <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+                        <path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
+                        <path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
+                        <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
+                        <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+                    </svg>
+                    <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="buy.html" class="text-white/90 hover:text-white transition">Cumpără</a>
+                <a href="sell.html" class="text-white/90 hover:text-white transition">Vinde</a>
+                <a href="dealers.html" class="text-white/90 hover:text-white transition">Dealeri</a>
+                <a href="about.html" class="text-white transition font-bold">Despre Noi</a>
+                <a href="news.html" class="text-white/90 hover:text-white transition">Noutăți</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="flag-btn active" data-lang="ro" onclick="switchLanguage('ro')">
+                        <svg viewBox="0 0 60 40"><rect width="20" height="40" fill="#002B7F"/><rect x="20" width="20" height="40" fill="#FCD116"/><rect x="40" width="20" height="40" fill="#CE1126"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="bg" onclick="switchLanguage('bg')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#FFFFFF"/><rect y="13.33" width="60" height="13.33" fill="#00966E"/><rect y="26.66" width="60" height="13.34" fill="#D62612"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="el" onclick="switchLanguage('el')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
+                    </div>
+                    <div class="flag-btn" data-lang="en" onclick="switchLanguage('en')">
+                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
+                    </div>
+                </div>
+                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
+                <a href="sell.html" style="background: linear-gradient(90deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 58, 138, 0.45) 50%, rgba(148, 163, 184, 0.2) 100%); color: white; font-weight: 600; font-size: 13px; padding: 10px 20px; border: 1px solid rgba(148, 163, 184, 0.5); border-radius: 8px; text-decoration: none; box-shadow: -5px 0 20px rgba(148, 163, 184, 0.6);">Vinde mașina ta cu noi</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <div class="inline-block bg-blue-600/20 border border-blue-400/30 rounded-full px-4 py-1 text-xs font-semibold mb-6 text-blue-300">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> <span data-i18n="hero_badge">DIN 2020 • PESTE 5.000 DE CLIENȚI MULȚUMIȚI</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6" data-i18n="hero_title">Cine Suntem</h1>
+                <p class="hero-quote mx-auto" data-i18n="hero_quote">
+                    "Reprezentăm oamenii care își doresc o mașină bună la un preț rezonabil. Calitatea și prestigiul nostru sunt mai importante decât orice vânzare."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POVESTEA NOASTRĂ -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="section-title text-3xl font-bold text-white mb-6" data-i18n="story_title">Povestea Noastră</h2>
+                    <p class="text-white/80 leading-relaxed mb-4" data-i18n="story_p1">
+                        ViaCars.eu s-a născut dintr-o frustrare comună: piața auto din Europa de Est este plină de mașini vândute fără transparență, cu kilometraj modificat și istoric ascuns. Am văzut sute de oameni păcăliți și am decis să schimbăm regulile jocului.
+                    </p>
+                    <p class="text-white/80 leading-relaxed mb-4" data-i18n="story_p2">
+                        Suntem o echipă de pasionați auto, ingineri și consultanți financiari care au unit forțele pentru a crea primul marketplace auto din România unde <strong class="text-blue-300">fiecare mașină este verificată de specialiștii noștri</strong> înainte de a ajunge la clienți.
+                    </p>
+                    <p class="text-white/80 leading-relaxed" data-i18n="story_p3">
+                        Nu vindem doar mașini. Vindem <strong class="text-blue-300">liniște, încredere și siguranță</strong>. Fiecare vehicul din portofoliul nostru trece printr-un proces riguros de 120 de puncte de verificare, iar istoricul său este complet transparent.
+                    </p>
+                </div>
+                <div class="glass-card">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="stat-number">5.247</div>
+                            <div class="text-white/60 text-sm" data-i18n="stat_clients">Clienți mulțumiți</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">120</div>
+                            <div class="text-white/60 text-sm" data-i18n="stat_checks">Puncte de verificare</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">98%</div>
+                            <div class="text-white/60 text-sm" data-i18n="stat_satisfaction">Rată de satisfacție</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number">6</div>
+                            <div class="text-white/60 text-sm" data-i18n="stat_years">Ani de experiență</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORILE NOASTRE -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl font-bold text-white mb-4" data-i18n="values_title">Valorile Noastre</h2>
+                <p class="text-white/60 max-w-2xl mx-auto" data-i18n="values_subtitle">Principiile care ne ghidează fiecare decizie, de la selecția mașinilor până la relația cu clienții noștri.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card text-center">
+                    <div class="value-icon mx-auto"><i class="fa-solid fa-medal"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="value1_title">Calitate înaintea Cantității</h3>
+                    <p class="text-white/60 text-sm" data-i18n="value1_desc">Preferăm să avem 10 mașini excelente în stoc decât 100 mașini mediocre. Fiecare vehicul este ales cu grijă.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <div class="value-icon mx-auto"><i class="fa-solid fa-handshake"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="value2_title">Onestitate Totală</h3>
+                    <p class="text-white/60 text-sm" data-i18n="value2_desc">Spunem adevărul despre fiecare mașină, inclusiv despre defectele ei. Transparența este fundamentul încrederii.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <div class="value-icon mx-auto"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="value3_title">Verificare Riguroasă</h3>
+                    <p class="text-white/60 text-sm" data-i18n="value3_desc">120 de puncte de control, istoric complet, diagnosticare computerizată. Nimic nu scapă atenției noastre.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <div class="value-icon mx-auto"><i class="fa-solid fa-heart"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3" data-i18n="value4_title">Relații pe Termen Lung</h3>
+                    <p class="text-white/60 text-sm" data-i18n="value4_desc">Un client mulțumit este cel mai bun ambasador al nostru. Construim relații, nu doar tranzacții.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DE CE NOI -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="glass-card">
+                <div class="text-center mb-10">
+                    <h2 class="section-title text-3xl font-bold text-white mb-4" data-i18n="why_title">De Ce Să Ne Alegi pe Noi</h2>
+                    <p class="text-white/60 max-w-2xl mx-auto" data-i18n="why_subtitle">Diferența dintre a cumpăra o mașină de la noi și de oriunde altundeva.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why1_title">Verificare în 120 de Puncte</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why1_desc">Fiecare mașină trece printr-un proces complet de verificare mecanică, electronică și estetică înainte de a fi listată.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-file-contract text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why2_title">Istoric Complet și Transparent</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why2_desc">Acces la istoricul complet al vehiculului: service, accidente, proprietari anteriori, kilometraj real garantat.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-rotate-left text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why3_title">Garanție de Retur 7 Zile</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why3_desc">Dacă mașina nu corespunde așteptărilor tale, o poți returna în 7 zile fără întrebări. Asumăm riscul pentru tine.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-coins text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why4_title">Prețuri Corecte și Negociabile</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why4_desc">Prețurile noastre sunt bazate pe evaluări de piață reale. Fără costuri ascunse, fără surprize neplăcute.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-headset text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why5_title">Suport Dedicat Post-Vânzare</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why5_desc">Relația cu tine nu se termină la vânzare. Oferim suport continuu și consultanță pentru orice întrebare.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-truck-fast text-blue-400 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white mb-2" data-i18n="why6_title">Livrare la Domiciliu</h3>
+                            <p class="text-white/60 text-sm" data-i18n="why6_desc">Îți aducem mașina acasă, oriunde în România. Test drive confortabil, fără presiune, în mediul tău familiar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECHIPA -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-3xl font-bold text-white mb-4" data-i18n="team_title">Echipa Noastră</h2>
+                <p class="text-white/60 max-w-2xl mx-auto" data-i18n="team_subtitle">Oameni pasionați, cu experiență, dedicați să îți ofere cea mai bună experiență în achiziția unei mașini.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card text-center">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="CEO" class="team-photo mx-auto">
+                    <h3 class="font-bold text-white text-lg">Alexandru Popescu</h3>
+                    <p class="text-blue-300 text-sm mb-3" data-i18n="team1_role">Fondator & CEO</p>
+                    <p class="text-white/60 text-xs" data-i18n="team1_desc">15 ani experiență în industria auto. Passionat de mașini premium și transparență.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="CTO" class="team-photo mx-auto">
+                    <h3 class="font-bold text-white text-lg">Maria Ionescu</h3>
+                    <p class="text-blue-300 text-sm mb-3" data-i18n="team2_role">Director Operațiuni</p>
+                    <p class="text-white/60 text-xs" data-i18n="team2_desc">Expert în verificări tehnice. Fost inginer la un producător auto german.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" alt="Sales" class="team-photo mx-auto">
+                    <h3 class="font-bold text-white text-lg">Andrei Dumitrescu</h3>
+                    <p class="text-blue-300 text-sm mb-3" data-i18n="team3_role">Director Vânzări</p>
+                    <p class="text-white/60 text-xs" data-i18n="team3_desc">Specialist în relații cu clienții. Crede că fiecare client merită atenție personalizată.</p>
+                </div>
+                <div class="glass-card text-center">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Tech" class="team-photo mx-auto">
+                    <h3 class="font-bold text-white text-lg">Elena Vasile</h3>
+                    <p class="text-blue-300 text-sm mb-3" data-i18n="team4_role">Expert Verificări</p>
+                    <p class="text-white/60 text-xs" data-i18n="team4_desc">Mecanic autorizat cu 12 ani experiență. Detectează orice problemă ascunsă.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMISIUNEA NOASTRĂ -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="glass-card text-center max-w-4xl mx-auto" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.4), rgba(10, 15, 30, 0.6));">
+                <i class="fa-solid fa-quote-left text-5xl text-blue-400/30 mb-6"></i>
+                <h2 class="text-3xl font-bold text-white mb-6" data-i18n="promise_title">Promisiunea Noastră</h2>
+                <p class="text-xl text-white/80 leading-relaxed mb-8" data-i18n="promise_text">
+                    Onestitatea aduce câștigul pe termen lung. Vânzând mașini bune și verificate, aducem mulțumirea și încrederea clientului, care va recomanda serviciile noastre altora. Aceasta este filosofia noastră de business.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="buy.html" class="btn-primary" style="background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 8px; text-decoration: none; display: inline-block;">
+                        <i class="fa-solid fa-car mr-2"></i> <span data-i18n="promise_cta1">Vezi Mașinile Disponibile</span>
+                    </a>
+                    <a href="contact.html" class="btn-secondary" style="background: transparent; color: white; font-weight: 600; font-size: 14px; padding: 12px 28px; border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; text-decoration: none; display: inline-block;">
+                        <i class="fa-solid fa-envelope mr-2"></i> <span data-i18n="promise_cta2">Contactează-ne</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: rgba(10, 15, 30, 0.7); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.3); padding: 40px 0; margin-top: 60px;">
+        <div class="container mx-auto px-6">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;"><a href="about.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
+                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>+40 123 456 789</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent); margin-bottom: 20px;"></div>
+            <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
+                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const SITE_PASSWORD = "1234";
+        async function initGate() {
+            const gate = document.getElementById('password-gate');
+            if (!gate) return;
+            const trustedIP = localStorage.getItem('viacars_trusted_ip');
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
+            } catch (error) {}
+        }
+        function checkPassword() {
+            const input = document.getElementById('pass-input').value;
+            if (input === SITE_PASSWORD) {
+                document.getElementById('password-gate').style.display = 'none';
+                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
+            } else {
+                document.getElementById('pass-error').style.display = 'block';
+                document.getElementById('pass-input').value = '';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const passInput = document.getElementById('pass-input');
+            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
+            initGate();
+        });
+
+        const translations = {
+            ro: {
+                hero_badge: "DIN 2020 • PESTE 5.000 DE CLIENȚI MULȚUMIȚI",
+                hero_title: "Cine Suntem",
+                hero_quote: "Reprezentăm oamenii care își doresc o mașină bună la un preț rezonabil. Calitatea și prestigiul nostru sunt mai importante decât orice vânzare.",
+                story_title: "Povestea Noastră",
+                story_p1: "ViaCars.eu s-a născut dintr-o frustrare comună: piața auto din Europa de Est este plină de mașini vândute fără transparență, cu kilometraj modificat și istoric ascuns. Am văzut sute de oameni păcăliți și am decis să schimbăm regulile jocului.",
+                story_p2: "Suntem o echipă de pasionați auto, ingineri și consultanți financiari care au unit forțele pentru a crea primul marketplace auto din România unde fiecare mașină este verificată de specialiștii noștri înainte de a ajunge la clienți.",
+                story_p3: "Nu vindem doar mașini. Vindem liniște, încredere și siguranță. Fiecare vehicul din portofoliul nostru trece printr-un proces riguros de 120 de puncte de verificare, iar istoricul său este complet transparent.",
+                stat_clients: "Clienți mulțumiți", stat_checks: "Puncte de verificare", stat_satisfaction: "Rată de satisfacție", stat_years: "Ani de experiență",
+                values_title: "Valorile Noastre", values_subtitle: "Principiile care ne ghidează fiecare decizie.",
+                value1_title: "Calitate înaintea Cantității", value1_desc: "Preferăm să avem 10 mașini excelente decât 100 mediocre.",
+                value2_title: "Onestitate Totală", value2_desc: "Spunem adevărul despre fiecare mașină, inclusiv despre defecte.",
+                value3_title: "Verificare Riguroasă", value3_desc: "120 de puncte de control, istoric complet, diagnosticare computerizată.",
+                value4_title: "Relații pe Termen Lung", value4_desc: "Un client mulțumit este cel mai bun ambasador al nostru.",
+                why_title: "De Ce Să Ne Alegi pe Noi", why_subtitle: "Diferența dintre a cumpăra de la noi și de oriunde altundeva.",
+                why1_title: "Verificare în 120 de Puncte", why1_desc: "Proces complet de verificare mecanică, electronică și estetică.",
+                why2_title: "Istoric Complet și Transparent", why2_desc: "Acces la istoricul complet: service, accidente, proprietari, kilometraj real.",
+                why3_title: "Garanție de Retur 7 Zile", why3_desc: "Dacă mașina nu corespunde, o poți returna în 7 zile fără întrebări.",
+                why4_title: "Prețuri Corecte și Negociabile", why4_desc: "Prețuri bazate pe evaluări reale. Fără costuri ascunse.",
+                why5_title: "Suport Dedicat Post-Vânzare", why5_desc: "Relația nu se termină la vânzare. Oferim suport continuu.",
+                why6_title: "Livrare la Domiciliu", why6_desc: "Îți aducem mașina acasă, oriunde în România.",
+                team_title: "Echipa Noastră", team_subtitle: "Oameni pasionați, dedicați să îți ofere cea mai bună experiență.",
+                team1_role: "Fondator & CEO", team1_desc: "15 ani experiență în industria auto.",
+                team2_role: "Director Operațiuni", team2_desc: "Expert în verificări tehnice.",
+                team3_role: "Director Vânzări", team3_desc: "Specialist în relații cu clienții.",
+                team4_role: "Expert Verificări", team4_desc: "Mecanic autorizat cu 12 ani experiență.",
+                promise_title: "Promisiunea Noastră",
+                promise_text: "Onestitatea aduce câștigul pe termen lung. Vânzând mașini bune și verificate, aducem mulțumirea și încrederea clientului, care va recomanda serviciile noastre altora.",
+                promise_cta1: "Vezi Mașinile Disponibile", promise_cta2: "Contactează-ne"
+            },
+            en: {
+                hero_badge: "SINCE 2020 • OVER 5,000 HAPPY CLIENTS",
+                hero_title: "About Us",
+                hero_quote: "We represent people who want a good car at a fair price. Our quality and reputation are more important than any sale.",
+                story_title: "Our Story",
+                story_p1: "ViaCars.eu was born from a common frustration: the Eastern European car market is full of cars sold without transparency, with rolled-back mileage and hidden history.",
+                story_p2: "We are a team of car enthusiasts, engineers and financial consultants who joined forces to create Romania's first auto marketplace where every car is verified by our specialists.",
+                story_p3: "We don't just sell cars. We sell peace of mind, trust and safety. Every vehicle goes through a rigorous 120-point inspection process.",
+                stat_clients: "Happy clients", stat_checks: "Inspection points", stat_satisfaction: "Satisfaction rate", stat_years: "Years of experience",
+                values_title: "Our Values", values_subtitle: "The principles that guide every decision.",
+                value1_title: "Quality Over Quantity", value1_desc: "We prefer 10 excellent cars over 100 mediocre ones.",
+                value2_title: "Total Honesty", value2_desc: "We tell the truth about every car, including its flaws.",
+                value3_title: "Rigorous Inspection", value3_desc: "120 checkpoints, complete history, computerized diagnostics.",
+                value4_title: "Long-Term Relationships", value4_desc: "A happy client is our best ambassador.",
+                why_title: "Why Choose Us", why_subtitle: "The difference between buying from us and anywhere else.",
+                why1_title: "120-Point Inspection", why1_desc: "Complete mechanical, electronic and aesthetic verification.",
+                why2_title: "Complete Transparent History", why2_desc: "Full history access: service, accidents, owners, real mileage.",
+                why3_title: "7-Day Return Guarantee", why3_desc: "If the car doesn't match expectations, return it in 7 days.",
+                why4_title: "Fair Negotiable Prices", why4_desc: "Prices based on real market evaluations. No hidden costs.",
+                why5_title: "Dedicated After-Sales Support", why5_desc: "The relationship doesn't end at the sale.",
+                why6_title: "Home Delivery", why6_desc: "We bring the car to your home, anywhere in Romania.",
+                team_title: "Our Team", team_subtitle: "Passionate people dedicated to your best experience.",
+                team1_role: "Founder & CEO", team1_desc: "15 years experience in the auto industry.",
+                team2_role: "Operations Director", team2_desc: "Expert in technical inspections.",
+                team3_role: "Sales Director", team3_desc: "Customer relations specialist.",
+                team4_role: "Inspection Expert", team4_desc: "Certified mechanic with 12 years experience.",
+                promise_title: "Our Promise",
+                promise_text: "Honesty brings long-term profit. By selling good, verified cars, we bring customer satisfaction and trust, who will recommend our services to others.",
+                promise_cta1: "See Available Cars", promise_cta2: "Contact Us"
+            },
+            bg: {
+                hero_badge: "ОТ 2020 • НАД 5 000 ДОВОЛНИ КЛИЕНТИ",
+                hero_title: "За Нас",
+                hero_quote: "Представляваме хората, които искат добра кола на справедлива цена.",
+                story_title: "Нашата История",
+                story_p1: "ViaCars.eu е родена от обща фрустрация: източноевропейският автомобилен пазар е пълен с коли, продавани без прозрачност.",
+                story_p2: "Ние сме екип от автоентусиасти, инженери и финансови консултанти.",
+                story_p3: "Не продаваме просто коли. Продаваме спокойствие, доверие и сигурност.",
+                stat_clients: "Доволни клиенти", stat_checks: "Точки на проверка", stat_satisfaction: "Ниво на удовлетвореност", stat_years: "Години опит",
+                values_title: "Нашите Ценности", values_subtitle: "Принципите, които водят всяко решение.",
+                value1_title: "Качество над Количество", value1_desc: "Предпочитаме 10 отлични коли пред 100 посредствени.",
+                value2_title: "Пълна Честност", value2_desc: "Казваме истината за всяка кола, включително за дефектите.",
+                value3_title: "Стриктна Проверка", value3_desc: "120 контролни точки, пълна история, компютърна диагностика.",
+                value4_title: "Дългосрочни Връзки", value4_desc: "Доволен клиент е нашият най-добър посланик.",
+                why_title: "Защо да Изберете Нас", why_subtitle: "Разликата между покупка от нас и от другаде.",
+                why1_title: "120-Точкова Проверка", why1_desc: "Пълна механична, електронна и естетическа проверка.",
+                why2_title: "Пълна Прозрачна История", why2_desc: "Достъп до пълната история: сервиз, аварии, собственици.",
+                why3_title: "7-Дневна Гаранция за Връщане", why3_desc: "Ако колата не съответства, върнете я за 7 дни.",
+                why4_title: "Справедливи Цени", why4_desc: "Цени базирани на реални пазарни оценки.",
+                why5_title: "Следпродажбена Поддръжка", why5_desc: "Връзката не свършва с продажбата.",
+                why6_title: "Доставка до Дома", why6_desc: "Доставяме колата до вас, навсякъде в България.",
+                team_title: "Нашият Екип", team_subtitle: "Страстни хора, посветени на най-добрия ви опит.",
+                team1_role: "Основател и CEO", team1_desc: "15 години опит в авто индустрията.",
+                team2_role: "Директор Операции", team2_desc: "Експерт в техническите проверки.",
+                team3_role: "Директор Продажби", team3_desc: "Специалист по клиентски отношения.",
+                team4_role: "Експерт Проверки", team4_desc: "Сертифициран механик с 12 години опит.",
+                promise_title: "Нашето Обещание",
+                promise_text: "Честността носи дългосрочна печалба. Продавайки добри, проверени коли, носим удовлетворение и доверие на клиента.",
+                promise_cta1: "Виж Наличните Коли", promise_cta2: "Свържи се с нас"
+            },
+            el: {
+                hero_badge: "ΑΠΟ ΤΟ 2020 • ΠΑΝΩ ΑΠΟ 5.000 ΙΚΑΝΟΠΟΙΗΜΕΝΟΥΣ ΠΕΛΑΤΕΣ",
+                hero_title: "Ποιοι Είμαστε",
+                hero_quote: "Αντιπροσωπεύουμε ανθρώπους που θέλουν ένα καλό αυτοκίνητο σε δίκαιη τιμή.",
+                story_title: "Η Ιστορία μας",
+                story_p1: "Η ViaCars.eu γεννήθηκε από μια κοινή απογοήτευση: η αγορά αυτοκινήτων στην Ανατολική Ευρώπη.",
+                story_p2: "Είμαστε μια ομάδα από λάτρεις των αυτοκινήτων, μηχανικούς και οικονομικούς συμβούλους.",
+                story_p3: "Δεν πουλάμε απλώς αυτοκίνητα. Πουλάμε ηρεμία, εμπιστοσύνη και ασφάλεια.",
+                stat_clients: "Ικανοποιημένοι πελάτες", stat_checks: "Σημεία ελέγχου", stat_satisfaction: "Ποσοστό ικανοποίησης", stat_years: "Χρόνια εμπειρίας",
+                values_title: "Οι Αξίες μας", values_subtitle: "Οι αρχές που καθοδηγούν κάθε απόφαση.",
+                value1_title: "Ποιότητα πάνω από Ποσότητα", value1_desc: "Προτιμούμε 10 εξαιρετικά αυτοκίνητα από 100 μέτρια.",
+                value2_title: "Πλήρης Ειλικρίνεια", value2_desc: "Λέμε την αλήθεια για κάθε αυτοκίνητο.",
+                value3_title: "Αυστηρός Έλεγχος", value3_desc: "120 σημεία ελέγχου, πλήρες ιστορικό.",
+                value4_title: "Μακροπρόθεσμες Σχέσεις", value4_desc: "Ένας ικανοποιημένος πελάτης είναι ο καλύτερος πρεσβευτής μας.",
+                why_title: "Γιατί να Μας Επιλέξετε", why_subtitle: "Η διαφορά μεταξύ αγοράς από εμάς και από αλλού.",
+                why1_title: "Έλεγχος 120 Σημείων", why1_desc: "Πλήρης μηχανικός, ηλεκτρονικός και αισθητικός έλεγχος.",
+                why2_title: "Πλήρες Διαφανές Ιστορικό", why2_desc: "Πρόσβαση στο πλήρες ιστορικό.",
+                why3_title: "Εγγύηση Επιστροφής 7 Ημερών", why3_desc: "Αν το αυτοκίνητο δεν ανταποκρίνεται, επιστρέψτε το σε 7 ημέρες.",
+                why4_title: "Δίκαιες Τιμές", why4_desc: "Τιμές βασισμένες σε πραγματικές αξιολογήσεις αγοράς.",
+                why5_title: "Υποστήριξη Μετά την Πώληση", why5_desc: "Η σχέση δεν τελειώνει με την πώληση.",
+                why6_title: "Παράδοση στο Σπίτι", why6_desc: "Φέρνουμε το αυτοκίνητο στο σπίτι σας.",
+                team_title: "Η Ομάδα μας", team_subtitle: "Παθιασμένοι άνθρωποι αφοσιωμένοι στην καλύτερη εμπειρία σας.",
+                team1_role: "Ιδρυτής & CEO", team1_desc: "15 χρόνια εμπειρίας.",
+                team2_role: "Διευθυντής Λειτουργιών", team2_desc: "Ειδικός σε τεχνικούς ελέγχους.",
+                team3_role: "Διευθυντής Πωλήσεων", team3_desc: "Ειδικός στις σχέσεις πελατών.",
+                team4_role: "Ειδικός Ελέγχων", team4_desc: "Πιστοποιημένος μηχανικός με 12 χρόνια εμπειρίας.",
+                promise_title: "Η Υπόσχεσή μας",
+                promise_text: "Η ειλικρίνεια φέρνει μακροπρόθεσμο κέρδος. Πουλώντας καλά, επαληθευμένα αυτοκίνητα.",
+                promise_cta1: "Δείτε Διαθέσιμα Αυτοκίνητα", promise_cta2: "Επικοινωνήστε μαζί μας"
+            }
+        };
+
+        function switchLanguage(lang) {
+            const dict = translations[lang];
+            if (!dict) return;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            document.querySelectorAll('.flag-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+        }
+    </script>
+</body>
+</html>
