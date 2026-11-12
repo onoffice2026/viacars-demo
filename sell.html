@@ -1,419 +1,404 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViaCars.eu - Vinde mașina ta</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        body {
-            background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
-                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #ffffff;
-            min-height: 100vh;
-        }
-        
-        .header-integrated {
-            background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-        }
-        
-        .logo-container {
-            background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
-        }
-        
-        /* CARD FOARTE TRANSPARENT */
-        .sell-container {
-            max-width: 600px;
-            margin: 60px auto;
-            background: rgba(10, 15, 30, 0.15);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(96, 165, 250, 0.15);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 0 40px rgba(30, 58, 138, 0.15);
-        }
-        .sell-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .sell-subtitle {
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        .form-group { margin-bottom: 20px; }
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-        }
-        .form-select, .form-input {
-            width: 100%;
-            background: rgba(10, 15, 30, 0.4);
-            border: 1px solid rgba(96, 165, 250, 0.25);
-            color: white;
-            padding: 12px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        .form-select:focus, .form-input:focus {
-            border-color: #60a5fa;
-            box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
-            background: rgba(10, 15, 30, 0.6);
-        }
-        .form-select option { background: #0a0f1e; color: white; }
-        
-        /* BUTON GALBEN */
-        .btn-start {
-            width: 100%;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #0a0f1e;
-            font-weight: 700;
-            font-size: 16px;
-            padding: 14px;
-            border: 1px solid rgba(251, 191, 36, 0.6);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
-        }
-        .btn-start:hover {
-            background: linear-gradient(135deg, #fcd34d, #fbbf24);
-            box-shadow: 0 6px 30px rgba(251, 191, 36, 0.6);
-            transform: translateY(-2px);
-        }
-        
-        .powered-by {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-        }
-        .powered-by a { color: #60a5fa; text-decoration: none; }
-        
-        .flag-btn {
-            width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
-            transition: all 0.3s ease; border: 2px solid transparent;
-            opacity: 0.6; overflow: hidden; display: inline-block;
-        }
-        .flag-btn:hover { opacity: 1; transform: scale(1.1); }
-        .flag-btn.active {
-            opacity: 1; border-color: #60a5fa;
-            box-shadow: 0 0 10px rgba(96, 165, 250, 0.6); transform: scale(1.1);
-        }
-        .flag-btn svg { width: 100%; height: 100%; display: block; }
-        
-        #password-gate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #0a0f1e; z-index: 99999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        .pass-box {
-            text-align: center; background: rgba(30, 58, 138, 0.1); padding: 40px;
-            border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);
-            box-shadow: 0 0 40px rgba(30, 58, 138, 0.4); backdrop-filter: blur(10px);
-        }
-        .pass-input {
-            background: rgba(10, 15, 30, 0.7); border: 1px solid rgba(96, 165, 250, 0.3);
-            color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
-            margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
-        }
-        .pass-input:focus { border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.3); }
-        .pass-btn {
-            background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
-            border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
-            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
-            transition: all 0.3s ease;
-        }
-        .pass-btn:hover { background: linear-gradient(135deg, #2563eb, #1e3a8a); box-shadow: 0 5px 15px rgba(30, 58, 138, 0.5); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViaCars.eu - Vinde mașina ta</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Merriweather+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Merriweather Sans', sans-serif; }
+body {
+background: linear-gradient(135deg, rgba(10, 15, 30, 0.88) 0%, rgba(30, 58, 138, 0.28) 50%, rgba(10, 15, 30, 0.88) 100%),
+url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+color: #ffffff;
+min-height: 100vh;
+}
+.header-integrated {
+background: linear-gradient(180deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 42, 110, 0.85) 50%, rgba(10, 15, 30, 0.8) 100%);
+backdrop-filter: blur(15px);
+border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+.logo-container {
+background: linear-gradient(135deg, #1e3a8a, #0f2a6e);
+border: 1px solid rgba(96, 165, 250, 0.3);
+box-shadow: 0 0 20px rgba(30, 58, 138, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.1);
+}
+.sell-container {
+max-width: 600px;
+margin: 60px auto;
+background: rgba(10, 15, 30, 0.15);
+backdrop-filter: blur(25px);
+-webkit-backdrop-filter: blur(25px);
+border: 1px solid rgba(96, 165, 250, 0.15);
+border-radius: 16px;
+padding: 40px;
+box-shadow: 0 0 40px rgba(30, 58, 138, 0.15);
+}
+.sell-title {
+font-family: 'Merriweather', serif;
+font-size: 28px;
+font-weight: 700;
+margin-bottom: 10px;
+text-align: center;
+}
+.sell-subtitle {
+text-align: center;
+color: rgba(255,255,255,0.6);
+margin-bottom: 30px;
+font-size: 14px;
+}
+.form-group { margin-bottom: 20px; }
+.form-label {
+display: block;
+margin-bottom: 8px;
+font-size: 13px;
+font-weight: 600;
+color: rgba(255,255,255,0.9);
+}
+.form-select, .form-input {
+width: 100%;
+background: rgba(10, 15, 30, 0.4);
+border: 1px solid rgba(96, 165, 250, 0.25);
+color: white;
+padding: 12px 15px;
+border-radius: 8px;
+font-size: 14px;
+outline: none;
+transition: all 0.3s ease;
+}
+.form-select:focus, .form-input:focus {
+border-color: #60a5fa;
+box-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+background: rgba(10, 15, 30, 0.6);
+}
+.form-select option { background: #0a0f1e; color: white; }
+.btn-next {
+width: 100%;
+background: linear-gradient(135deg, #fbbf24, #f59e0b);
+color: #0a0f1e;
+font-weight: 800;
+font-size: 18px;
+padding: 16px;
+border: 1px solid rgba(251, 191, 36, 0.6);
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 10px;
+box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
+letter-spacing: 2px;
+}
+.btn-next:hover {
+background: linear-gradient(135deg, #fcd34d, #fbbf24);
+box-shadow: 0 6px 30px rgba(251, 191, 36, 0.6);
+transform: translateY(-2px);
+}
+.powered-by {
+text-align: center;
+margin-top: 20px;
+font-size: 12px;
+color: rgba(255,255,255,0.5);
+}
+.powered-by a { color: #60a5fa; text-decoration: none; }
+.flag-btn {
+width: 32px; height: 22px; border-radius: 3px; cursor: pointer;
+transition: all 0.3s ease; border: 2px solid transparent;
+opacity: 0.6; overflow: hidden; display: inline-block;
+}
+.flag-btn:hover { opacity: 1; transform: scale(1.1); }
+.flag-btn.active { opacity: 1; border-color: #60a5fa; box-shadow: 0 0 10px rgba(96, 165, 250, 0.6); }
+.flag-btn svg { width: 100%; height: 100%; display: block; }
+#password-gate {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: #0a0f1e; z-index: 99999;
+display: flex; flex-direction: column; justify-content: center; align-items: center;
+}
+.pass-box {
+text-align: center; background: rgba(30, 58, 138, 0.1); padding: 40px;
+border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.3);
+box-shadow: 0 0 40px rgba(30, 58, 138, 0.4); backdrop-filter: blur(10px);
+}
+.pass-input {
+background: rgba(10, 15, 30, 0.7); border: 1px solid rgba(96, 165, 250, 0.3);
+color: white; padding: 10px 15px; border-radius: 6px; width: 200px;
+margin-bottom: 15px; text-align: center; font-size: 14px; outline: none;
+}
+.pass-btn {
+background: linear-gradient(135deg, #1e3a8a, #0f2a6e); color: white;
+border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
+border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
+}
+</style>
 </head>
 <body>
 
-    <div id="password-gate">
-        <div class="pass-box">
-            <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
-            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
-            <input type="password" id="pass-input" class="pass-input" placeholder="Parola">
-            <br>
-            <button onclick="checkPassword()" class="pass-btn">Intră</button>
-            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
-        </div>
-    </div>
+<div id="password-gate">
+<div class="pass-box">
+<h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
+<p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
+<input type="password" id="pass-input" class="pass-input" placeholder="Parola">
+<br>
+<button onclick="checkPassword()" class="pass-btn">Intră</button>
+<p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
+</div>
+</div>
 
-    <header class="header-integrated sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <a href="index.html" class="logo-container rounded-lg p-2 flex items-center space-x-2 no-underline">
-                    <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
-                        <path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
-                        <path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
-                        <circle cx="18" cy="23" r="2" fill="#60a5fa"/>
-                        <circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
-                    </svg>
-                    <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
-                </a>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="index.html" class="text-white/90 hover:text-white transition">Cumpără</a>
-                <a href="sell.html" class="text-white transition font-bold">Vinde</a>
-                <a href="#" class="text-white/90 hover:text-white transition">Dealeri</a>
-                <a href="news.html" class="text-white/90 hover:text-white transition">Noutăți</a>
-            </nav>
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <div class="flag-btn active" data-lang="ro" onclick="switchLanguage('ro')" title="Română">
-                        <svg viewBox="0 0 60 40"><rect width="20" height="40" fill="#002B7F"/><rect x="20" width="20" height="40" fill="#FCD116"/><rect x="40" width="20" height="40" fill="#CE1126"/></svg>
-                    </div>
-                    <div class="flag-btn" data-lang="bg" onclick="switchLanguage('bg')" title="Български">
-                        <svg viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#FFFFFF"/><rect y="13.33" width="60" height="13.33" fill="#00966E"/><rect y="26.66" width="60" height="13.34" fill="#D62612"/></svg>
-                    </div>
-                    <div class="flag-btn" data-lang="el" onclick="switchLanguage('el')" title="Ελληνικά">
-                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
-                    </div>
-                    <div class="flag-btn" data-lang="en" onclick="switchLanguage('en')" title="English">
-                        <svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
-                    </div>
-                </div>
-                <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
-            </div>
-        </div>
-    </header>
+<header class="header-integrated sticky top-0 z-50">
+<div class="container mx-auto px-6 py-3 flex justify-between items-center">
+<div class="flex items-center space-x-3">
+<a href="index.html" class="logo-container rounded-lg p-2 flex items-center space-x-2 no-underline">
+<svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+<path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
+<path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
+<circle cx="18" cy="23" r="2" fill="#60a5fa"/>
+<circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+</svg>
+<span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
+</a>
+</div>
+<nav class="hidden md:flex space-x-6 text-sm font-medium">
+<a href="buy.html" class="text-white/90 hover:text-white transition">Cumpără</a>
+<a href="sell.html" class="text-white transition font-bold">Vinde</a>
+<a href="dealers.html" class="text-white/90 hover:text-white transition">Dealeri</a>
+<a href="about.html" class="text-white/90 hover:text-white transition">Despre Noi</a>
+<a href="news.html" class="text-white/90 hover:text-white transition">Noutăți</a>
+</nav>
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<div class="flag-btn active" data-lang="ro" onclick="switchLanguage('ro')">
+<svg viewBox="0 0 60 40"><rect width="20" height="40" fill="#002B7F"/><rect x="20" width="20" height="40" fill="#FCD116"/><rect x="40" width="20" height="40" fill="#CE1126"/></svg>
+</div>
+<div class="flag-btn" data-lang="bg" onclick="switchLanguage('bg')">
+<svg viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#FFFFFF"/><rect y="13.33" width="60" height="13.33" fill="#00966E"/><rect y="26.66" width="60" height="13.34" fill="#D62612"/></svg>
+</div>
+<div class="flag-btn" data-lang="el" onclick="switchLanguage('el')">
+<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0D5EAF"/><rect y="4.44" width="60" height="4.44" fill="#FFFFFF"/><rect y="13.33" width="60" height="4.44" fill="#FFFFFF"/><rect y="22.22" width="60" height="4.44" fill="#FFFFFF"/><rect y="31.11" width="60" height="4.44" fill="#FFFFFF"/><rect width="22.22" height="22.22" fill="#0D5EAF"/><rect y="8.89" width="22.22" height="4.44" fill="#FFFFFF"/><rect x="8.89" width="4.44" height="22.22" fill="#FFFFFF"/></svg>
+</div>
+<div class="flag-btn" data-lang="en" onclick="switchLanguage('en')">
+<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#FFFFFF" stroke-width="6"/><path d="M0 0 L60 40 M60 0 L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#FFFFFF" stroke-width="10"/><path d="M30 0 L30 40 M0 20 L60 20" stroke="#C8102E" stroke-width="6"/></svg>
+</div>
+</div>
+<a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
+</div>
+</div>
+</header>
 
-    <section class="py-12">
-        <div class="container mx-auto px-6">
-            <div class="sell-container">
-                <h1 class="sell-title" id="sell-title">Vinde mașina ta cu noi</h1>
-                <p class="sell-subtitle" id="sell-subtitle">Obține o evaluare gratuită în câteva minute</p>
+<section class="py-12">
+<div class="container mx-auto px-6">
+<div class="sell-container">
+<h1 class="sell-title" id="sell-title">Vinde mașina ta cu noi</h1>
+<p class="sell-subtitle" id="sell-subtitle">Obține o evaluare gratuită în câteva minute</p>
 
-                <form id="sell-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label class="form-label" id="lbl-brand">Care este marca mașinii tale?</label>
-                        <select class="form-select" id="sell-brand" required onchange="updateModels()">
-                            <option value="" id="opt-brand">Selectează marca</option>
-                            <option value="BMW">BMW</option>
-                            <option value="Mercedes">Mercedes-Benz</option>
-                            <option value="Audi">Audi</option>
-                            <option value="VW">Volkswagen</option>
-                            <option value="Ford">Ford</option>
-                            <option value="Opel">Opel</option>
-                            <option value="Renault">Renault</option>
-                            <option value="Toyota">Toyota</option>
-                            <option value="Porsche">Porsche</option>
-                            <option value="Ferrari">Ferrari</option>
-                            <option value="Lamborghini">Lamborghini</option>
-                            <option value="Tesla">Tesla</option>
-                            <option value="Nissan">Nissan</option>
-                            <option value="Honda">Honda</option>
-                            <option value="Mazda">Mazda</option>
-                            <option value="Volvo">Volvo</option>
-                            <option value="Jaguar">Jaguar</option>
-                            <option value="KIA">KIA</option>
-                            <option value="Hyundai">Hyundai</option>
-                            <option value="Citroën">Citroën</option>
-                            <option value="Fiat">Fiat</option>
-                            <option value="Peugeot">Peugeot</option>
-                            <option value="Skoda">Skoda</option>
-                            <option value="SEAT">SEAT</option>
-                            <option value="Land Rover">Land Rover</option>
-                        </select>
-                    </div>
+<form id="sell-form" onsubmit="handleSubmit(event)">
+<div class="form-group">
+<label class="form-label" id="lbl-brand">Care este marca mașinii tale?</label>
+<select class="form-select" id="sell-brand" required onchange="updateModels()">
+<option value="" id="opt-brand">Selectează marca</option>
+<option value="BMW">BMW</option>
+<option value="Mercedes-Benz">Mercedes-Benz</option>
+<option value="Audi">Audi</option>
+<option value="Volkswagen">Volkswagen</option>
+<option value="Ford">Ford</option>
+<option value="Opel">Opel</option>
+<option value="Renault">Renault</option>
+<option value="Toyota">Toyota</option>
+<option value="Porsche">Porsche</option>
+<option value="Ferrari">Ferrari</option>
+<option value="Lamborghini">Lamborghini</option>
+<option value="Tesla">Tesla</option>
+<option value="Nissan">Nissan</option>
+<option value="Honda">Honda</option>
+<option value="Mazda">Mazda</option>
+<option value="Volvo">Volvo</option>
+<option value="Jaguar">Jaguar</option>
+<option value="KIA">KIA</option>
+<option value="Hyundai">Hyundai</option>
+<option value="Citroën">Citroën</option>
+<option value="Fiat">Fiat</option>
+<option value="Peugeot">Peugeot</option>
+<option value="Skoda">Skoda</option>
+<option value="SEAT">SEAT</option>
+<option value="Land Rover">Land Rover</option>
+</select>
+</div>
 
-                    <div class="form-group">
-                        <label class="form-label" id="lbl-model">Care este modelul?</label>
-                        <select class="form-select" id="sell-model" required disabled>
-                            <option value="" id="opt-model">Selectează modelul</option>
-                        </select>
-                    </div>
+<div class="form-group">
+<label class="form-label" id="lbl-model">Care este modelul?</label>
+<select class="form-select" id="sell-model" required disabled>
+<option value="" id="opt-model">Selectează modelul</option>
+</select>
+</div>
 
-                    <div class="form-group">
-                        <label class="form-label" id="lbl-year">În ce an a fost înmatriculată?</label>
-                        <select class="form-select" id="sell-year" required>
-                            <option value="" id="opt-year">Selectează anul</option>
-                        </select>
-                    </div>
+<div class="form-group">
+<label class="form-label" id="lbl-year">În ce an a fost înmatriculată?</label>
+<select class="form-select" id="sell-year" required>
+<option value="" id="opt-year">Selectează anul</option>
+</select>
+</div>
 
-                    <button type="submit" class="btn-start" id="btn-start">
-                        Începe evaluarea <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </button>
-                </form>
+<button type="submit" class="btn-next" id="btn-next">
+NEXT <i class="fa-solid fa-arrow-right ml-2"></i>
+</button>
+</form>
 
-                <p class="powered-by">
-                    <span id="powered-text">Oferit de</span> <a href="#">viacars.eu</a>
-                </p>
-            </div>
-        </div>
-    </section>
+<p class="powered-by">
+<span id="powered-text">Oferit de</span> <a href="#">viacars.eu</a>
+</p>
+</div>
+</div>
+</section>
 
-    <footer style="background: rgba(10, 15, 30, 0.5); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.2); padding: 40px 0; margin-top: 60px;">
-        <div class="container mx-auto px-6">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
-                        <li style="margin-bottom: 8px;"><a href="#" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cum funcționează</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
-                        <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i>+40 123 456 789</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.6), transparent); margin-bottom: 20px;"></div>
-            <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
-                <p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
-            </div>
-        </div>
-    </footer>
+<footer style="background: rgba(10, 15, 30, 0.5); backdrop-filter: blur(12px); border-top: 1px solid rgba(30, 58, 138, 0.2); padding: 40px 0; margin-top: 60px;">
+<div class="container mx-auto px-6">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+<div>
+<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="margin-bottom: 8px;"><a href="about.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+</ul>
+</div>
+<div>
+<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
+</ul>
+</div>
+</div>
+<div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
+<p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
+</div>
+</div>
+</footer>
 
-    <script>
-        const SITE_PASSWORD = "1234";
-        async function initGate() {
-            const gate = document.getElementById('password-gate');
-            if (!gate) return;
-            const trustedIP = localStorage.getItem('viacars_trusted_ip');
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
-            } catch (error) { console.log("Verificare IP eșuată"); }
-        }
-        function checkPassword() {
-            const input = document.getElementById('pass-input').value;
-            if (input === SITE_PASSWORD) {
-                document.getElementById('password-gate').style.display = 'none';
-                fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
-            } else {
-                document.getElementById('pass-error').style.display = 'block';
-                document.getElementById('pass-input').value = '';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const passInput = document.getElementById('pass-input');
-            if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
-            initGate();
-            populateYears();
-        });
+<script>
+const SITE_PASSWORD = "1234";
+async function initGate() {
+const gate = document.getElementById('password-gate');
+if (!gate) return;
+const trustedIP = localStorage.getItem('viacars_trusted_ip');
+try {
+const response = await fetch('https://api.ipify.org?format=json');
+const data = await response.json();
+if (trustedIP === data.ip) { gate.style.display = 'none'; return; }
+} catch (error) {}
+}
+function checkPassword() {
+const input = document.getElementById('pass-input').value;
+if (input === SITE_PASSWORD) {
+document.getElementById('password-gate').style.display = 'none';
+fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => localStorage.setItem('viacars_trusted_ip', data.ip));
+} else {
+document.getElementById('pass-error').style.display = 'block';
+document.getElementById('pass-input').value = '';
+}
+}
+document.addEventListener('DOMContentLoaded', () => {
+const passInput = document.getElementById('pass-input');
+if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
+initGate();
+populateYears();
+});
 
-        function populateYears() {
-            const yearSelect = document.getElementById('sell-year');
-            const currentYear = 2026;
-            for (let year = currentYear; year >= 1990; year--) {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearSelect.appendChild(option);
-            }
-        }
+function populateYears() {
+const yearSelect = document.getElementById('sell-year');
+const currentYear = 2026;
+for (let year = currentYear; year >= 1990; year--) {
+const option = document.createElement('option');
+option.value = year;
+option.textContent = year;
+yearSelect.appendChild(option);
+}
+}
 
-        const modelsByBrand = {
-            "BMW": ["Seria 1", "Seria 2", "Seria 3", "Seria 4", "Seria 5", "Seria 7", "X1", "X3", "X5", "X7", "Z4"],
-            "Mercedes": ["Clasa A", "Clasa B", "Clasa C", "Clasa E", "Clasa S", "GLA", "GLC", "GLE", "GLS", "AMG GT"],
-            "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "TT"],
-            "VW": ["Golf", "Polo", "Passat", "Tiguan", "Touareg", "T-Roc", "ID.3", "ID.4", "Arteon"],
-            "Ford": ["Fiesta", "Focus", "Mondeo", "Kuga", "Puma", "Explorer", "Mustang", "Ranger"],
-            "Opel": ["Corsa", "Astra", "Insignia", "Crossland", "Grandland", "Mokka", "Combo"],
-            "Renault": ["Clio", "Megane", "Kadjar", "Captur", "Koleos", "Talisman", "Scenic"],
-            "Toyota": ["Yaris", "Corolla", "Camry", "RAV4", "C-HR", "Land Cruiser", "Supra"],
-            "Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan", "718 Boxster", "718 Cayman"],
-            "Ferrari": ["488", "F8", "Roma", "Portofino", "SF90", "812 Superfast"],
-            "Lamborghini": ["Huracán", "Urus", "Aventador", "Revuelto"],
-            "Tesla": ["Model 3", "Model Y", "Model S", "Model X", "Cybertruck"],
-            "Nissan": ["Qashqai", "X-Trail", "Leaf", "Juke", "Micra", "Ariya", "GT-R"],
-            "Honda": ["Civic", "CR-V", "HR-V", "Jazz", "Accord", "NSX"],
-            "Mazda": ["Mazda2", "Mazda3", "Mazda6", "CX-5", "CX-30", "MX-5", "CX-60"],
-            "Volvo": ["XC40", "XC60", "XC90", "S60", "S90", "V60", "V90", "C40"],
-            "Jaguar": ["XE", "XF", "F-PACE", "E-PACE", "I-PACE", "F-TYPE"],
-            "KIA": ["Rio", "Ceed", "Sportage", "Sorento", "Niro", "EV6", "Stinger"],
-            "Hyundai": ["i10", "i20", "i30", "Tucson", "Santa Fe", "Kona", "Ioniq 5", "Ioniq 6"],
-            "Citroën": ["C3", "C4", "C5 Aircross", "Berlingo", "C5 X", "Ami"],
-            "Fiat": ["500", "Panda", "Tipo", "500X", "500e", "Punto"],
-            "Peugeot": ["208", "308", "508", "2008", "3008", "5008", "e-208"],
-            "Skoda": ["Fabia", "Octavia", "Superb", "Kodiaq", "Karoq", "Enyaq", "Scala"],
-            "SEAT": ["Ibiza", "Leon", "Ateca", "Arona", "Tarraco", "Born"],
-            "Land Rover": ["Range Rover", "Range Rover Sport", "Range Rover Evoque", "Discovery", "Defender", "Freelander"]
-        };
+const modelsByBrand = {
+"BMW": ["Seria 1", "Seria 2", "Seria 3", "Seria 4", "Seria 5", "Seria 7", "X1", "X3", "X5", "X7", "Z4"],
+"Mercedes-Benz": ["Clasa A", "Clasa B", "Clasa C", "Clasa E", "Clasa S", "GLA", "GLC", "GLE", "GLS", "AMG GT"],
+"Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "Q8", "TT"],
+"Volkswagen": ["Golf", "Polo", "Passat", "Tiguan", "Touareg", "T-Roc", "ID.3", "ID.4", "Arteon"],
+"Ford": ["Fiesta", "Focus", "Mondeo", "Kuga", "Puma", "Explorer", "Mustang", "Ranger"],
+"Opel": ["Corsa", "Astra", "Insignia", "Crossland", "Grandland", "Mokka", "Combo"],
+"Renault": ["Clio", "Megane", "Kadjar", "Captur", "Koleos", "Talisman", "Scenic"],
+"Toyota": ["Yaris", "Corolla", "Camry", "RAV4", "C-HR", "Land Cruiser", "Supra"],
+"Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan", "718 Boxster", "718 Cayman"],
+"Ferrari": ["488", "F8", "Roma", "Portofino", "SF90", "812 Superfast"],
+"Lamborghini": ["Huracán", "Urus", "Aventador", "Revuelto"],
+"Tesla": ["Model 3", "Model Y", "Model S", "Model X", "Cybertruck"],
+"Nissan": ["Qashqai", "X-Trail", "Leaf", "Juke", "Micra", "Ariya", "GT-R"],
+"Honda": ["Civic", "CR-V", "HR-V", "Jazz", "Accord", "NSX"],
+"Mazda": ["Mazda2", "Mazda3", "Mazda6", "CX-5", "CX-30", "MX-5", "CX-60"],
+"Volvo": ["XC40", "XC60", "XC90", "S60", "S90", "V60", "V90", "C40"],
+"Jaguar": ["XE", "XF", "F-PACE", "E-PACE", "I-PACE", "F-TYPE"],
+"KIA": ["Rio", "Ceed", "Sportage", "Sorento", "Niro", "EV6", "Stinger"],
+"Hyundai": ["i10", "i20", "i30", "Tucson", "Santa Fe", "Kona", "Ioniq 5", "Ioniq 6"],
+"Citroën": ["C3", "C4", "C5 Aircross", "Berlingo", "C5 X", "Ami"],
+"Fiat": ["500", "Panda", "Tipo", "500X", "500e", "Punto"],
+"Peugeot": ["208", "308", "508", "2008", "3008", "5008", "e-208"],
+"Skoda": ["Fabia", "Octavia", "Superb", "Kodiaq", "Karoq", "Enyaq", "Scala"],
+"SEAT": ["Ibiza", "Leon", "Ateca", "Arona", "Tarraco", "Born"],
+"Land Rover": ["Range Rover", "Range Rover Sport", "Range Rover Evoque", "Discovery", "Defender", "Freelander"]
+};
 
-        function updateModels() {
-            const brandSelect = document.getElementById('sell-brand');
-            const modelSelect = document.getElementById('sell-model');
-            const selectedBrand = brandSelect.value;
-            if (selectedBrand && modelsByBrand[selectedBrand]) {
-                modelSelect.innerHTML = '<option value="">Selectează modelul</option>';
-                modelsByBrand[selectedBrand].forEach(model => {
-                    const option = document.createElement('option');
-                    option.value = model;
-                    option.textContent = model;
-                    modelSelect.appendChild(option);
-                });
-                modelSelect.disabled = false;
-            } else {
-                modelSelect.innerHTML = '<option value="">Selectează modelul</option>';
-                modelSelect.disabled = true;
-            }
-        }
+function updateModels() {
+const brandSelect = document.getElementById('sell-brand');
+const modelSelect = document.getElementById('sell-model');
+const selectedBrand = brandSelect.value;
+if (selectedBrand && modelsByBrand[selectedBrand]) {
+modelSelect.innerHTML = '<option value="">Selectează modelul</option>';
+modelsByBrand[selectedBrand].forEach(model => {
+const option = document.createElement('option');
+option.value = model;
+option.textContent = model;
+modelSelect.appendChild(option);
+});
+modelSelect.disabled = false;
+} else {
+modelSelect.innerHTML = '<option value="">Selectează modelul</option>';
+modelSelect.disabled = true;
+}
+}
 
-        // REDIRECT CĂTRE details.html
-        function handleSubmit(e) {
-            e.preventDefault();
-            const brand = document.getElementById('sell-brand').value;
-            const model = document.getElementById('sell-model').value;
-            const year = document.getElementById('sell-year').value;
-            if (brand && model && year) {
-                window.location.href = `details.html?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}&year=${year}`;
-            } else {
-                alert('Te rugăm să completezi toate câmpurile!');
-            }
-        }
+function handleSubmit(e) {
+e.preventDefault();
+const brand = document.getElementById('sell-brand').value;
+const model = document.getElementById('sell-model').value;
+const year = document.getElementById('sell-year').value;
+if (brand && model && year) {
+// Salvăm datele temporar pentru a le folosi în details.html
+sessionStorage.setItem('pendingCar', JSON.stringify({ brand, model, year }));
+window.location.href = `details.html?brand=${encodeURIComponent(brand)}&model=${encodeURIComponent(model)}&year=${year}`;
+} else {
+alert('Te rugăm să completezi toate câmpurile!');
+}
+}
 
-        const translations = {
-            ro: { sell_title: "Vinde mașina ta cu noi", sell_subtitle: "Obține o evaluare gratuită în câteva minute", brand_label: "Care este marca mașinii tale?", brand_select: "Selectează marca", model_label: "Care este modelul?", model_select: "Selectează modelul", year_label: "În ce an a fost înmatriculată?", year_select: "Selectează anul", start_btn: "Începe evaluarea", powered: "Oferit de" },
-            bg: { sell_title: "Продай колата си с нас", sell_subtitle: "Получете безплатна оценка за минути", brand_label: "Каква е марката на вашата кола?", brand_select: "Изберете марка", model_label: "Какъв е моделът?", model_select: "Изберете модел", year_label: "В коя година е регистрирана?", year_select: "Изберете година", start_btn: "Започни оценката", powered: "Предоставено от" },
-            el: { sell_title: "Πουλήστε το αυτοκίνητό σας μαζί μας", sell_subtitle: "Λάβετε δωρεάν αξιολόγηση σε λίγα λεπτά", brand_label: "Ποια είναι η μάρκα του αυτοκινήτου σας;", brand_select: "Επιλέξτε μάρκα", model_label: "Ποιο είναι το μοντέλο;", model_select: "Επιλέξτε μοντέλο", year_label: "Ποιο έτος καταχωρήθηκε;", year_select: "Επιλέξτε έτος", start_btn: "Ξεκινήστε την αξιολόγηση", powered: "Υποστηρίζεται από" },
-            en: { sell_title: "Sell your car with us", sell_subtitle: "Get a free valuation in minutes", brand_label: "What is the brand of your car?", brand_select: "Select brand", model_label: "What is the model?", model_select: "Select model", year_label: "In which year was it registered?", year_select: "Select year", start_btn: "Start valuation", powered: "Powered by" }
-        };
+const translations = {
+ro: { sell_title: "Vinde mașina ta cu noi", sell_subtitle: "Obține o evaluare gratuită în câteva minute", brand_label: "Care este marca mașinii tale?", brand_select: "Selectează marca", model_label: "Care este modelul?", model_select: "Selectează modelul", year_label: "În ce an a fost înmatriculată?", year_select: "Selectează anul", start_btn: "NEXT", powered: "Oferit de" },
+en: { sell_title: "Sell your car with us", sell_subtitle: "Get a free valuation in minutes", brand_label: "What is the brand of your car?", brand_select: "Select brand", model_label: "What is the model?", model_select: "Select model", year_label: "In which year was it registered?", year_select: "Select year", start_btn: "NEXT", powered: "Powered by" },
+bg: { sell_title: "Продай колата си с нас", sell_subtitle: "Получете безплатна оценка за минути", brand_label: "Каква е марката на вашата кола?", brand_select: "Изберете марка", model_label: "Какъв е моделът?", model_select: "Изберете модел", year_label: "В коя година е регистрирана?", year_select: "Изберете година", start_btn: "НАПРЕД", powered: "Предоставено от" },
+el: { sell_title: "Πουλήστε το αυτοκίνητό σας μαζί μας", sell_subtitle: "Λάβετε δωρεάν αξιολόγηση σε λίγα λεπτά", brand_label: "Ποια είναι η μάρκα του αυτοκινήτου σας;", brand_select: "Επιλέξτε μάρκα", model_label: "Ποιο είναι το μοντέλο;", model_select: "Επιλέξτε μοντέλο", year_label: "Ποιο έτος καταχωρήθηκε;", year_select: "Επιλέξτε έτος", start_btn: "ΕΠΟΜΕΝΟ", powered: "Υποστηρίζεται από" }
+};
 
-        function switchLanguage(lang) {
-            const dict = translations[lang];
-            if (!dict) return;
-            document.getElementById('sell-title').textContent = dict.sell_title;
-            document.getElementById('sell-subtitle').textContent = dict.sell_subtitle;
-            document.getElementById('lbl-brand').textContent = dict.brand_label;
-            document.getElementById('opt-brand').textContent = dict.brand_select;
-            document.getElementById('lbl-model').textContent = dict.model_label;
-            document.getElementById('opt-model').textContent = dict.model_select;
-            document.getElementById('lbl-year').textContent = dict.year_label;
-            document.getElementById('opt-year').textContent = dict.year_select;
-            document.getElementById('btn-start').innerHTML = dict.start_btn + ' <i class="fa-solid fa-arrow-right ml-2"></i>';
-            document.getElementById('powered-text').textContent = dict.powered;
-            document.querySelectorAll('.flag-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-            });
-        }
-    </script>
+function switchLanguage(lang) {
+const dict = translations[lang];
+if (!dict) return;
+document.getElementById('sell-title').textContent = dict.sell_title;
+document.getElementById('sell-subtitle').textContent = dict.sell_subtitle;
+document.getElementById('lbl-brand').textContent = dict.brand_label;
+document.getElementById('opt-brand').textContent = dict.brand_select;
+document.getElementById('lbl-model').textContent = dict.model_label;
+document.getElementById('opt-model').textContent = dict.model_select;
+document.getElementById('lbl-year').textContent = dict.year_label;
+document.getElementById('opt-year').textContent = dict.year_select;
+document.getElementById('btn-next').innerHTML = dict.start_btn + ' <i class="fa-solid fa-arrow-right ml-2"></i>';
+document.getElementById('powered-text').textContent = dict.powered;
+document.querySelectorAll('.flag-btn').forEach(btn => {
+btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+});
+}
+</script>
 </body>
 </html>
