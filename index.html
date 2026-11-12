@@ -238,15 +238,17 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 <div class="container mx-auto px-6 relative z-10">
 <div class="text-center mb-10">
 <div class="hero-brand inline-flex items-center gap-3 mb-5">
-<span class="logo-container rounded-xl p-3 inline-flex">
-<svg class="w-12 h-12" viewBox="0 0 40 40" fill="none">
-<path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
-<path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
-<circle cx="18" cy="23" r="2" fill="#60a5fa"/>
-<circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+<!-- masina decupata: fara chenarul albastru, parbrizul e gol (se vede fundalul paginii) -->
+<svg viewBox="0 0 40 40" fill="none" style="width: 62px; height: 62px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));">
+<defs>
+<mask id="hero-car-cut">
+<rect width="40" height="40" fill="#fff"/>
+<path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#000"/>
+</mask>
+</defs>
+<path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.95)" mask="url(#hero-car-cut)"/>
 </svg>
-</span>
-<span class="text-4xl font-bold text-white" style="font-family: 'Merriweather', serif;">ViaCars<span class="text-blue-300">.eu</span></span>
+<span class="font-bold text-white" style="font-family: 'Merriweather', serif; font-size: 2.925rem; line-height: 1.1;">ViaCars<span class="text-blue-300">.eu</span></span>
 </div>
 <h1 class="font-bold text-white mb-3" style="font-size: 1.9125rem; line-height: 2.125rem;" data-i18n="hero_title">Găsește mașina perfectă</h1>
 <p class="text-blue-200/60" style="font-size: 0.74375rem;" data-i18n="hero_sub">Peste 12.450 de anunțuri verificate</p>
