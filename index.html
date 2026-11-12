@@ -162,6 +162,7 @@ border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
 border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 }
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 
@@ -189,9 +190,9 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 <span class="text-xl font-bold text-white">ViaCars<span class="text-blue-300">.eu</span></span>
 </a>
 </div>
-<nav class="hidden md:flex space-x-6 text-sm font-medium">
+<nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
 <a href="buy.html" class="text-white/90 hover:text-white transition">Cumpără</a>
-<a href="sell.html" class="text-white/90 hover:text-white transition">Vinde</a>
+<a href="sell.html" class="btn-sell" data-vi18n="btn_sell">Vinde mașina ta cu noi</a>
 <a href="dealers.html" class="text-white/90 hover:text-white transition">Dealeri</a>
 <a href="about.html" class="text-white/90 hover:text-white transition">Despre Noi</a>
 <a href="news.html" class="text-white/90 hover:text-white transition">Noutăți</a>
@@ -212,7 +213,6 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 </div>
 </div>
 <a href="#" class="text-sm text-white/70 hover:text-white transition px-3 py-1.5">Logare</a>
-<a href="sell.html" class="btn-sell">Vinde mașina ta cu noi</a>
 </div>
 </div>
 </header>
@@ -220,8 +220,19 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 <section class="relative py-24">
 <div class="container mx-auto px-6 relative z-10">
 <div class="text-center mb-10">
-<h1 class="text-4xl font-bold text-white mb-3">Găsește mașina perfectă</h1>
-<p class="text-blue-200/60 text-sm">Peste 12.450 de anunțuri verificate</p>
+<div class="hero-brand inline-flex items-center gap-3 mb-5">
+<span class="logo-container rounded-xl p-3 inline-flex">
+<svg class="w-12 h-12" viewBox="0 0 40 40" fill="none">
+<path d="M5 25 Q20 10 35 25 L35 32 Q20 35 5 32 Z" fill="rgba(255,255,255,0.9)"/>
+<path d="M12 22 L28 18 L26 24 L14 26 Z" fill="#1e3a8a"/>
+<circle cx="18" cy="23" r="2" fill="#60a5fa"/>
+<circle cx="22" cy="22" r="1.5" fill="#60a5fa"/>
+</svg>
+</span>
+<span class="text-4xl font-bold text-white" style="font-family: 'Merriweather', serif;">ViaCars<span class="text-blue-300">.eu</span></span>
+</div>
+<h1 class="font-bold text-white mb-3" style="font-size: 1.9125rem; line-height: 2.125rem;">Găsește mașina perfectă</h1>
+<p class="text-blue-200/60" style="font-size: 0.74375rem;">Peste 12.450 de anunțuri verificate</p>
 </div>
 <div class="bg-black/30 backdrop-blur-xl p-5 rounded-lg border border-blue-400/20 max-w-5xl mx-auto blue-glow-subtle">
 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
@@ -311,20 +322,21 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 <div class="container mx-auto px-6">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
 <div>
-<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Despre ViaCars</h4>
+<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;" data-vi18n="foot_about">Despre ViaCars</h4>
 <ul style="list-style: none; padding: 0; margin: 0;">
-<li style="margin-bottom: 8px;"><a href="about.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;">Cine suntem</a></li>
+<li style="margin-bottom: 8px;"><a href="about.html" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;" data-vi18n="foot_who">Cine suntem</a></li>
+<li style="margin-bottom: 8px;"><a href="about.html#cum-functioneaza" style="color: rgba(255,255,255,0.5); text-decoration: none; font-size: 12px;" data-vi18n="foot_how">Cum funcționează</a></li>
 </ul>
 </div>
 <div>
-<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;">Contact</h4>
+<h4 style="color: white; font-weight: bold; margin-bottom: 15px; font-size: 14px;" data-vi18n="foot_contact">Contact</h4>
 <ul style="list-style: none; padding: 0; margin: 0;">
 <li style="margin-bottom: 8px; color: rgba(255,255,255,0.5); font-size: 12px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>contact@viacars.eu</li>
 </ul>
 </div>
 </div>
 <div style="text-align: center; color: rgba(255,255,255,0.4); font-size: 12px;">
-<p>&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
+<p data-vi18n="foot_rights">&copy; 2026 ViaCars.eu. Toate drepturile rezervate.</p>
 </div>
 </div>
 </footer>
@@ -438,5 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
     switchLanguage(savedLang);
 });
 </script>
+<script src="site.js"></script>
 </body>
 </html>
