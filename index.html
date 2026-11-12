@@ -46,6 +46,18 @@ background: rgba(30, 58, 138, 0.3);
 border-color: rgba(96, 165, 250, 0.5);
 box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
 }
+/* trenuletul de sigle: un rand, de la dreapta la stanga, se opreste la hover */
+.brands-marquee { overflow: hidden; position: relative; padding: 6px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.brands-track { display: flex; gap: 12px; width: max-content; animation: brands-scroll 60s linear infinite; }
+.brands-marquee:hover .brands-track { animation-play-state: paused; }
+@keyframes brands-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.brands-track .brand-logo { flex: 0 0 auto; width: 110px; text-decoration: none; }
+.brand-img { width: 44px; height: 44px; object-fit: contain; }
+.brand-fallback { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(30, 58, 138, 0.45); border: 1px solid rgba(96, 165, 250, 0.4); font-weight: 700; font-size: 13px; color: #fff; }
+@media (prefers-reduced-motion: reduce) { .brands-track { animation-duration: 180s; } }
 .car-card {
 background: linear-gradient(145deg, rgba(10, 15, 30, 0.85), rgba(30, 58, 138, 0.15));
 backdrop-filter: blur(10px);
@@ -245,8 +257,8 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 <h2 class="section-title text-2xl font-bold text-white">Explorează după Marcă</h2>
 <p class="text-white/50 text-sm mt-3">Apasă pe o siglă pentru a vedea toate mașinile disponibile</p>
 </div>
-<!-- Aici se va injecta grila din JavaScript -->
-<div id="brands-grid" class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-2"></div>
+<!-- Aici se injecteaza trenuletul de sigle din JavaScript -->
+<div class="brands-marquee"><div id="brands-grid" class="brands-track"></div></div>
 </div>
 </section>
 
@@ -313,6 +325,7 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 </div>
 </footer>
 
+<script src="brands.js"></script>
 <script>
 const SITE_PASSWORD = "1234";
 
@@ -338,46 +351,45 @@ document.getElementById('pass-input').value = '';
 }
 }
 
-// === ARRAY-ul CU MĂRCI (Exact cum l-ai dat) ===
-const carBrands = [
-    { name: "BMW", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg", listings: 1240 },
-    { name: "Mercedes-Benz", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/mercedes.svg", listings: 980 },
-    { name: "Audi", logo: "https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg", listings: 750 },
-    { name: "VW", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg", listings: 1100 },
-    { name: "Ford", logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg", listings: 620 },
-    { name: "Opel", logo: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Opel_logo_2009.svg", listings: 540 },
-    { name: "Renault", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Renault_2015_Logo.svg", listings: 480 },
-    { name: "Toyota", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Toyota.svg", listings: 390 },
-    { name: "Porsche", logo: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Porsche_logo.svg", listings: 210 },
-    { name: "Ferrari", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Ferrari_logo.svg", listings: 85 },
-    { name: "Lamborghini", logo: "https://upload.wikimedia.org/wikipedia/commons/d/df/Lamborghini_Logo.svg", listings: 45 },
-    { name: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg", listings: 320 },
-    { name: "Nissan", logo: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Nissan_2020_logo.svg", listings: 410 },
-    { name: "Honda", logo: "https://upload.wikimedia.org/wikipedia/commons/3/38/Honda.svg", listings: 280 },
-    { name: "Mazda", logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Mazda_Logo.svg", listings: 195 },
-    { name: "Volvo", logo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Volvo-Iron-Mark-Black.svg", listings: 265 },
-    { name: "Jaguar", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/jaguar.svg", listings: 95 },
-    { name: "Land Rover", logo: "https://cdn.jsdelivr.net/npm/simple-icons@10.4.0/icons/landrover.svg", listings: 140 },
-    { name: "KIA", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/KIA_logo2.svg", listings: 340 },
-    { name: "Hyundai", logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg", listings: 380 },
-    { name: "Citroën", logo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Citro%C3%ABn_2016.svg", listings: 290 },
-    { name: "Fiat", logo: "https://upload.wikimedia.org/wikipedia/commons/1/18/Fiat_Automobiles.svg", listings: 220 },
-    { name: "Peugeot", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Peugeot_Logo.svg", listings: 310 },
-    { name: "Skoda", logo: "https://upload.wikimedia.org/wikipedia/commons/8/8c/%C5%A0koda_logo_2016.svg", listings: 270 },
-    { name: "SEAT", logo: "https://upload.wikimedia.org/wikipedia/commons/1/18/SEAT_logo_2012.svg", listings: 180 }
-];
+// lista de mărci vine din brands.js (încărcat chiar înaintea acestui script)
 
-// Funcție care generează grila de mărci dinamic
+// Sigle: intai linkul din brands.js, apoi Simple Icons in alb, iar daca nu merge nimic - initialele marcii (fara imagine sparta)
+function brandSlug(name) {
+    return name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+}
+function brandSources(brand) {
+    return [brand.logo, 'https://cdn.simpleicons.org/' + brandSlug(brand.name) + '/ffffff'].filter(Boolean);
+}
+// siglele Simple Icons de pe jsdelivr (Mercedes, Jaguar, Land Rover) sunt negre - pe fundalul inchis se fac albe
+function brandMono(url) { return /jsdelivr\.net\/npm\/simple-icons/.test(url); }
+function brandInitials(name) {
+    return name.normalize('NFD').replace(/[^A-Za-z0-9 -]/g, '').split(/[ -]/).map(w => w[0] || '').join('').slice(0, 3).toUpperCase();
+}
+// incearca sursele una cate una (o singura data pe marca) si pune prima care se incarca in toate copiile siglei
+function brandResolve(brand, slot) {
+    const list = brandSources(brand);
+    let k = 0;
+    const probe = new Image();
+    probe.onload = () => document.querySelectorAll('[data-brand="' + slot + '"]').forEach(box => {
+        box.innerHTML = '<img src="' + list[k] + '" alt="' + brand.name + '" class="brand-img" style="filter: ' +
+            (brandMono(list[k]) ? 'brightness(0) invert(1) ' : '') + 'drop-shadow(0 2px 4px rgba(0,0,0,0.3));">';
+    });
+    probe.onerror = () => { k++; if (k < list.length) probe.src = list[k]; };
+    probe.src = list[0];
+}
+function brandCard(brand, slot) {
+    return `
+        <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-logo p-3 rounded cursor-pointer text-center flex flex-col items-center gap-2" title="${brand.name} (${brand.listings} anunțuri)">
+            <div data-brand="${slot}"><div class="brand-fallback">${brandInitials(brand.name)}</div></div>
+            <p class="text-[10px] text-white/70 font-medium whitespace-nowrap">${brand.name}</p>
+        </a>`;
+}
 function renderBrands() {
     const grid = document.getElementById('brands-grid');
     if (!grid) return;
-    
-    grid.innerHTML = carBrands.map(brand => `
-        <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-logo p-3 rounded cursor-pointer text-center flex flex-col items-center gap-2 no-underline" title="${brand.name} (${brand.listings} anunțuri)">
-            <img src="${brand.logo}" alt="${brand.name}" class="w-10 h-10 mx-auto mb-1 object-contain" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
-            <p class="text-[10px] text-white/70 font-medium">${brand.name}</p>
-        </a>
-    `).join('');
+    const one = carBrands.map((b, i) => brandCard(b, i)).join('');
+    grid.innerHTML = one + one;          // de doua ori: banda se reia fara gol
+    carBrands.forEach((b, i) => brandResolve(b, i));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
