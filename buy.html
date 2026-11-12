@@ -494,7 +494,7 @@
                         </div>
                     </div>
 
-                    <div class="filter-section">
+                    <div class="filter-section" data-f="fuel">
                         <div class="filter-title" data-i18n="f_fuel">Combustibil</div>
                         <label class="checkbox-item"><input type="checkbox" value="diesel"> Diesel</label>
                         <label class="checkbox-item"><input type="checkbox" value="benzina"> Benzină</label>
@@ -503,14 +503,14 @@
                         <label class="checkbox-item"><input type="checkbox" value="lpg"> GPL</label>
                     </div>
 
-                    <div class="filter-section">
+                    <div class="filter-section" data-f="trans">
                         <div class="filter-title" data-i18n="f_trans">Cutie de viteze</div>
                         <label class="checkbox-item"><input type="checkbox" value="manuala"> Manuală</label>
                         <label class="checkbox-item"><input type="checkbox" value="automata"> Automată</label>
                         <label class="checkbox-item"><input type="checkbox" value="semiautomata"> Semiautomată</label>
                     </div>
 
-                    <div class="filter-section">
+                    <div class="filter-section" data-f="body">
                         <div class="filter-title" data-i18n="f_body">Caroserie</div>
                         <label class="checkbox-item"><input type="checkbox" value="sedan"> Sedan</label>
                         <label class="checkbox-item"><input type="checkbox" value="suv"> SUV / Jeep</label>
@@ -530,7 +530,7 @@
                         </div>
                     </div>
 
-                    <div class="filter-section">
+                    <div class="filter-section" data-f="color">
                         <div class="filter-title" data-i18n="f_color">Culoare</div>
                         <label class="checkbox-item"><input type="checkbox" value="negru"> Negru</label>
                         <label class="checkbox-item"><input type="checkbox" value="alb"> Alb</label>
@@ -541,7 +541,7 @@
                         <label class="checkbox-item"><input type="checkbox" value="verde"> Verde</label>
                     </div>
 
-                    <div class="filter-section">
+                    <div class="filter-section" data-f="seller">
                         <div class="filter-title" data-i18n="f_seller">Vânzător</div>
                         <label class="checkbox-item"><input type="checkbox" value="dealer"> Dealer autorizat</label>
                         <label class="checkbox-item"><input type="checkbox" value="persoana"> Persoană fizică</label>
@@ -624,6 +624,7 @@
         </div>
     </footer>
 
+    <script src="cars.js"></script>
     <script>
         const SITE_PASSWORD = "1234";
         async function initGate() {
@@ -650,36 +651,11 @@
             const passInput = document.getElementById('pass-input');
             if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
             initGate();
+            loadUrlFilters();
             renderCars();
-            renderPagination();
         });
 
-        const carsData = [
-            { id: 1, brand: "BMW", model: "Seria 3 320d", year: 2021, km: 85000, price: 24500, fuel: "diesel", trans: "automata", body: "sedan", color: "negru", power: 190, location: "București", seller: "dealer", badge: "verified", image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80", date: "2026-11-10" },
-            { id: 2, brand: "Mercedes-Benz", model: "Clasa C 220d", year: 2022, km: 42000, price: 31200, fuel: "hybrid", trans: "automata", body: "sedan", color: "argintiu", power: 200, location: "Cluj", seller: "dealer", badge: "dealer", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80", date: "2026-11-09" },
-            { id: 3, brand: "Audi", model: "A4 Avant", year: 2019, km: 110000, price: 19800, fuel: "diesel", trans: "manuala", body: "break", color: "gri", power: 150, location: "Timiș", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80", date: "2026-11-08" },
-            { id: 4, brand: "Volkswagen", model: "Golf 8", year: 2023, km: 28000, price: 22900, fuel: "benzina", trans: "automata", body: "hatchback", color: "alb", power: 150, location: "București", seller: "dealer", badge: "top", image: "https://images.unsplash.com/photo-1471444928139-48c5bf5163d8?auto=format&fit=crop&w=600&q=80", date: "2026-11-07" },
-            { id: 5, brand: "Tesla", model: "Model 3", year: 2023, km: 15000, price: 38500, fuel: "electric", trans: "automata", body: "sedan", color: "alb", power: 283, location: "București", seller: "dealer", badge: "top", image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=600&q=80", date: "2026-11-06" },
-            { id: 6, brand: "Porsche", model: "911 Carrera", year: 2020, km: 35000, price: 95000, fuel: "benzina", trans: "automata", body: "coupe", color: "negru", power: 385, location: "Cluj", seller: "dealer", badge: "verified", image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=600&q=80", date: "2026-11-05" },
-            { id: 7, brand: "Toyota", model: "RAV4 Hybrid", year: 2022, km: 55000, price: 28900, fuel: "hybrid", trans: "automata", body: "suv", color: "albastru", power: 218, location: "Constanța", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=600&q=80", date: "2026-11-04" },
-            { id: 8, brand: "Ford", model: "Mustang GT", year: 2019, km: 48000, price: 42000, fuel: "benzina", trans: "manuala", body: "coupe", color: "rosu", power: 450, location: "Brașov", seller: "persoana", badge: "verified", image: "https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?auto=format&fit=crop&w=600&q=80", date: "2026-11-03" },
-            { id: 9, brand: "Volvo", model: "XC60", year: 2021, km: 72000, price: 32500, fuel: "diesel", trans: "automata", body: "suv", color: "gri", power: 190, location: "Iași", seller: "dealer", badge: "dealer", image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-11-02" },
-            { id: 10, brand: "Jaguar", model: "F-PACE", year: 2020, km: 65000, price: 38900, fuel: "diesel", trans: "automata", body: "suv", color: "negru", power: 240, location: "București", seller: "dealer", badge: null, image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80", date: "2026-11-01" },
-            { id: 11, brand: "KIA", model: "Sportage", year: 2023, km: 22000, price: 26500, fuel: "hybrid", trans: "automata", body: "suv", color: "alb", power: 230, location: "Timiș", seller: "dealer", badge: "top", image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80", date: "2026-10-31" },
-            { id: 12, brand: "Hyundai", model: "Tucson", year: 2022, km: 45000, price: 24800, fuel: "hybrid", trans: "automata", body: "suv", color: "argintiu", power: 230, location: "Cluj", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=600&q=80", date: "2026-10-30" },
-            { id: 13, brand: "Ferrari", model: "488 GTB", year: 2018, km: 18000, price: 185000, fuel: "benzina", trans: "semiautomata", body: "coupe", color: "rosu", power: 670, location: "București", seller: "dealer", badge: "top", image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=600&q=80", date: "2026-10-29" },
-            { id: 14, brand: "Lamborghini", model: "Huracán", year: 2019, km: 12000, price: 220000, fuel: "benzina", trans: "semiautomata", body: "coupe", color: "galben", power: 610, location: "București", seller: "dealer", badge: "top", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=600&q=80", date: "2026-10-28" },
-            { id: 15, brand: "Opel", model: "Astra", year: 2020, km: 78000, price: 14500, fuel: "benzina", trans: "manuala", body: "hatchback", color: "albastru", power: 130, location: "Prahova", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80", date: "2026-10-27" },
-            { id: 16, brand: "Renault", model: "Clio", year: 2021, km: 52000, price: 12800, fuel: "benzina", trans: "manuala", body: "hatchback", color: "alb", power: 100, location: "Argeș", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80", date: "2026-10-26" },
-            { id: 17, brand: "Peugeot", model: "3008", year: 2022, km: 38000, price: 26500, fuel: "diesel", trans: "automata", body: "suv", color: "gri", power: 180, location: "Bihor", seller: "dealer", badge: "verified", image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80", date: "2026-10-25" },
-            { id: 18, brand: "Skoda", model: "Octavia", year: 2021, km: 68000, price: 18900, fuel: "diesel", trans: "manuala", body: "break", color: "negru", power: 150, location: "Brașov", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80", date: "2026-10-24" },
-            { id: 19, brand: "SEAT", model: "Leon", year: 2022, km: 32000, price: 19500, fuel: "benzina", trans: "automata", body: "hatchback", color: "rosu", power: 150, location: "Cluj", seller: "dealer", badge: null, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80", date: "2026-10-23" },
-            { id: 20, brand: "Land Rover", model: "Range Rover Sport", year: 2019, km: 95000, price: 48500, fuel: "diesel", trans: "automata", body: "suv", color: "negru", power: 258, location: "București", seller: "dealer", badge: "verified", image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-10-22" },
-            { id: 21, brand: "Mazda", model: "CX-5", year: 2021, km: 58000, price: 22500, fuel: "diesel", trans: "automata", body: "suv", color: "alb", power: 184, location: "Constanța", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-10-21" },
-            { id: 22, brand: "Honda", model: "Civic", year: 2020, km: 72000, price: 17500, fuel: "benzina", trans: "manuala", body: "sedan", color: "albastru", power: 182, location: "Timiș", seller: "persoana", badge: null, image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-10-20" },
-            { id: 23, brand: "Nissan", model: "Qashqai", year: 2022, km: 41000, price: 21500, fuel: "hybrid", trans: "automata", body: "suv", color: "gri", power: 140, location: "Iași", seller: "dealer", badge: "dealer", image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-10-19" },
-            { id: 24, brand: "Citroën", model: "C5 Aircross", year: 2021, km: 62000, price: 23800, fuel: "diesel", trans: "automata", body: "suv", color: "alb", power: 180, location: "București", seller: "dealer", badge: null, image: "https://images.unsplash.com/photo-1606611013016-969c19ba27d5?auto=format&fit=crop&w=600&q=80", date: "2026-10-18" }
-        ];
+        // carsData vine din cars.js
 
         let currentPage = 1;
         const carsPerPage = 9;
@@ -737,7 +713,7 @@
         }
 
         function getFilteredCars() {
-            let filtered = [...carsData];
+            let filtered = viaAllCars();
             
             const brand = document.getElementById('f-brand').value;
             const priceMin = parseInt(document.getElementById('f-price-min').value) || 0;
@@ -750,13 +726,13 @@
             const powerMax = parseInt(document.getElementById('f-power-max').value) || Infinity;
             const location = document.getElementById('f-location').value;
             
-            const fuels = Array.from(document.querySelectorAll('.filter-section:nth-child(5) input:checked')).map(i => i.value);
-            const trans = Array.from(document.querySelectorAll('.filter-section:nth-child(6) input:checked')).map(i => i.value);
-            const bodies = Array.from(document.querySelectorAll('.filter-section:nth-child(7) input:checked')).map(i => i.value);
-            const colors = Array.from(document.querySelectorAll('.filter-section:nth-child(9) input:checked')).map(i => i.value);
-            const sellers = Array.from(document.querySelectorAll('.filter-section:nth-child(10) input:checked')).map(i => i.value);
+            const fuels = Array.from(document.querySelectorAll('[data-f="fuel"] input:checked')).map(i => i.value);
+            const trans = Array.from(document.querySelectorAll('[data-f="trans"] input:checked')).map(i => i.value);
+            const bodies = Array.from(document.querySelectorAll('[data-f="body"] input:checked')).map(i => i.value);
+            const colors = Array.from(document.querySelectorAll('[data-f="color"] input:checked')).map(i => i.value);
+            const sellers = Array.from(document.querySelectorAll('[data-f="seller"] input:checked')).map(i => i.value);
             
-            if (brand) filtered = filtered.filter(c => c.brand === brand);
+            if (brand) filtered = filtered.filter(c => viaNorm(c.brand) === viaNorm(brand));
             filtered = filtered.filter(c => c.price >= priceMin && c.price <= priceMax);
             filtered = filtered.filter(c => c.year >= yearMin && c.year <= yearMax);
             filtered = filtered.filter(c => c.km >= kmMin && c.km <= kmMax);
@@ -776,6 +752,32 @@
             else if (sort === 'newest') filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
             
             return filtered;
+        }
+
+        // filtrele venite din pagina principala (sigle, categorii, cautare)
+        function loadUrlFilters() {
+            const p = new URLSearchParams(window.location.search);
+            const setV = (id, v) => { if (v !== null && v !== '') document.getElementById(id).value = v; };
+            const bife = (f, v) => document.querySelectorAll('[data-f="' + f + '"] input').forEach(c => { if (c.value === v) c.checked = true; });
+            const brand = p.get('brand');
+            if (brand) {
+                const sel = document.getElementById('f-brand');
+                const dorit = viaBrand(brand);
+                let opt = [...sel.options].find(o => viaNorm(o.value || o.text) === viaNorm(dorit));
+                if (!opt) { opt = new Option(dorit, dorit); sel.add(opt); }
+                sel.value = opt.value || opt.text;
+            }
+            setV('f-price-min', p.get('pmin')); setV('f-price-max', p.get('pmax'));
+            setV('f-year-min', p.get('ymin')); setV('f-year-max', p.get('ymax'));
+            if (p.get('fuel')) bife('fuel', p.get('fuel'));
+            if (p.get('body')) bife('body', p.get('body'));
+            const cat = p.get('cat');
+            if (cat === 'electric') bife('fuel', 'electric');
+            else if (cat === 'suv') bife('body', 'suv');
+            else if (cat === 'cabrio') bife('body', 'cabrio');
+            else if (cat === 'sport') bife('body', 'coupe');
+            else if (cat === 'exclusiv') setV('f-price-min', '100000');
+            else if (cat === 'ieftine') { setV('f-price-max', '30000'); setV('f-power-min', '150'); }
         }
 
         function applyFilters() {

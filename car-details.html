@@ -504,6 +504,7 @@
         </div>
     </footer>
 
+    <script src="cars.js"></script>
     <script>
         // === PASSWORD GATE ===
         const SITE_PASSWORD = "1234";
@@ -577,11 +578,29 @@
             }
         ];
 
+        // anunturile care nu au fisa completa aici (demo 4-24 si cele publicate din Vinde) -> fisa din cars.js
+        function detaliiDinLista(id) {
+            const x = viaAllCars().find(c => c.id === id);
+            if (!x) return null;
+            const FUEL = { diesel: 'Diesel', benzina: 'Benzină', electric: 'Electric', hybrid: 'Hybrid', lpg: 'GPL' };
+            const TRANS = { manuala: 'Manuală', automata: 'Automată', semiautomata: 'Semiautomată' };
+            const BODY = { sedan: 'Sedan', suv: 'SUV', hatchback: 'Hatchback', break: 'Break', coupe: 'Coupé', cabrio: 'Cabrio', monovolum: 'Monovolum', pickup: 'Pick-up' };
+            const nume = x.contactName || (x.seller === 'dealer' ? 'Dealer ViaCars' : 'Vânzător privat');
+            return {
+                id: x.id, brand: x.brand, model: x.model, version: '', year: x.year, km: x.km || 0,
+                price: Number(x.price || 0).toLocaleString('ro-RO'), fuel: FUEL[x.fuel] || x.fuel, trans: TRANS[x.trans] || x.trans,
+                power: (x.power || '-') + ' CP', body: BODY[x.body] || x.body, color: x.color, location: x.location,
+                seller: { name: nume, city: x.location, initials: nume.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase(), rating: 4.5 },
+                images: [x.image], description: x.brand + ' ' + x.model + ', ' + x.year + ', ' + Number(x.km || 0).toLocaleString('ro-RO') + ' km.',
+                features: x.features || []
+            };
+        }
+
         // === LOAD CAR DETAILS ===
         function loadCarDetails() {
             const params = new URLSearchParams(window.location.search);
             const carId = parseInt(params.get('id')) || 1; // Default to first car
-            const car = carsDatabase.find(c => c.id === carId) || carsDatabase[0];
+            const car = carsDatabase.find(c => c.id === carId) || detaliiDinLista(carId) || carsDatabase[0];
 
             // Populate Header Info
             document.getElementById('bc-brand').textContent = car.brand;

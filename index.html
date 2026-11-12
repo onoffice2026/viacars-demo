@@ -225,18 +225,18 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 </div>
 <div class="bg-black/30 backdrop-blur-xl p-5 rounded-lg border border-blue-400/20 max-w-5xl mx-auto blue-glow-subtle">
 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-<select class="search-input rounded"><option>Marca</option><option>BMW</option><option>Mercedes-Benz</option><option>Audi</option></select>
-<select class="search-input rounded"><option>Modelul</option></select>
-<select class="search-input rounded"><option>Caroserie</option><option>Sedan</option><option>SUV</option></select>
-<select class="search-input rounded"><option>Combustibil</option><option>Diesel</option><option>Benzină</option></select>
+<select id="s-brand" class="search-input rounded"><option value="">Marca</option></select>
+<select id="s-model" class="search-input rounded" disabled><option value="">Modelul</option></select>
+<select id="s-body" class="search-input rounded"><option value="">Caroserie</option><option value="sedan">Sedan</option><option value="suv">SUV</option><option value="hatchback">Hatchback</option><option value="break">Break</option><option value="coupe">Coupé</option><option value="cabrio">Cabrio</option></select>
+<select id="s-fuel" class="search-input rounded"><option value="">Combustibil</option><option value="diesel">Diesel</option><option value="benzina">Benzină</option><option value="hybrid">Hybrid</option><option value="electric">Electric</option><option value="lpg">GPL</option></select>
 </form>
 <form class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-<input type="number" placeholder="Preț Min (€)" class="search-input rounded">
-<input type="number" placeholder="Preț Max (€)" class="search-input rounded">
-<input type="number" placeholder="An Min" class="search-input rounded">
-<input type="number" placeholder="An Max" class="search-input rounded">
+<input type="number" id="s-pmin" placeholder="Preț Min (€)" class="search-input rounded">
+<input type="number" id="s-pmax" placeholder="Preț Max (€)" class="search-input rounded">
+<input type="number" id="s-ymin" placeholder="An Min" class="search-input rounded">
+<input type="number" id="s-ymax" placeholder="An Max" class="search-input rounded">
 </form>
-<button type="button" class="btn-primary w-full rounded"><i class="fa-solid fa-magnifying-glass mr-2"></i> Caută în 12.450 de anunțuri</button>
+<button type="button" class="btn-primary w-full rounded" onclick="heroSearch()"><i class="fa-solid fa-magnifying-glass mr-2"></i> Caută în 12.450 de anunțuri</button>
 </div>
 </div>
 </section>
@@ -244,12 +244,12 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 <section class="py-10 section-transparent">
 <div class="container mx-auto px-6">
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-bolt text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Ieftine și puternice</h3><p class="text-[10px] text-white/50">Cea mai bună putere/bani</p></div>
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-crown text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Exclusiviste</h3><p class="text-[10px] text-white/50">Peste 100.000 €</p></div>
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-charging-station text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Electrice</h3><p class="text-[10px] text-white/50">100% electric</p></div>
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-truck-monster text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">SUV-uri</h3><p class="text-[10px] text-white/50">4x4 și off-road</p></div>
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-wind text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Cabrio</h3><p class="text-[10px] text-white/50">Acoperiș decapotabil</p></div>
-<div class="category-card p-4 rounded-lg cursor-pointer"><i class="fa-solid fa-flag-checkered text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Sport</h3><p class="text-[10px] text-white/50">Performanță maximă</p></div>
+<a href="buy.html?cat=ieftine" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-bolt text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Ieftine și puternice</h3><p class="text-[10px] text-white/50">Cea mai bună putere/bani</p></a>
+<a href="buy.html?cat=exclusiv" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-crown text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Exclusiviste</h3><p class="text-[10px] text-white/50">Peste 100.000 €</p></a>
+<a href="buy.html?cat=electric" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-charging-station text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Electrice</h3><p class="text-[10px] text-white/50">100% electric</p></a>
+<a href="buy.html?cat=suv" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-truck-monster text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">SUV-uri</h3><p class="text-[10px] text-white/50">4x4 și off-road</p></a>
+<a href="buy.html?cat=cabrio" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-wind text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Cabrio</h3><p class="text-[10px] text-white/50">Acoperiș decapotabil</p></a>
+<a href="buy.html?cat=sport" class="category-card p-4 rounded-lg cursor-pointer block" style="text-decoration:none;"><i class="fa-solid fa-flag-checkered text-blue-400/70 text-lg mb-2"></i><h3 class="text-sm font-bold text-white mb-1">Sport</h3><p class="text-[10px] text-white/50">Performanță maximă</p></a>
 </div>
 </div>
 </section>
@@ -388,6 +388,19 @@ function brandCard(brand, slot) {
             <p class="text-[10px] text-white/70 font-medium whitespace-nowrap">${brand.name}</p>
         </a>`;
 }
+// cautarea din pagina principala -> Cumpara, cu filtrele alese
+function fillHeroBrands() {
+    const sel = document.getElementById('s-brand');
+    if (!sel) return;
+    carBrands.forEach(b => sel.add(new Option(b.name, b.name)));
+}
+function heroSearch() {
+    const p = new URLSearchParams();
+    [['s-brand', 'brand'], ['s-body', 'body'], ['s-fuel', 'fuel'], ['s-pmin', 'pmin'], ['s-pmax', 'pmax'], ['s-ymin', 'ymin'], ['s-ymax', 'ymax']]
+        .forEach(([id, k]) => { const v = document.getElementById(id).value; if (v) p.set(k, v); });
+    window.location.href = 'buy.html' + (p.toString() ? '?' + p.toString() : '');
+}
+
 function renderBrands() {
     const grid = document.getElementById('brands-grid');
     if (!grid) return;
@@ -405,6 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initGate();
     renderBrands(); // Aici se încarcă siglele corect colorate!
+    fillHeroBrands();
 });
 
 const translations = {
