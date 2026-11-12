@@ -415,6 +415,46 @@ document.addEventListener('DOMContentLoaded', () => {
 const passInput = document.getElementById('pass-input');
 if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
 initGate();
+buildMarquee();
+loadRecentUserCars();
+});
+
+function loadRecentUserCars() {
+const userCars = JSON.parse(localStorage.getItem('viacars_userCars') || '[]');
+if (userCars.length === 0) return;
+
+const grid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-4');
+if (!grid) return;
+
+// Ștergem anunțurile demo și le înlocuim cu cele noi
+const userCarsRecent = userCars.slice(0, 4);
+const fuelLabels = { diesel: 'Diesel', benzina: 'Benzină', electric: 'Electric', hybrid: 'Hybrid', lpg: 'GPL' };
+const transLabels = { manuala: 'Manuală', automata: 'Automată', semiautomata: 'Semiautomată' };
+
+grid.innerHTML = userCarsRecent.map(car => `
+<div class="car-card rounded overflow-hidden new-listing" style="border-color: rgba(16, 185, 129, 0.5);">
+<div class="relative">
+<img src="${car.image}" alt="${car.brand} ${car.model}" class="w-full h-40 object-cover">
+<span class="absolute top-2 left-2 bg-green-600/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">NOU</span>
+<span class="absolute top-2 right-2 bg-emerald-500/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">PUBLICAT</span>
+</div>
+<div class="p-4">
+<h3 class="text-sm font-bold text-white mb-1">${car.brand} ${car.model}</h3>
+<p class="text-lg font-bold text-white mb-3">${car.price.toLocaleString()} €</p>
+<div class="grid grid-cols-2 gap-y-1 text-[11px] text-white/50 mb-3">
+<div><i class="fa-solid fa-calendar-days mr-1"></i>${car.year}</div>
+<div><i class="fa-solid fa-gauge mr-1"></i>${car.km.toLocaleString()} km</div>
+<div><i class="fa-solid fa-gas-pump mr-1"></i>${fuelLabels[car.fuel] || car.fuel}</div>
+<div><i class="fa-solid fa-gears mr-1"></i>${transLabels[car.trans] || car.trans}</div>
+</div>
+<a href="car-details.html?id=${car.id}" class="btn-secondary w-full rounded" style="text-decoration:none;display:block;text-align:center;">Vezi Detalii</a>
+</div>
+</div>
+`).join('');
+}
+const passInput = document.getElementById('pass-input');
+if (passInput) passInput.addEventListener('keypress', function (e) { if (e.key === 'Enter') checkPassword(); });
+initGate();
 loadUrlParams();
 });
 
