@@ -58,6 +58,10 @@ box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
   background: linear-gradient(145deg, #ffffff, #e2e8f0); border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 12px rgba(96, 165, 250, 0.25); }
 .brand-img { width: 42px; height: 42px; object-fit: contain; }
+/* sigle deschise la culoare (galben, alb) - placuta inchisa ca sa iasa in evidenta */
+.brand-badge.dark { background: linear-gradient(145deg, #1f2937, #0b1220); border-color: rgba(250, 204, 21, 0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 12px rgba(250, 204, 21, 0.25); }
+.brand-badge.dark .brand-fallback { color: #fde047; }
 .brand-fallback { font-weight: 800; font-size: 15px; color: #1e3a8a; letter-spacing: 0.5px; }
 @media (prefers-reduced-motion: reduce) { .brands-track { animation-duration: 180s; } }
 .car-card {
@@ -362,6 +366,9 @@ function brandSlug(name) {
 function brandSources(brand) {
     return [brand.logo, 'https://cdn.simpleicons.org/' + brandSlug(brand.name)].filter(Boolean);
 }
+// marcile cu sigla deschisa la culoare primesc placuta inchisa; o marca noua se poate marca si in brands.js cu badge: "dark"
+const DARK_BADGE = ['Opel', 'Renault'];
+function brandDark(brand) { return brand.badge === 'dark' || DARK_BADGE.includes(brand.name); }
 function brandInitials(name) {
     return name.normalize('NFD').replace(/[^A-Za-z0-9 -]/g, '').split(/[ -]/).map(w => w[0] || '').join('').slice(0, 3).toUpperCase();
 }
@@ -379,7 +386,7 @@ function brandResolve(brand, slot) {
 function brandCard(brand, slot) {
     return `
         <a href="buy.html?brand=${encodeURIComponent(brand.name)}" class="brand-logo p-3 rounded cursor-pointer text-center flex flex-col items-center gap-2" title="${brand.name} (${brand.listings} anunțuri)">
-            <div class="brand-badge" data-brand="${slot}"><div class="brand-fallback">${brandInitials(brand.name)}</div></div>
+            <div class="brand-badge${brandDark(brand) ? ' dark' : ''}" data-brand="${slot}"><div class="brand-fallback">${brandInitials(brand.name)}</div></div>
             <p class="text-[10px] text-white/70 font-medium whitespace-nowrap">${brand.name}</p>
         </a>`;
 }
