@@ -406,11 +406,11 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
     <div id="password-gate">
         <div class="pass-box">
             <h2 style="color: white; margin-bottom: 10px; font-size: 24px;">ViaCars.eu</h2>
-            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;">Acces restricționat. Introdu parola.</p>
-            <input type="password" id="pass-input" class="pass-input" placeholder="Parola">
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px;" data-bx="pass_txt">Acces restricționat. Introdu parola.</p>
+            <input type="password" id="pass-input" class="pass-input" placeholder="Parola" data-bx-ph="pass_ph">
             <br>
-            <button onclick="checkPassword()" class="pass-btn">Intră</button>
-            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;">Parolă incorectă!</p>
+            <button onclick="checkPassword()" class="pass-btn" data-bx="pass_btn">Intră</button>
+            <p id="pass-error" style="color: #ef4444; font-size: 12px; margin-top: 10px; display: none;" data-bx="pass_err">Parolă incorectă!</p>
         </div>
     </div>
 
@@ -468,14 +468,14 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
             <div class="flex gap-6">
                 <aside class="filters-panel w-72 flex-shrink-0 hidden lg:block" id="filtersPanel">
                     <div class="flex justify-between items-center mb-4 lg:hidden">
-                        <h3 class="text-white font-bold">Filtre</h3>
+                        <h3 class="text-white font-bold" data-bx="filters_m">Filtre</h3>
                         <button onclick="toggleFilters()" class="text-white/70 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_brand">Marcă & Model</div>
                         <select class="filter-select" id="f-brand">
-                            <option value="">Toate mărcile</option>
+                            <option value="" data-bx="all_brands">Toate mărcile</option>
                             <option>BMW</option><option>Mercedes-Benz</option><option>Audi</option>
                             <option>Volkswagen</option><option>Ford</option><option>Opel</option>
                             <option>Renault</option><option>Toyota</option><option>Porsche</option>
@@ -487,91 +487,91 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
                             <option>Land Rover</option>
                         </select>
                         <select class="filter-select" id="f-model">
-                            <option value="">Toate modelele</option>
+                            <option value="" data-bx="all_models">Toate modelele</option>
                         </select>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_price">Preț (€)</div>
                         <div class="range-row">
-                            <input type="number" class="filter-input" placeholder="Min" id="f-price-min">
-                            <input type="number" class="filter-input" placeholder="Max" id="f-price-max">
+                            <input type="number" class="filter-input" placeholder="Min" data-bx-ph="ph_min" id="f-price-min">
+                            <input type="number" class="filter-input" placeholder="Max" data-bx-ph="ph_max" id="f-price-max">
                         </div>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_year">An fabricație</div>
                         <div class="range-row">
-                            <input type="number" class="filter-input" placeholder="Din" id="f-year-min" min="1990" max="2026">
-                            <input type="number" class="filter-input" placeholder="Până la" id="f-year-max" min="1990" max="2026">
+                            <input type="number" class="filter-input" placeholder="Din" data-bx-ph="ph_from" id="f-year-min" min="1990" max="2026">
+                            <input type="number" class="filter-input" placeholder="Până la" data-bx-ph="ph_to" id="f-year-max" min="1990" max="2026">
                         </div>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_km">Kilometraj</div>
                         <div class="range-row">
-                            <input type="number" class="filter-input" placeholder="Min km" id="f-km-min">
-                            <input type="number" class="filter-input" placeholder="Max km" id="f-km-max">
+                            <input type="number" class="filter-input" placeholder="Min km" data-bx-ph="ph_kmmin" id="f-km-min">
+                            <input type="number" class="filter-input" placeholder="Max km" data-bx-ph="ph_kmmax" id="f-km-max">
                         </div>
                     </div>
 
                     <div class="filter-section" data-f="fuel">
                         <div class="filter-title" data-i18n="f_fuel">Combustibil</div>
-                        <label class="checkbox-item"><input type="checkbox" value="diesel"> Diesel</label>
-                        <label class="checkbox-item"><input type="checkbox" value="benzina"> Benzină</label>
-                        <label class="checkbox-item"><input type="checkbox" value="electric"> Electric</label>
-                        <label class="checkbox-item"><input type="checkbox" value="hybrid"> Hybrid</label>
-                        <label class="checkbox-item"><input type="checkbox" value="lpg"> GPL</label>
+                        <label class="checkbox-item"><input type="checkbox" value="diesel"> <span data-bx="v_diesel">Diesel</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="benzina"> <span data-bx="v_benzina">Benzină</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="electric"> <span data-bx="v_electric">Electric</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="hybrid"> <span data-bx="v_hybrid">Hybrid</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="lpg"> <span data-bx="v_lpg">GPL</span></label>
                     </div>
 
                     <div class="filter-section" data-f="trans">
                         <div class="filter-title" data-i18n="f_trans">Cutie de viteze</div>
-                        <label class="checkbox-item"><input type="checkbox" value="manuala"> Manuală</label>
-                        <label class="checkbox-item"><input type="checkbox" value="automata"> Automată</label>
-                        <label class="checkbox-item"><input type="checkbox" value="semiautomata"> Semiautomată</label>
+                        <label class="checkbox-item"><input type="checkbox" value="manuala"> <span data-bx="v_manuala">Manuală</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="automata"> <span data-bx="v_automata">Automată</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="semiautomata"> <span data-bx="v_semiautomata">Semiautomată</span></label>
                     </div>
 
                     <div class="filter-section" data-f="body">
                         <div class="filter-title" data-i18n="f_body">Caroserie</div>
-                        <label class="checkbox-item"><input type="checkbox" value="sedan"> Sedan</label>
-                        <label class="checkbox-item"><input type="checkbox" value="suv"> SUV / Jeep</label>
-                        <label class="checkbox-item"><input type="checkbox" value="hatchback"> Hatchback</label>
-                        <label class="checkbox-item"><input type="checkbox" value="break"> Break / Combi</label>
-                        <label class="checkbox-item"><input type="checkbox" value="coupe"> Coupé</label>
-                        <label class="checkbox-item"><input type="checkbox" value="cabrio"> Cabrio / Decapotabilă</label>
-                        <label class="checkbox-item"><input type="checkbox" value="monovolum"> Monovolum</label>
-                        <label class="checkbox-item"><input type="checkbox" value="pickup"> Pick-up</label>
+                        <label class="checkbox-item"><input type="checkbox" value="sedan"> <span data-bx="v_sedan">Sedan</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="suv"> <span data-bx="v_suv">SUV / Jeep</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="hatchback"> <span data-bx="v_hatchback">Hatchback</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="break"> <span data-bx="v_break">Break / Combi</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="coupe"> <span data-bx="v_coupe">Coupé</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="cabrio"> <span data-bx="v_cabrio">Cabrio / Decapotabilă</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="monovolum"> <span data-bx="v_monovolum">Monovolum</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="pickup"> <span data-bx="v_pickup">Pick-up</span></label>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_power">Putere (CP)</div>
                         <div class="range-row">
-                            <input type="number" class="filter-input" placeholder="Min" id="f-power-min">
-                            <input type="number" class="filter-input" placeholder="Max" id="f-power-max">
+                            <input type="number" class="filter-input" placeholder="Min" data-bx-ph="ph_min" id="f-power-min">
+                            <input type="number" class="filter-input" placeholder="Max" data-bx-ph="ph_max" id="f-power-max">
                         </div>
                     </div>
 
                     <div class="filter-section" data-f="color">
                         <div class="filter-title" data-i18n="f_color">Culoare</div>
-                        <label class="checkbox-item"><input type="checkbox" value="negru"> Negru</label>
-                        <label class="checkbox-item"><input type="checkbox" value="alb"> Alb</label>
-                        <label class="checkbox-item"><input type="checkbox" value="gri"> Gri</label>
-                        <label class="checkbox-item"><input type="checkbox" value="argintiu"> Argintiu</label>
-                        <label class="checkbox-item"><input type="checkbox" value="albastru"> Albastru</label>
-                        <label class="checkbox-item"><input type="checkbox" value="rosu"> Roșu</label>
-                        <label class="checkbox-item"><input type="checkbox" value="verde"> Verde</label>
+                        <label class="checkbox-item"><input type="checkbox" value="negru"> <span data-bx="v_negru">Negru</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="alb"> <span data-bx="v_alb">Alb</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="gri"> <span data-bx="v_gri">Gri</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="argintiu"> <span data-bx="v_argintiu">Argintiu</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="albastru"> <span data-bx="v_albastru">Albastru</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="rosu"> <span data-bx="v_rosu">Roșu</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="verde"> <span data-bx="v_verde">Verde</span></label>
                     </div>
 
                     <div class="filter-section" data-f="seller">
                         <div class="filter-title" data-i18n="f_seller">Vânzător</div>
-                        <label class="checkbox-item"><input type="checkbox" value="dealer"> Dealer autorizat</label>
-                        <label class="checkbox-item"><input type="checkbox" value="persoana"> Persoană fizică</label>
+                        <label class="checkbox-item"><input type="checkbox" value="dealer"> <span data-bx="v_dealer">Dealer autorizat</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="persoana"> <span data-bx="v_persoana">Persoană fizică</span></label>
                     </div>
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_location">Locație</div>
                         <select class="filter-select" id="f-location">
-                            <option value="">Toată România</option>
+                            <option value="" data-bx="loc_all">Toată România</option>
                             <option>București</option><option>Cluj</option><option>Timiș</option>
                             <option>Iași</option><option>Constanța</option><option>Brașov</option>
                             <option>Prahova</option><option>Argeș</option><option>Bihor</option>
@@ -580,16 +580,16 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 
                     <div class="filter-section">
                         <div class="filter-title" data-i18n="f_euro">Standard Euro</div>
-                        <label class="checkbox-item"><input type="checkbox" value="euro6"> Euro 6</label>
-                        <label class="checkbox-item"><input type="checkbox" value="euro5"> Euro 5</label>
-                        <label class="checkbox-item"><input type="checkbox" value="euro4"> Euro 4</label>
+                        <label class="checkbox-item"><input type="checkbox" value="euro6"> <span data-bx="v_euro6">Euro 6</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="euro5"> <span data-bx="v_euro5">Euro 5</span></label>
+                        <label class="checkbox-item"><input type="checkbox" value="euro4"> <span data-bx="v_euro4">Euro 4</span></label>
                     </div>
 
-                    <button class="btn-apply" onclick="applyFilters()" data-i18n="btn_apply">
-                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Aplică filtrele
+                    <button class="btn-apply" onclick="applyFilters()" >
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i> <span data-i18n="btn_apply">Aplică filtrele</span>
                     </button>
-                    <button class="btn-reset" onclick="resetFilters()" data-i18n="btn_reset">
-                        <i class="fa-solid fa-rotate-left mr-2"></i> Resetează
+                    <button class="btn-reset" onclick="resetFilters()" >
+                        <i class="fa-solid fa-rotate-left mr-2"></i> <span data-i18n="btn_reset">Resetează</span>
                     </button>
                 </aside>
 
@@ -691,38 +691,37 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
             grid.innerHTML = '';
             
             if (pageCars.length === 0) {
-                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6);"><i class="fa-solid fa-car" style="font-size: 48px; margin-bottom: 15px; color: #60a5fa;"></i><p style="font-size: 18px;">Nu am găsit mașini care să corespundă filtrelor selectate.</p><p style="font-size: 13px; margin-top: 8px;">Încearcă să resetezi filtrele.</p></div>';
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6);"><i class="fa-solid fa-car" style="font-size: 48px; margin-bottom: 15px; color: #60a5fa;"></i><p style="font-size: 18px;">' + bx('none1') + '</p><p style="font-size: 13px; margin-top: 8px;">' + bx('none2') + '</p></div>';
             } else {
                 pageCars.forEach(car => {
-                    const badgeHTML = car.badge === 'verified' ? '<span class="badge-verified">VERIFICAT</span>' : 
-                                     car.badge === 'dealer' ? '<span class="badge-dealer">DEALER</span>' :
-                                     car.badge === 'top' ? '<span class="badge-top">TOP OFERTĂ</span>' : '';
+                    const badgeHTML = car.badge === 'verified' ? '<span class="badge-verified">' + bx('b_verified') + '</span>' : 
+                                     car.badge === 'dealer' ? '<span class="badge-dealer">' + bx('b_dealer') + '</span>' :
+                                     car.badge === 'top' ? '<span class="badge-top">' + bx('b_top') + '</span>' : '';
                     
                     const fuelLabels = { diesel: 'Diesel', benzina: 'Benzină', electric: 'Electric', hybrid: 'Hybrid', lpg: 'GPL' };
                     const transLabels = { manuala: 'Manuală', automata: 'Automată', semiautomata: 'Semiautomată' };
                     
-                    // MODIFICARE: href指向car-details.html cu ID-ul mașinii
-                    grid.innerHTML += `
+                                        grid.innerHTML += `
                         <div class="car-listing">
                             <div class="car-image">
-                                <img src="${car.image}" alt="${car.brand} ${car.model}">
+                                <img src="${car.image}" alt="${car.brand} ${car.model}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=600&q=80'">
                                 ${badgeHTML}
                                 <button class="favorite-btn" onclick="toggleFavorite(this)"><i class="fa-regular fa-heart"></i></button>
                             </div>
                             <div class="car-info">
                                 <div class="car-title">${car.brand} ${car.model}</div>
-                                <div class="car-subtitle">${car.year} • ${car.km.toLocaleString()} km • ${car.location}</div>
-                                <div class="car-price">${car.price.toLocaleString()} €</div>
+                                <div class="car-subtitle">${car.year} • ${car.km.toLocaleString(bxLoc())} km • ${car.location}</div>
+                                <div class="car-price">${car.price.toLocaleString(bxLoc())} €</div>
                                 <div class="car-specs">
                                     <div><i class="fa-solid fa-calendar-days"></i>${car.year}</div>
-                                    <div><i class="fa-solid fa-gauge"></i>${car.km.toLocaleString()} km</div>
-                                    <div><i class="fa-solid fa-gas-pump"></i>${fuelLabels[car.fuel]}</div>
-                                    <div><i class="fa-solid fa-gears"></i>${transLabels[car.trans]}</div>
-                                    <div><i class="fa-solid fa-horse"></i>${car.power} CP</div>
-                                    <div><i class="fa-solid fa-car-side"></i>${car.body}</div>
+                                    <div><i class="fa-solid fa-gauge"></i>${car.km.toLocaleString(bxLoc())} km</div>
+                                    <div><i class="fa-solid fa-gas-pump"></i>${bx('v_' + car.fuel)}</div>
+                                    <div><i class="fa-solid fa-gears"></i>${bx('v_' + car.trans)}</div>
+                                    <div><i class="fa-solid fa-horse"></i>${car.power} ${bx('hp')}</div>
+                                    <div><i class="fa-solid fa-car-side"></i>${bx('v_' + car.body)}</div>
                                 </div>
-                                <div class="car-location"><i class="fa-solid fa-location-dot"></i> ${car.location} • ${car.seller === 'dealer' ? 'Dealer' : 'Persoană'}</div>
-                                <a href="car-details.html?id=${car.id}" class="btn-view">Vezi detalii <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                                <div class="car-location"><i class="fa-solid fa-location-dot"></i> ${car.location} • ${car.seller === 'dealer' ? bx('s_dealer') : bx('s_person')}</div>
+                                <a href="car-details.html?id=${car.id}" class="btn-view">${bx('details')} <i class="fa-solid fa-arrow-right ml-1"></i></a>
                             </div>
                         </div>
                     `;
@@ -903,6 +902,57 @@ function viaTranslateCommon(lang) {
     const start = () => viaTranslateCommon(document.documentElement.lang || 'ro');
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(start, 0));
     else start();
+})();
+</script>
+<script>
+// ===== BUY: traduceri pentru filtre si carduri (re-randare la schimbarea limbii) =====
+const BX = {
+ ro: { filters_m:'Filtre', all_brands:'Toate mărcile', all_models:'Toate modelele', loc_all:'Toată România', ph_min:'Min', ph_max:'Max', ph_from:'Din', ph_to:'Până la', ph_kmmin:'Min km', ph_kmmax:'Max km',
+   v_diesel:'Diesel', v_benzina:'Benzină', v_electric:'Electric', v_hybrid:'Hybrid', v_lpg:'GPL', v_manuala:'Manuală', v_automata:'Automată', v_semiautomata:'Semiautomată',
+   v_sedan:'Sedan', v_suv:'SUV / Jeep', v_hatchback:'Hatchback', v_break:'Break / Combi', v_coupe:'Coupé', v_cabrio:'Cabrio / Decapotabilă', v_monovolum:'Monovolum', v_pickup:'Pick-up',
+   v_negru:'Negru', v_alb:'Alb', v_gri:'Gri', v_argintiu:'Argintiu', v_albastru:'Albastru', v_rosu:'Roșu', v_verde:'Verde', v_dealer:'Dealer autorizat', v_persoana:'Persoană fizică',
+   v_euro6:'Euro 6', v_euro5:'Euro 5', v_euro4:'Euro 4', b_verified:'VERIFICAT', b_dealer:'DEALER', b_top:'TOP OFERTĂ', details:'Vezi detalii', s_dealer:'Dealer', s_person:'Persoană fizică', hp:'CP',
+   none1:'Nu am găsit mașini care să corespundă filtrelor selectate.', none2:'Încearcă să resetezi filtrele.', pass_txt:'Acces restricționat. Introdu parola.', pass_ph:'Parola', pass_btn:'Intră', pass_err:'Parolă incorectă!' },
+ en: { filters_m:'Filters', all_brands:'All brands', all_models:'All models', loc_all:'All Romania', ph_min:'Min', ph_max:'Max', ph_from:'From', ph_to:'To', ph_kmmin:'Min km', ph_kmmax:'Max km',
+   v_diesel:'Diesel', v_benzina:'Petrol', v_electric:'Electric', v_hybrid:'Hybrid', v_lpg:'LPG', v_manuala:'Manual', v_automata:'Automatic', v_semiautomata:'Semi-automatic',
+   v_sedan:'Sedan', v_suv:'SUV / 4x4', v_hatchback:'Hatchback', v_break:'Estate / Wagon', v_coupe:'Coupé', v_cabrio:'Convertible', v_monovolum:'MPV', v_pickup:'Pick-up',
+   v_negru:'Black', v_alb:'White', v_gri:'Grey', v_argintiu:'Silver', v_albastru:'Blue', v_rosu:'Red', v_verde:'Green', v_dealer:'Authorised dealer', v_persoana:'Private seller',
+   v_euro6:'Euro 6', v_euro5:'Euro 5', v_euro4:'Euro 4', b_verified:'VERIFIED', b_dealer:'DEALER', b_top:'TOP DEAL', details:'View details', s_dealer:'Dealer', s_person:'Private seller', hp:'HP',
+   none1:'No cars match the selected filters.', none2:'Try resetting the filters.', pass_txt:'Restricted access. Enter the password.', pass_ph:'Password', pass_btn:'Enter', pass_err:'Wrong password!' },
+ bg: { filters_m:'Филтри', all_brands:'Всички марки', all_models:'Всички модели', loc_all:'Цяла Румъния', ph_min:'Мин', ph_max:'Макс', ph_from:'От', ph_to:'До', ph_kmmin:'Мин км', ph_kmmax:'Макс км',
+   v_diesel:'Дизел', v_benzina:'Бензин', v_electric:'Електрически', v_hybrid:'Хибрид', v_lpg:'Газ (LPG)', v_manuala:'Ръчна', v_automata:'Автоматична', v_semiautomata:'Полуавтоматична',
+   v_sedan:'Седан', v_suv:'SUV / Джип', v_hatchback:'Хечбек', v_break:'Комби', v_coupe:'Купе', v_cabrio:'Кабрио', v_monovolum:'Ван', v_pickup:'Пикап',
+   v_negru:'Черен', v_alb:'Бял', v_gri:'Сив', v_argintiu:'Сребрист', v_albastru:'Син', v_rosu:'Червен', v_verde:'Зелен', v_dealer:'Оторизиран дилър', v_persoana:'Частно лице',
+   v_euro6:'Евро 6', v_euro5:'Евро 5', v_euro4:'Евро 4', b_verified:'ПРОВЕРЕН', b_dealer:'ДИЛЪР', b_top:'ТОП ОФЕРТА', details:'Виж детайли', s_dealer:'Дилър', s_person:'Частно лице', hp:'к.с.',
+   none1:'Няма автомобили, отговарящи на избраните филтри.', none2:'Опитайте да нулирате филтрите.', pass_txt:'Ограничен достъп. Въведете паролата.', pass_ph:'Парола', pass_btn:'Вход', pass_err:'Грешна парола!' },
+ el: { filters_m:'Φίλτρα', all_brands:'Όλες οι μάρκες', all_models:'Όλα τα μοντέλα', loc_all:'Όλη η Ρουμανία', ph_min:'Ελάχ.', ph_max:'Μέγ.', ph_from:'Από', ph_to:'Έως', ph_kmmin:'Ελάχ. km', ph_kmmax:'Μέγ. km',
+   v_diesel:'Πετρέλαιο', v_benzina:'Βενζίνη', v_electric:'Ηλεκτρικό', v_hybrid:'Υβριδικό', v_lpg:'Υγραέριο', v_manuala:'Χειροκίνητο', v_automata:'Αυτόματο', v_semiautomata:'Ημιαυτόματο',
+   v_sedan:'Σεντάν', v_suv:'SUV / Τζιπ', v_hatchback:'Hatchback', v_break:'Station wagon', v_coupe:'Κουπέ', v_cabrio:'Κάμπριο', v_monovolum:'Πολυμορφικό (MPV)', v_pickup:'Pick-up',
+   v_negru:'Μαύρο', v_alb:'Λευκό', v_gri:'Γκρι', v_argintiu:'Ασημί', v_albastru:'Μπλε', v_rosu:'Κόκκινο', v_verde:'Πράσινο', v_dealer:'Εξουσιοδοτημένος αντιπρόσωπος', v_persoana:'Ιδιώτης',
+   v_euro6:'Euro 6', v_euro5:'Euro 5', v_euro4:'Euro 4', b_verified:'ΕΠΑΛΗΘΕΥΜΕΝΟ', b_dealer:'ΑΝΤΙΠΡΟΣΩΠΟΣ', b_top:'ΚΟΡΥΦΑΙΑ ΠΡΟΣΦΟΡΑ', details:'Δείτε λεπτομέρειες', s_dealer:'Αντιπρόσωπος', s_person:'Ιδιώτης', hp:'HP',
+   none1:'Δεν βρέθηκαν αυτοκίνητα για τα επιλεγμένα φίλτρα.', none2:'Δοκιμάστε επαναφορά των φίλτρων.', pass_txt:'Περιορισμένη πρόσβαση. Εισαγάγετε τον κωδικό.', pass_ph:'Κωδικός', pass_btn:'Είσοδος', pass_err:'Λάθος κωδικός!' }
+};
+let BX_LANG = 'ro';
+try { BX_LANG = localStorage.getItem('viacars_lang') || 'ro'; } catch (e) {}
+if (!BX[BX_LANG]) BX_LANG = 'ro';
+function bx(k) { return (BX[BX_LANG] && BX[BX_LANG][k]) || BX.ro[k] || k; }
+function bxLoc() { return { ro: 'ro-RO', en: 'en-GB', bg: 'bg-BG', el: 'el-GR' }[BX_LANG] || 'ro-RO'; }
+function bxApply() {
+    document.querySelectorAll('[data-bx]').forEach(el => { el.textContent = bx(el.getAttribute('data-bx')); });
+    document.querySelectorAll('[data-bx-ph]').forEach(el => { el.placeholder = bx(el.getAttribute('data-bx-ph')); });
+}
+(function () {
+    const anterior = window.switchLanguage;
+    window.switchLanguage = function (lang) {
+        if (typeof anterior === 'function') { try { anterior(lang); } catch (e) {} }
+        BX_LANG = BX[lang] ? lang : 'ro';
+        try { localStorage.setItem('viacars_lang', BX_LANG); } catch (e) {}
+        bxApply();
+        if (typeof renderCars === 'function' && document.getElementById('cars-grid')) renderCars();
+    };
+    const start = () => window.switchLanguage(BX_LANG);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(start, 0));
+    else setTimeout(start, 0);
 })();
 </script>
 </body>
