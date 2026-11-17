@@ -169,6 +169,7 @@ border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
 .buy-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .buy-opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid rgba(59,130,246,.25);border-radius:10px;background:rgba(15,23,42,.45)}
 .buy-opt input{width:18px;height:18px;accent-color:#3b82f6}.buy-opt label{font-size:13px;color:rgba(255,255,255,.85);cursor:pointer}
+textarea.form-input{resize:vertical;min-height:80px;font-family:inherit}
 </style>
 <style>
 /* ===== VIACARS COMUN (bara de sus, butonul Vinde, subsol) ===== */
@@ -318,7 +319,7 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 <option value="">Selectează</option>
 <option value="nou">Nou (0 km)</option>
 <option value="folosit">Folosit (în stare bună)</option>
-<option value="accidentat">Accidentat / Daune</option>
+<option value="inmatriculat">Înmatriculat</option>
 <option value="nepus_circulatie">Neînmatriculat</option>
 </select>
 </div>
@@ -371,6 +372,10 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 <label class="form-label" data-i18n="lbl_cert">Program certificare</label>
 <div class="buy-opt"><input type="checkbox" id="o-cert"><label for="o-cert" data-i18n="opt_cert">ViaCars Certified Pre-Owned</label></div>
 </div>
+<div class="form-group" style="grid-column: 1 / -1;">
+<label class="form-label" data-i18n="lbl_wdet">Detalii garanție</label>
+<textarea id="d-wdet" class="form-input" rows="3" maxlength="500" data-i18n-ph="ph_wdet" placeholder="ex: motor, cutie de viteze, sistem electric, asistență rutieră"></textarea>
+</div>
 </div>
 
 <div class="section-title"><i class="fa-solid fa-list-check"></i> <span data-i18n="sec_features">Dotări și Echipamente</span></div>
@@ -402,7 +407,8 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 <div class="form-group" style="grid-column: 1 / -1;">
 <label class="form-label" data-i18n="lbl_buyopts">Opțiuni de cumpărare</label>
 <div class="buy-opts">
-<div class="buy-opt"><input type="checkbox" id="o-net"><label for="o-net" data-i18n="opt_net">Preț net (fără TVA)</label></div>
+<div class="buy-opt"><input type="checkbox" id="o-final"><label for="o-final" data-i18n="opt_final">Preț final</label></div>
+<div class="buy-opt"><input type="checkbox" id="o-tva"><label for="o-tva" data-i18n="opt_tva">Conține TVA</label></div>
 <div class="buy-opt"><input type="checkbox" id="o-neg"><label for="o-neg" data-i18n="opt_neg">Negociabil</label></div>
 <div class="buy-opt"><input type="checkbox" id="o-fin"><label for="o-fin" data-i18n="opt_fin">Eligibil pentru finanțare</label></div>
 <div class="buy-opt"><input type="checkbox" id="o-inv"><label for="o-inv" data-i18n="opt_inv">Se emite factură</label></div>
@@ -440,6 +446,12 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
 <label class="form-label" data-i18n="lbl_city">Județ / Oraș</label>
 <input type="text" id="d-city" class="form-input" required>
 </div>
+</div>
+
+<div class="section-title"><i class="fa-solid fa-pen-to-square"></i> <span data-i18n="sec_desc">Descriere suplimentară</span></div>
+<div class="form-group">
+<textarea id="d-desc" class="form-input" rows="4" maxlength="300" data-i18n-ph="ph_desc" placeholder="Descrierea ta: istoricul mașinii, ce o face specială, de ce o vinzi..."></textarea>
+<div style="text-align:right;font-size:12px;color:rgba(255,255,255,.45);margin-top:4px;"><span id="desc-count">0</span> / 300</div>
 </div>
 
 <div class="section-title"><i class="fa-solid fa-images"></i> <span data-i18n="sec_photos">Foto Vehicul</span></div>
@@ -528,6 +540,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const sel = document.getElementById('d-seller');
 const arata = () => document.querySelectorAll('.dealer-only').forEach(x => x.style.display = sel.value === 'dealer' ? '' : 'none');
 if (sel) { sel.addEventListener('change', arata); arata(); }
+const ds = document.getElementById('d-desc'), dc = document.getElementById('desc-count');
+if (ds && dc) ds.addEventListener('input', () => { dc.textContent = ds.value.length; });
 });
 
 function handleFinalSubmit(e) {
@@ -557,7 +571,7 @@ const chk = id => !!(document.getElementById(id) || {}).checked;
 const extra = {
 tuning: val('d-tuning') === 'da', warrantyMfgUntil: val('d-wmfg'), warrantyMfgKm: parseInt(val('d-wkm')) || null,
 warrantyDealerMonths: parseInt(val('d-wdealer')) || null, certified: chk('o-cert'), currency: val('d-currency') || 'EUR',
-priceNet: chk('o-net'), negotiable: chk('o-neg'), financing: chk('o-fin'), invoice: chk('o-inv'), leasing: chk('o-lea'),
+priceFinal: chk('o-final'), vatIncluded: chk('o-tva'), warrantyDetails: val('d-wdet').trim().slice(0, 500), description: val('d-desc').trim().slice(0, 300), negotiable: chk('o-neg'), financing: chk('o-fin'), invoice: chk('o-inv'), leasing: chk('o-lea'),
 showroom: seller === 'dealer' ? val('d-showroom') : '', agent: seller === 'dealer' ? val('d-agent') : ''
 };
 
@@ -608,7 +622,7 @@ localStorage.setItem('viacars_userCars', JSON.stringify(userCars));
 // Mesaj de confirmare
 alert('✅ Anunțul tău a fost PUBLICAT cu succes!\n\n' +
 brand + ' ' + model + ' (' + year + ')\n' +
-price + ' ' + extra.currency + (extra.priceNet ? ' (fără TVA)' : '') + ' - ' + city + '\n\n' +
+price + ' ' + extra.currency + (extra.vatIncluded ? ' (TVA inclus)' : '') + ' - ' + city + '\n\n' +
 'Anunțul apare acum în galeria Cumpără și este indexat după toate criteriile selectate.');
 
 // Redirecționăm către buy.html
@@ -617,7 +631,7 @@ window.location.href = 'buy.html';
 
 const translations = {
 ro: {
-lbl_tuning: "Tuning", opt_no: "Nu", opt_yes: "Da", sec_warranty: "Garanție", lbl_wmfg: "Garanție de la producător până la", lbl_wkm: "sau în limita a (km)", lbl_wdealer: "Garanție dealer, inclusă în preț (luni)", lbl_cert: "Program certificare", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Moneda", lbl_buyopts: "Opțiuni de cumpărare", opt_net: "Preț net (fără TVA)", opt_neg: "Negociabil", opt_fin: "Eligibil pentru finanțare", opt_inv: "Se emite factură", opt_lea: "Predare leasing", lbl_showroom: "Showroom", lbl_agent: "Agent vânzări (opțional)",
+lbl_tuning: "Tuning", opt_no: "Nu", opt_yes: "Da", sec_warranty: "Garanție", lbl_wmfg: "Garanție de la producător până la", lbl_wkm: "sau în limita a (km)", lbl_wdealer: "Garanție dealer, inclusă în preț (luni)", lbl_cert: "Program certificare", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Moneda", lbl_buyopts: "Opțiuni de cumpărare", opt_final: "Preț final", opt_tva: "Conține TVA", lbl_wdet: "Detalii garanție", ph_wdet: "ex: motor, cutie de viteze, sistem electric, asistență rutieră", sec_desc: "Descriere suplimentară", ph_desc: "Descrierea ta: istoricul mașinii, ce o face specială, de ce o vinzi...", opt_neg: "Negociabil", opt_fin: "Eligibil pentru finanțare", opt_inv: "Se emite factură", opt_lea: "Predare leasing", lbl_showroom: "Showroom", lbl_agent: "Agent vânzări (opțional)",
 page_title: "Completează detaliile vehiculului", page_subtitle: "Cu cât oferi mai multe informații, cu atât anunțul este mai vizibil.",
 sec_basic: "Detalii de bază", lbl_brand: "Marca", lbl_model: "Modelul", lbl_year: "Anul", lbl_mileage: "Kilometraj (km)",
 lbl_fuel: "Combustibil", lbl_trans: "Cutie de viteze", lbl_power: "Putere (CP)", lbl_color: "Culoare",
@@ -628,7 +642,7 @@ sec_photos: "Foto Vehicul", upload_text: "Trage fișierele aici sau ", upload_cl
 btn_publish: "PUBLICĂ"
 },
 en: {
-lbl_tuning: "Tuning", opt_no: "No", opt_yes: "Yes", sec_warranty: "Warranty", lbl_wmfg: "Manufacturer warranty until", lbl_wkm: "or up to (km)", lbl_wdealer: "Dealer warranty, included in the price (months)", lbl_cert: "Certification programme", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Currency", lbl_buyopts: "Purchase options", opt_net: "Net price (excl. VAT)", opt_neg: "Negotiable", opt_fin: "Eligible for financing", opt_inv: "Invoice issued", opt_lea: "Lease transfer", lbl_showroom: "Showroom", lbl_agent: "Sales agent (optional)",
+lbl_tuning: "Tuning", opt_no: "No", opt_yes: "Yes", sec_warranty: "Warranty", lbl_wmfg: "Manufacturer warranty until", lbl_wkm: "or up to (km)", lbl_wdealer: "Dealer warranty, included in the price (months)", lbl_cert: "Certification programme", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Currency", lbl_buyopts: "Purchase options", opt_final: "Final price", opt_tva: "VAT included", lbl_wdet: "Warranty details", ph_wdet: "e.g. engine, gearbox, electrics, roadside assistance", sec_desc: "Additional description", ph_desc: "Your own description: the car's history, what makes it special, why you sell it...", opt_neg: "Negotiable", opt_fin: "Eligible for financing", opt_inv: "Invoice issued", opt_lea: "Lease transfer", lbl_showroom: "Showroom", lbl_agent: "Sales agent (optional)",
 page_title: "Complete vehicle details", page_subtitle: "The more info you provide, the more visible the listing.",
 sec_basic: "Basic Details", lbl_brand: "Brand", lbl_model: "Model", lbl_year: "Year", lbl_mileage: "Mileage (km)",
 lbl_fuel: "Fuel", lbl_trans: "Transmission", lbl_power: "Power (HP)", lbl_color: "Color",
@@ -639,7 +653,7 @@ sec_photos: "Vehicle Photos", upload_text: "Drag files here or ", upload_click: 
 btn_publish: "PUBLISH"
 },
 bg: {
-lbl_tuning: "Тунинг", opt_no: "Не", opt_yes: "Да", sec_warranty: "Гаранция", lbl_wmfg: "Гаранция от производителя до", lbl_wkm: "или до (км)", lbl_wdealer: "Гаранция от дилъра, включена в цената (месеци)", lbl_cert: "Програма за сертифициране", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Валута", lbl_buyopts: "Опции за покупка", opt_net: "Нетна цена (без ДДС)", opt_neg: "По договаряне", opt_fin: "Подходящ за финансиране", opt_inv: "Издава се фактура", opt_lea: "Прехвърляне на лизинг", lbl_showroom: "Шоурум", lbl_agent: "Търговски агент (по избор)",
+lbl_tuning: "Тунинг", opt_no: "Не", opt_yes: "Да", sec_warranty: "Гаранция", lbl_wmfg: "Гаранция от производителя до", lbl_wkm: "или до (км)", lbl_wdealer: "Гаранция от дилъра, включена в цената (месеци)", lbl_cert: "Програма за сертифициране", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Валута", lbl_buyopts: "Опции за покупка", opt_final: "Крайна цена", opt_tva: "Включва ДДС", lbl_wdet: "Подробности за гаранцията", ph_wdet: "напр. двигател, скоростна кутия, електрическа система, пътна помощ", sec_desc: "Допълнително описание", ph_desc: "Вашето описание: история на колата, какво я прави специална, защо я продавате...", opt_neg: "По договаряне", opt_fin: "Подходящ за финансиране", opt_inv: "Издава се фактура", opt_lea: "Прехвърляне на лизинг", lbl_showroom: "Шоурум", lbl_agent: "Търговски агент (по избор)",
 page_title: "Попълнете детайлите на превозното средство", page_subtitle: "Колкото повече информация, толкова по-видима обявата.",
 sec_basic: "Основни детайли", lbl_brand: "Марка", lbl_model: "Модел", lbl_year: "Година", lbl_mileage: "Пробег (км)",
 lbl_fuel: "Гориво", lbl_trans: "Скоростна кутия", lbl_power: "Мощност (к.с.)", lbl_color: "Цвят",
@@ -650,7 +664,7 @@ sec_photos: "Снимки", upload_text: "Плъзнете файловете т
 btn_publish: "ПУБЛИКУВАЙ"
 },
 el: {
-lbl_tuning: "Tuning", opt_no: "Όχι", opt_yes: "Ναι", sec_warranty: "Εγγύηση", lbl_wmfg: "Εγγύηση κατασκευαστή έως", lbl_wkm: "ή έως (χλμ)", lbl_wdealer: "Εγγύηση αντιπροσώπου, στην τιμή (μήνες)", lbl_cert: "Πρόγραμμα πιστοποίησης", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Νόμισμα", lbl_buyopts: "Επιλογές αγοράς", opt_net: "Καθαρή τιμή (χωρίς ΦΠΑ)", opt_neg: "Συζητήσιμη", opt_fin: "Δυνατότητα χρηματοδότησης", opt_inv: "Εκδίδεται τιμολόγιο", opt_lea: "Μεταβίβαση leasing", lbl_showroom: "Έκθεση", lbl_agent: "Πωλητής (προαιρετικό)",
+lbl_tuning: "Tuning", opt_no: "Όχι", opt_yes: "Ναι", sec_warranty: "Εγγύηση", lbl_wmfg: "Εγγύηση κατασκευαστή έως", lbl_wkm: "ή έως (χλμ)", lbl_wdealer: "Εγγύηση αντιπροσώπου, στην τιμή (μήνες)", lbl_cert: "Πρόγραμμα πιστοποίησης", opt_cert: "ViaCars Certified Pre-Owned", lbl_currency: "Νόμισμα", lbl_buyopts: "Επιλογές αγοράς", opt_final: "Τελική τιμή", opt_tva: "Περιλαμβάνει ΦΠΑ", lbl_wdet: "Λεπτομέρειες εγγύησης", ph_wdet: "π.χ. κινητήρας, κιβώτιο, ηλεκτρικό σύστημα, οδική βοήθεια", sec_desc: "Επιπλέον περιγραφή", ph_desc: "Η δική σας περιγραφή: ιστορικό, τι το κάνει ξεχωριστό, γιατί το πουλάτε...", opt_neg: "Συζητήσιμη", opt_fin: "Δυνατότητα χρηματοδότησης", opt_inv: "Εκδίδεται τιμολόγιο", opt_lea: "Μεταβίβαση leasing", lbl_showroom: "Έκθεση", lbl_agent: "Πωλητής (προαιρετικό)",
 page_title: "Συμπληρώστε τα στοιχεία του οχήματος", page_subtitle: "Όσες περισσότερες πληροφορίες δώσετε, τόσο πιο ορατή η αγγελία.",
 sec_basic: "Βασικά στοιχεία", lbl_brand: "Μάρκα", lbl_model: "Μοντέλο", lbl_year: "Έτος", lbl_mileage: "Χιλιόμετρα (χλμ)",
 lbl_fuel: "Καύσιμο", lbl_trans: "Κιβώτιο ταχυτήτων", lbl_power: "Ισχύς (HP)", lbl_color: "Χρώμα",
@@ -670,6 +684,10 @@ document.getElementById('page-subtitle').textContent = dict.page_subtitle;
 document.querySelectorAll('[data-i18n]').forEach(el => {
 const key = el.getAttribute('data-i18n');
 if (dict[key]) el.textContent = dict[key];
+});
+document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+const key = el.getAttribute('data-i18n-ph');
+if (dict[key]) el.placeholder = dict[key];
 });
 document.querySelectorAll('.flag-btn').forEach(btn => {
 btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);

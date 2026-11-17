@@ -258,6 +258,7 @@
     .extra-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .extra-chip{font-size:12px;color:rgba(255,255,255,.85);border:1px solid rgba(59,130,246,.35);background:rgba(30,58,138,.25);border-radius:999px;padding:5px 11px}
 .extra-chip i{color:#60a5fa;margin-right:4px}
+.extra-wdet{margin-top:10px;font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}.extra-wdet b{color:#93c5fd;margin-right:4px}
 .badge-cpo{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#fde68a;border:1px solid rgba(250,204,21,.55);background:linear-gradient(90deg,rgba(250,204,21,.18),rgba(250,204,21,.05));border-radius:999px;padding:4px 10px}
 .badge-cpo b{color:#facc15;margin-right:3px}
 </style>
@@ -620,17 +621,17 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
                 price: Number(x.price || 0).toLocaleString('ro-RO'), fuel: FUEL[x.fuel] || x.fuel, trans: TRANS[x.trans] || x.trans,
                 power: (x.power || '-') + ' CP', body: BODY[x.body] || x.body, color: x.color, location: x.location,
                 seller: { name: nume, city: x.location, initials: nume.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase(), rating: 4.5 },
-                images: [x.image], description: x.brand + ' ' + x.model + ', ' + x.year + ', ' + Number(x.km || 0).toLocaleString('ro-RO') + ' km.',
+                images: [x.image], description: x.description || (x.brand + ' ' + x.model + ', ' + x.year + ', ' + Number(x.km || 0).toLocaleString('ro-RO') + ' km.'),
                 features: x.features || [], extra: x, priceRaw: Number(x.price || 0)
             };
         }
 
         // [17-Nov] garanție, opțiuni de cumpărare, showroom (câmpurile noi din Vinde)
         const XT = {
-            ro: { w: "Garanție producător până la", wkm: "sau în limita a", wd: "Garanție dealer inclusă", m: "luni", net: "Preț net (fără TVA)", neg: "Negociabil", fin: "Eligibil pentru finanțare", inv: "Se emite factură", lea: "Predare leasing", tun: "Tuning", sh: "Showroom", ag: "Agent vânzări", h: "Garanție și cumpărare" },
-            en: { w: "Manufacturer warranty until", wkm: "or up to", wd: "Dealer warranty included", m: "months", net: "Net price (excl. VAT)", neg: "Negotiable", fin: "Eligible for financing", inv: "Invoice issued", lea: "Lease transfer", tun: "Tuning", sh: "Showroom", ag: "Sales agent", h: "Warranty & purchase" },
-            bg: { w: "Гаранция от производителя до", wkm: "или до", wd: "Включена гаранция от дилъра", m: "месеца", net: "Нетна цена (без ДДС)", neg: "По договаряне", fin: "Подходящ за финансиране", inv: "Издава се фактура", lea: "Прехвърляне на лизинг", tun: "Тунинг", sh: "Шоурум", ag: "Търговски агент", h: "Гаранция и покупка" },
-            el: { w: "Εγγύηση κατασκευαστή έως", wkm: "ή έως", wd: "Εγγύηση αντιπροσώπου", m: "μήνες", net: "Καθαρή τιμή (χωρίς ΦΠΑ)", neg: "Συζητήσιμη", fin: "Δυνατότητα χρηματοδότησης", inv: "Εκδίδεται τιμολόγιο", lea: "Μεταβίβαση leasing", tun: "Tuning", sh: "Έκθεση", ag: "Πωλητής", h: "Εγγύηση και αγορά" }
+            ro: { w: "Garanție producător până la", wkm: "sau în limita a", wd: "Garanție dealer inclusă", m: "luni", fin_p: "Preț final", tva: "TVA inclus", wdet: "Ce include garanția", neg: "Negociabil", fin: "Eligibil pentru finanțare", inv: "Se emite factură", lea: "Predare leasing", tun: "Tuning", sh: "Showroom", ag: "Agent vânzări", h: "Garanție și cumpărare" },
+            en: { w: "Manufacturer warranty until", wkm: "or up to", wd: "Dealer warranty included", m: "months", fin_p: "Final price", tva: "VAT included", wdet: "What the warranty covers", neg: "Negotiable", fin: "Eligible for financing", inv: "Invoice issued", lea: "Lease transfer", tun: "Tuning", sh: "Showroom", ag: "Sales agent", h: "Warranty & purchase" },
+            bg: { w: "Гаранция от производителя до", wkm: "или до", wd: "Включена гаранция от дилъра", m: "месеца", fin_p: "Крайна цена", tva: "С включен ДДС", wdet: "Какво покрива гаранцията", neg: "По договаряне", fin: "Подходящ за финансиране", inv: "Издава се фактура", lea: "Прехвърляне на лизинг", tun: "Тунинг", sh: "Шоурум", ag: "Търговски агент", h: "Гаранция и покупка" },
+            el: { w: "Εγγύηση κατασκευαστή έως", wkm: "ή έως", wd: "Εγγύηση αντιπροσώπου", m: "μήνες", fin_p: "Τελική τιμή", tva: "Με ΦΠΑ", wdet: "Τι καλύπτει η εγγύηση", neg: "Συζητήσιμη", fin: "Δυνατότητα χρηματοδότησης", inv: "Εκδίδεται τιμολόγιο", lea: "Μεταβίβαση leasing", tun: "Tuning", sh: "Έκθεση", ag: "Πωλητής", h: "Εγγύηση και αγορά" }
         };
         function afiseazaExtra(car) {
             const x = car.extra || {};
@@ -642,7 +643,8 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
             if (neg && car.extra && x.isUserPublished) neg.style.display = x.negotiable ? '' : 'none';
             document.getElementById('badge-cpo').style.display = x.certified ? '' : 'none';
             const chips = [];
-            if (x.priceNet) chips.push(['fa-receipt', t.net]);
+            if (x.priceFinal) chips.push(['fa-tag', t.fin_p]);
+            if (x.vatIncluded) chips.push(['fa-receipt', t.tva]);
             if (x.negotiable) chips.push(['fa-handshake', t.neg]);
             if (x.financing) chips.push(['fa-building-columns', t.fin]);
             if (x.invoice) chips.push(['fa-file-invoice', t.inv]);
@@ -652,7 +654,9 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
             if (x.warrantyDealerMonths) chips.push(['fa-user-shield', `${t.wd}: ${x.warrantyDealerMonths} ${t.m}`]);
             if (x.tuning) chips.push(['fa-screwdriver-wrench', t.tun]);
             if (x.showroom) chips.push(['fa-store', `${t.sh}: ${x.showroom}` + (x.agent ? ` · ${t.ag}: ${x.agent}` : '')]);
-            box.innerHTML = chips.length ? '<div class="extra-chips">' + chips.map(c => `<span class="extra-chip"><i class="fa-solid ${c[0]}"></i> ${c[1].replace(/</g, '&lt;')}</span>`).join('') + '</div>' : '';
+            const esc = v => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            box.innerHTML = (chips.length ? '<div class="extra-chips">' + chips.map(c => `<span class="extra-chip"><i class="fa-solid ${c[0]}"></i> ${esc(c[1])}</span>`).join('') + '</div>' : '')
+                + (x.warrantyDetails ? `<div class="extra-wdet"><b><i class="fa-solid fa-shield-halved"></i> ${t.wdet}:</b> ${esc(x.warrantyDetails)}</div>` : '');
         }
 
         // === LOAD CAR DETAILS ===
