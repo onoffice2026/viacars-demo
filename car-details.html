@@ -255,7 +255,12 @@
             border: 1px solid rgba(96, 165, 250, 0.4); padding: 10px 30px;
             border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 13px;
         }
-    </style>
+    .extra-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.extra-chip{font-size:12px;color:rgba(255,255,255,.85);border:1px solid rgba(59,130,246,.35);background:rgba(30,58,138,.25);border-radius:999px;padding:5px 11px}
+.extra-chip i{color:#60a5fa;margin-right:4px}
+.badge-cpo{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#fde68a;border:1px solid rgba(250,204,21,.55);background:linear-gradient(90deg,rgba(250,204,21,.18),rgba(250,204,21,.05));border-radius:999px;padding:4px 10px}
+.badge-cpo b{color:#facc15;margin-right:3px}
+</style>
 <style>
 /* ===== VIACARS COMUN (bara de sus, butonul Vinde, subsol) ===== */
 /* comun pentru toate paginile ViaCars */
@@ -352,11 +357,13 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
                         <div class="flex items-center gap-3 mb-2">
                             <h1 id="car-title" class="text-3xl font-bold text-white">BMW Seria 3 320d xDrive</h1>
                             <span class="badge-verified"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="badge_verified">Verificat ViaCars</span></span>
+                            <span id="badge-cpo" class="badge-cpo" style="display:none"><b>ViaCars</b> Certified Pre-Owned</span>
                         </div>
                         <div class="flex items-baseline gap-4">
                             <span id="car-price" class="text-4xl font-bold text-blue-400">24.500 €</span>
-                            <span class="text-white/50 text-sm" data-i18n="price_negotiable">Preț negociabil</span>
+                            <span id="car-negotiable" class="text-white/50 text-sm" data-i18n="price_negotiable">Preț negociabil</span>
                         </div>
+                        <div id="car-extra"></div>
                         <div class="flex items-center gap-4 mt-3 text-sm text-white/60">
                             <span><i class="fa-solid fa-location-dot mr-1"></i> <span id="car-location">București</span></span>
                             <span><i class="fa-solid fa-clock mr-1"></i> <span data-i18n="posted_ago">Publicat acum 2 zile</span></span>
@@ -614,8 +621,38 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
                 power: (x.power || '-') + ' CP', body: BODY[x.body] || x.body, color: x.color, location: x.location,
                 seller: { name: nume, city: x.location, initials: nume.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase(), rating: 4.5 },
                 images: [x.image], description: x.brand + ' ' + x.model + ', ' + x.year + ', ' + Number(x.km || 0).toLocaleString('ro-RO') + ' km.',
-                features: x.features || []
+                features: x.features || [], extra: x, priceRaw: Number(x.price || 0)
             };
+        }
+
+        // [17-Nov] garanție, opțiuni de cumpărare, showroom (câmpurile noi din Vinde)
+        const XT = {
+            ro: { w: "Garanție producător până la", wkm: "sau în limita a", wd: "Garanție dealer inclusă", m: "luni", net: "Preț net (fără TVA)", neg: "Negociabil", fin: "Eligibil pentru finanțare", inv: "Se emite factură", lea: "Predare leasing", tun: "Tuning", sh: "Showroom", ag: "Agent vânzări", h: "Garanție și cumpărare" },
+            en: { w: "Manufacturer warranty until", wkm: "or up to", wd: "Dealer warranty included", m: "months", net: "Net price (excl. VAT)", neg: "Negotiable", fin: "Eligible for financing", inv: "Invoice issued", lea: "Lease transfer", tun: "Tuning", sh: "Showroom", ag: "Sales agent", h: "Warranty & purchase" },
+            bg: { w: "Гаранция от производителя до", wkm: "или до", wd: "Включена гаранция от дилъра", m: "месеца", net: "Нетна цена (без ДДС)", neg: "По договаряне", fin: "Подходящ за финансиране", inv: "Издава се фактура", lea: "Прехвърляне на лизинг", tun: "Тунинг", sh: "Шоурум", ag: "Търговски агент", h: "Гаранция и покупка" },
+            el: { w: "Εγγύηση κατασκευαστή έως", wkm: "ή έως", wd: "Εγγύηση αντιπροσώπου", m: "μήνες", net: "Καθαρή τιμή (χωρίς ΦΠΑ)", neg: "Συζητήσιμη", fin: "Δυνατότητα χρηματοδότησης", inv: "Εκδίδεται τιμολόγιο", lea: "Μεταβίβαση leasing", tun: "Tuning", sh: "Έκθεση", ag: "Πωλητής", h: "Εγγύηση και αγορά" }
+        };
+        function afiseazaExtra(car) {
+            const x = car.extra || {};
+            const t = XT[document.documentElement.lang] || XT.ro;
+            const box = document.getElementById('car-extra');
+            if (!box) return;
+            if (x.currency) document.getElementById('car-price').textContent = `${car.price} ${x.currency === 'EUR' ? '€' : x.currency}`;
+            const neg = document.getElementById('car-negotiable');
+            if (neg && car.extra && x.isUserPublished) neg.style.display = x.negotiable ? '' : 'none';
+            document.getElementById('badge-cpo').style.display = x.certified ? '' : 'none';
+            const chips = [];
+            if (x.priceNet) chips.push(['fa-receipt', t.net]);
+            if (x.negotiable) chips.push(['fa-handshake', t.neg]);
+            if (x.financing) chips.push(['fa-building-columns', t.fin]);
+            if (x.invoice) chips.push(['fa-file-invoice', t.inv]);
+            if (x.leasing) chips.push(['fa-arrow-right-arrow-left', t.lea]);
+            if (x.warrantyMfgUntil) chips.push(['fa-shield-halved', `${t.w} ${x.warrantyMfgUntil.split('-').reverse().join('.')}` + (x.warrantyMfgKm ? ` ${t.wkm} ${Number(x.warrantyMfgKm).toLocaleString('ro-RO')} km` : '')]);
+            else if (x.warrantyMfgKm) chips.push(['fa-shield-halved', `${t.w} ${Number(x.warrantyMfgKm).toLocaleString('ro-RO')} km`]);
+            if (x.warrantyDealerMonths) chips.push(['fa-user-shield', `${t.wd}: ${x.warrantyDealerMonths} ${t.m}`]);
+            if (x.tuning) chips.push(['fa-screwdriver-wrench', t.tun]);
+            if (x.showroom) chips.push(['fa-store', `${t.sh}: ${x.showroom}` + (x.agent ? ` · ${t.ag}: ${x.agent}` : '')]);
+            box.innerHTML = chips.length ? '<div class="extra-chips">' + chips.map(c => `<span class="extra-chip"><i class="fa-solid ${c[0]}"></i> ${c[1].replace(/</g, '&lt;')}</span>`).join('') + '</div>' : '';
         }
 
         // === LOAD CAR DETAILS ===
@@ -656,6 +693,8 @@ nav .btn-sell { margin-top: -8px; margin-bottom: -8px; }
             featuresList.innerHTML = car.features.map(f => `
                 <div class="feature-item"><i class="fa-solid fa-check-circle"></i> ${f}</div>
             `).join('');
+
+            afiseazaExtra(car);
 
             // Populate Seller
             document.getElementById('seller-name').textContent = car.seller.name;
